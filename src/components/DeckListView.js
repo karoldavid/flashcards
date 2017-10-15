@@ -8,12 +8,13 @@ class DeckListView extends Component {
 
 	renderItem({ item }) {
 
-	console.log(item)
+		const { title, questions } = item
 
 		return (
 			<ListItem
-				key={item.title}
-				title={item.title}
+				key={title}
+				title={title}
+				subtitle={`${questions.length} card${questions.length > 1 ? 's' : ''}`}
 			/>
 		)
 	}
