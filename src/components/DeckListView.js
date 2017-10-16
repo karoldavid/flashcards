@@ -6,8 +6,15 @@ import Deck from './Deck'
 
 class DeckListView extends Component {
 
-	renderItem({ item }) {
+	renderCard = () => {
+		return(
+			<View style={styles.containerStyle}>
+				<Text style={styles.textStyle}>Card Content</Text>
+			</View>
+		)
+	}
 
+	renderItem = ({ item }) => {
 		const { title, questions } = item
 
 		return (
@@ -15,12 +22,12 @@ class DeckListView extends Component {
 				key={title}
 				title={title}
 				subtitle={`${questions.length} card${questions.length > 1 ? 's' : ''}`}
+				onPress={this.renderCard}
 			/>
 		)
 	}
 
 	render() {
-		//console.log(this.props)
 		return(
 			<List>
 				<FlatList
@@ -39,6 +46,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+	containerStyle: {
+		borderWidth: 1,
+		borderRadius: 2,
+		borderColor: '#ddd',
+		borderBottomWidth: 0,
+		shadowColor: '#000',
+		shadowOffset: { widht: 0, height: 2 },
+		shadowOpacity: 0.1,
+		shadowRadius: 2,
+		elevation: 1,
+		marginLeft: 5,
+		marginRight: 5,
+		marginTop: 10
+	},
+	textStyle: {
+		fontSize: 18
+	}
 })
 
 const mapStateToProps = state => {
