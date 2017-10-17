@@ -4,7 +4,7 @@ import { createStore } from 'redux'
 import reducers from './src/reducers'
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { View, Platform } from 'react-native'
-import { purple, white } from './src/utils/colors'
+import { blue, purple, white } from './src/utils/colors'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import DeckListView from './src/components/DeckListView'
 import DeckView from './src/components/DeckView'
@@ -20,10 +20,10 @@ const Tabs = TabNavigator({
   }
 },{
   tabBarOptions: {
-    activeTintColor: Platform.OS === 'ios' ? purple : white,
+    activeTintColor: Platform.OS === 'ios' ? blue : white,
     style: {
       height: 56,
-      backgroundColor: Platform.OS === 'ios' ? white : purple,
+      backgroundColor: Platform.OS === 'ios' ? white : blue,
       shadowColor: 'rgba(0,0,0,0.24)',
       shadowOffset: {
         width: 0,
@@ -41,7 +41,13 @@ const MainNavigator = StackNavigator({
   },
   DeckView: {
     screen: DeckView,
-    navigationOptions: { title: 'Deck View'}
+    navigationOptions: {
+      title: 'Deck View',
+      headerTintColor: white,
+      headerStyle: {
+          backgroundColor: blue
+      }
+    }
   }
 })
 
