@@ -14,7 +14,7 @@ const Tabs = TabNavigator({
   Main: {
     screen: DeckListView,
     navigationOptions: {
-      tabBarLabel: 'Main',
+      tabBarLabel: 'Deck List View',
       tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
     }
   }
@@ -40,7 +40,8 @@ const MainNavigator = StackNavigator({
     screen: Tabs
   },
   DeckView: {
-    screen: DeckView
+    screen: DeckView,
+    navigationOptions: { title: 'Deck View'}
   }
 })
 

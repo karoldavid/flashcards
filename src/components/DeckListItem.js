@@ -6,18 +6,18 @@ class DeckListItem extends Component {
 
     render() {
 
-    	console.log(this.props)
+        const { title, questions, navigation } = this.props
 
         return (
 			<TouchableOpacity
-                onPress={() => this.props.navigation.navigate(
+                onPress={() => navigation.navigate(
                             'DeckView',
-                            { title: this.props.title }
+                            { title: title }
                         )}>
    				<ListItem
-					key={this.props.title}
-					title={this.props.title}
-					subtitle={`${this.props.questions.length} card${this.props.questions.length > 1 ? 's' : ''}`}
+					key={title}
+					title={title}
+					subtitle={`${questions.length} card${questions.length > 1 ? 's' : ''}`}
 				/>
             </TouchableOpacity>
         )

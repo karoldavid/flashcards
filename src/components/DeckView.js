@@ -4,11 +4,19 @@ import {View, Text } from 'react-native'
 
 class DeckView extends Component {
 	render() {
+		const { params } = this.props.navigation.state;
+		
 		return (
 			<View>
-				<Text>Deck View!</Text>
+				<Text style={styles.textStyles}>{params.title}</Text>
 			</View>
 		)
+	}
+}
+
+const styles = {
+	textStyles: {
+		fontSize: 18
 	}
 }
 

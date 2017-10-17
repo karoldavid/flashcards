@@ -7,20 +7,13 @@ import DeckListItem from './DeckListItem'
 
 class DeckListView extends Component {
 
-	renderCard = () => {
-		return(
-			<View style={styles.containerStyle}>
-				<Text style={styles.textStyle}>Card Content</Text>
-			</View>
-		)
-	}
-
 	renderItem = ({ item }) => {
 		const { title, questions } = item
+		const { navigation } = this.props
 
 		return (
 			<DeckListItem
-				navigation={this.props.navigation}
+				navigation={navigation}
 				title={title}
 				questions={questions}
 			/>
