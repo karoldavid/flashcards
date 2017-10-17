@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { StyleSheet, Text, FlatList, View } from 'react-native'
+import { StyleSheet, Text, FlatList, View, TouchableOpacity } from 'react-native'
 import { List, ListItem } from 'react-native-elements'
-import Deck from './Deck'
+import DeckView from './DeckView'
+import DeckListItem from './DeckListItem'
 
 class DeckListView extends Component {
 
@@ -18,11 +19,10 @@ class DeckListView extends Component {
 		const { title, questions } = item
 
 		return (
-			<ListItem
-				key={title}
+			<DeckListItem
+				navigation={this.props.navigation}
 				title={title}
-				subtitle={`${questions.length} card${questions.length > 1 ? 's' : ''}`}
-				onPress={this.renderCard}
+				questions={questions}
 			/>
 		)
 	}

@@ -7,6 +7,7 @@ import { View, Platform } from 'react-native'
 import { purple, white } from './src/utils/colors'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import DeckListView from './src/components/DeckListView'
+import DeckView from './src/components/DeckView'
 
 
 const Tabs = TabNavigator({
@@ -37,6 +38,9 @@ const Tabs = TabNavigator({
 const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs
+  },
+  DeckView: {
+    screen: DeckView
   }
 })
 
