@@ -8,7 +8,7 @@ import DeckListItem from './DeckListItem'
 class DeckListView extends Component {
 
 	renderItem = ({ item }) => {
-		const { title, questions } = item
+		const { title, questions, id } = item
 		const { navigation } = this.props
 
 		return (
@@ -16,6 +16,7 @@ class DeckListView extends Component {
 				navigation={navigation}
 				title={title}
 				questions={questions}
+				id={id}
 			/>
 		)
 	}
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
 	}
 })
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
 		flashCards: state.flashCards
 	}

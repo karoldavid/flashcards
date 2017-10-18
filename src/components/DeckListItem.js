@@ -2,20 +2,23 @@ import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { ListItem } from 'react-native-elements'
 import { connect } from 'react-redux'
-import selectDeck from '../actions'
+import { selectDeck } from '../actions'
 
 class DeckListItem extends Component {
 
+    touchableOpacityOnPress = () => {
+        const { title, questions, id, navigation } = this.props
+        navigation.navigate('DeckView', { title: title })
+        this.props.selectDeck(id)
+    }
+
     render() {
 
-        const { title, questions, navigation } = this.props
+        const { title, questions} = this.props
 
         return (
 			<TouchableOpacity
-                onPress={() => navigation.navigate(
-                            'DeckView',
-                            { title: title }
-                        )}>
+                onPress={this.touchableOpacityOnPress}>
    				<ListItem
 					key={title}
 					title={title}
@@ -26,20 +29,10 @@ class DeckListItem extends Component {
     }
 }
 
-
-const mapStateToProps = (state, ownProps) => {
-    console.log("state", state)
-    console.log("ownProps", ownProps)
-
-    return {
-        state
-    }
-}
-
 function matchDispatchToProps(dispatch) {
     return {
         selectDeck: (deckId) => dispatch(selectDeck(deckId))
     }
 } 
 
-export default connect(mapStateToProps, matchDispatchToProps)(DeckListItem)
+export default connect(null, matchDispatchToProps)(DeckListItem)

@@ -1,4 +1,4 @@
-import SELECT_DECK from '../actions'
+import { SELECT_DECK } from '../actions'
 
 function selectDeck(state = null, action) {
 	switch(action.type) {
