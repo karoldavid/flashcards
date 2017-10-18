@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { blue, white } from '../utils/colors'
 
-const Button = (props) => {
+const Button = ({ onPress, title }) => {
    return (
       <View style={styles.container}>
-         <TouchableOpacity>
+         <TouchableOpacity onPress={onPress}>
             <Text style={styles.button}>
-               {props.title}
+               {title}
             </Text>
          </TouchableOpacity>
       </View>

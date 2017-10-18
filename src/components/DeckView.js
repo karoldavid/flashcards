@@ -5,6 +5,11 @@ import { lightPurp, white } from '../utils/colors'
 import Button from './Button'
 
 class DeckView extends Component {
+
+	onButtonPress = () => {
+		console.log("Button Pressed!")
+	}
+
 	render() {
 		const { params } = this.props.navigation.state;
 		const { questions } = this.props.currentDeck
@@ -14,12 +19,11 @@ class DeckView extends Component {
 				<Text style={styles.deckTitle}>{params.title}</Text>
 				<Text style={styles.deckContent}>{`${questions.length} card${questions.length > 1 ? 's' : ''}`}</Text>
 				<Button
-					buttonPressed={this.buttonPressed}
+					onPress={() => this.onButtonPress()}
 					title={'Add Card'}
 				/>
 				<Button
-					style={styles.deckAction}
-					buttonPressed={this.buttonPressed}
+					onPress={this.onButtonPress.bind(this)}
 					title={'Start Quiz'}
 				/>
 			</View>
@@ -42,9 +46,6 @@ const styles = StyleSheet.create({
   deckContent: {
   	fontSize: 16,
   	color: white
-  },
-  deckAction: {
-
   }
 });
 
