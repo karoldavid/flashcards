@@ -6,6 +6,15 @@ import Button from './Button'
 
 class DeckView extends Component {
 
+	onCardButtonPress = () => {
+        const { navigation } = this.props
+        
+        navigation.navigate('AddCardView', { title: "Add Card" })
+       // this.props.selectDeck(id)
+       console.log("Button Pressed!")
+
+    }
+
 	onButtonPress = () => {
 		console.log("Button Pressed!")
 	}
@@ -19,11 +28,11 @@ class DeckView extends Component {
 				<Text style={styles.deckTitle}>{params.title}</Text>
 				<Text style={styles.deckContent}>{`${questions.length} card${questions.length > 1 ? 's' : ''}`}</Text>
 				<Button
-					onPress={() => this.onButtonPress()}
+					onPress={() => this.onCardButtonPress()}
 					title={'Add Card'}
 				/>
 				<Button
-					onPress={this.onButtonPress.bind(this)}
+					onPress={() => this.onButtonPress()}
 					title={'Start Quiz'}
 				/>
 			</View>

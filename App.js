@@ -8,6 +8,7 @@ import { blue, purple, white } from './src/utils/colors'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import DeckListView from './src/components/DeckListView'
 import DeckView from './src/components/DeckView'
+import AddCardView from './src/components/AddCardView'
 
 
 const Tabs = TabNavigator({
@@ -43,6 +44,16 @@ const MainNavigator = StackNavigator({
     screen: DeckView,
     navigationOptions: {
       title: 'Deck View',
+      headerTintColor: white,
+      headerStyle: {
+          backgroundColor: blue
+      }
+    }
+  },
+  AddCardView: {
+    screen: AddCardView,
+    navigationOptions: {
+      title: 'Add Card View',
       headerTintColor: white,
       headerStyle: {
           backgroundColor: blue
