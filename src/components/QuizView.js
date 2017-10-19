@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 
-class StartQuiz extends Component {
+class QuizView extends Component {
 
 	render() {
 		const { params } = this.props.navigation.state;
@@ -16,4 +16,4 @@ class StartQuiz extends Component {
 	}
 }
 
-export default StartQuiz
+export default QuizView

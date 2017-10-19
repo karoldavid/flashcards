@@ -8,8 +8,8 @@ import { blue, purple, white } from './src/utils/colors'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import DeckListView from './src/components/DeckListView'
 import DeckView from './src/components/DeckView'
-import AddCardView from './src/components/AddCardView'
-import StartQuizView from './src/components/StartQuizView'
+import NewDeckView from './src/components/NewDeckView'
+import QuizView from './src/components/QuizView'
 
 
 const Tabs = TabNavigator({
@@ -51,20 +51,20 @@ const MainNavigator = StackNavigator({
       }
     }
   },
-  AddCardView: {
-    screen: AddCardView,
+  NewDeckView: {
+    screen: NewDeckView,
     navigationOptions: {
-      title: 'Add Card View',
+      title: 'New Deck',
       headerTintColor: white,
       headerStyle: {
           backgroundColor: blue
       }
     }
   },
-  StartQuizView: {
-    screen: StartQuizView,
+  QuizView: {
+    screen: QuizView,
     navigationOptions: {
-      title: 'Start Quiz View',
+      title: 'Quiz',
       headerTintColor: white,
       headerStyle: {
           backgroundColor: blue

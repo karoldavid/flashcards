@@ -9,15 +9,15 @@ class DeckView extends Component {
 	onCardButtonPress = () => {
         const { navigation } = this.props
 
-        navigation.navigate('AddCardView', { title: "Add Card" })
+        navigation.navigate('NewDeckView', { title: "Add a Card" })
        // this.props.selectDeck(id)
     }
 
 	onQuizButtonPress = () => {
 		const { navigation } = this.props
 
-        navigation.navigate('StartQuizView', { title: "Start Quiz" })
-       // this.props.selectDeck(id)
+        navigation.navigate('QuizView', { title: "Start Quiz" })
+       // this.props.selectDeck(id)s
 	}
 
 	render() {
