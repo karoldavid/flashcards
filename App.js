@@ -9,6 +9,7 @@ import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import DeckListView from './src/components/DeckListView'
 import DeckView from './src/components/DeckView'
 import AddCardView from './src/components/AddCardView'
+import StartQuizView from './src/components/StartQuizView'
 
 
 const Tabs = TabNavigator({
@@ -54,6 +55,16 @@ const MainNavigator = StackNavigator({
     screen: AddCardView,
     navigationOptions: {
       title: 'Add Card View',
+      headerTintColor: white,
+      headerStyle: {
+          backgroundColor: blue
+      }
+    }
+  },
+  StartQuizView: {
+    screen: StartQuizView,
+    navigationOptions: {
+      title: 'Start Quiz View',
       headerTintColor: white,
       headerStyle: {
           backgroundColor: blue

@@ -8,15 +8,16 @@ class DeckView extends Component {
 
 	onCardButtonPress = () => {
         const { navigation } = this.props
-        
+
         navigation.navigate('AddCardView', { title: "Add Card" })
        // this.props.selectDeck(id)
-       console.log("Button Pressed!")
-
     }
 
-	onButtonPress = () => {
-		console.log("Button Pressed!")
+	onQuizButtonPress = () => {
+		const { navigation } = this.props
+
+        navigation.navigate('StartQuizView', { title: "Start Quiz" })
+       // this.props.selectDeck(id)
 	}
 
 	render() {
@@ -32,7 +33,7 @@ class DeckView extends Component {
 					title={'Add Card'}
 				/>
 				<Button
-					onPress={() => this.onButtonPress()}
+					onPress={() => this.onQuizButtonPress()}
 					title={'Start Quiz'}
 				/>
 			</View>
