@@ -1,14 +1,29 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native'
 import { lightPurp, lightBrilliantBlueMagenta, white } from '../utils/colors'
+import Button from './Button'
 
 class NewDeckView extends Component {
 
 	state = {text: ''}
 
+	handleTextChange = (text) => {
+
+	//	console.log("text:", text)
+		this.setState(() => ({
+			text
+		}))
+	}
+
+	onSubmitButtonPress = () => {
+		console.log("submit title")
+	}
+
+
 	render() {
+		const  text = this.state.text
 		const { params } = this.props.navigation.state
-		const { containerStyles, titleStyles, inputStyles } = styles 
+		const { containerStyles, titleStyles, inputStyles } = styles
 
 		return(
 			<KeyboardAvoidingView behavior='padding' style={containerStyles}>
@@ -18,8 +33,14 @@ class NewDeckView extends Component {
 				<TextInput
 			        style={inputStyles}
 			        placeholder="type title here"
-			        onChangeText={(text) => this.setState({text})}
+			        value={text}
+			       /* onChangeText={(text) => this.setState({text})}*/
+			        onChange={(text) => this.handleTextChange(text)}
 			    />
+			    <Button
+					onPress={() => this.onSubmitButtonPress()}
+					title={'Submit'}
+				/>
 			</KeyboardAvoidingView>
 		)
 	}
