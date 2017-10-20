@@ -14,10 +14,17 @@ import QuizView from './src/components/QuizView'
 
 
 const Tabs = TabNavigator({
-  Main: {
+  DeckList: {
     screen: DeckListView,
     navigationOptions: {
       tabBarLabel: 'Deck List View',
+      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
+    }
+  },
+  Deck: {
+    screen: NewDeckView,
+    navigationOptions: {
+      tabBarLabel: 'New Deck View',
       tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
     }
   }
