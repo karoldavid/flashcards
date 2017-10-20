@@ -5,21 +5,30 @@ import Button from './Button'
 
 class NewQuestionView extends Component {
 
-	state = {question: ''}
+	state = {
+		question: '',
+		answer: ''
+	}
 
-	handleTextChange = (question) => {
+	handleQuestionTextChange = (question) => {
 		this.setState(() => ({
 			question
+		}))
+	}
+	handleAnswerTextChange = (answer) => {
+		this.setState(() => ({
+			answer
 		}))
 	}
 
 	onSubmitButtonPress = () => {
 		console.log(this.state.question)
+		console.log(this.state.answer)
 	}
 
 
 	render() {
-		const  question = this.state.question
+		const  { question, answer } = this.state
 		const { params } = this.props.navigation.state
 		const { containerStyles, titleStyles, inputStyles } = styles
 
@@ -30,9 +39,18 @@ class NewQuestionView extends Component {
 				</Text>
 				<TextInput
 			        style={inputStyles}
-			        placeholder="type questio here"
+			        placeholder="type question here"
 			        value={question}
-			        onChangeText={this.handleTextChange}
+			        onChangeText={this.handleQuestionTextChange}
+			    />
+			    <Text style={titleStyles}>
+					What is the answer?
+				</Text>
+				<TextInput
+			        style={inputStyles}
+			        placeholder="type answer here"
+			        value={answer}
+			        onChangeText={this.handleAnswerTextChange}
 			    />
 			    <Button
 					onPress={this.onSubmitButtonPress}
