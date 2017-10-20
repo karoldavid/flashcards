@@ -5,23 +5,21 @@ import Button from './Button'
 
 class NewDeckView extends Component {
 
-	state = {text: ''}
+	state = {title: ''}
 
-	handleTextChange = (text) => {
-
-	//	console.log("text:", text)
+	handleTextChange = (title) => {
 		this.setState(() => ({
-			text
+			title
 		}))
 	}
 
 	onSubmitButtonPress = () => {
-		console.log("submit title")
+		console.log(this.state.title)
 	}
 
 
 	render() {
-		const  text = this.state.text
+		const  title = this.state.title
 		const { params } = this.props.navigation.state
 		const { containerStyles, titleStyles, inputStyles } = styles
 
@@ -32,13 +30,12 @@ class NewDeckView extends Component {
 				</Text>
 				<TextInput
 			        style={inputStyles}
-			        placeholder="type title here"
-			        value={text}
-			       /* onChangeText={(text) => this.setState({text})}*/
-			        onChange={(text) => this.handleTextChange(text)}
+			        placeholder="type deck title here"
+			        value={title}
+			        onChangeText={this.handleTextChange}
 			    />
 			    <Button
-					onPress={() => this.onSubmitButtonPress()}
+					onPress={this.onSubmitButtonPress}
 					title={'Submit'}
 				/>
 			</KeyboardAvoidingView>
