@@ -9,6 +9,7 @@ import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import DeckListView from './src/components/DeckListView'
 import DeckView from './src/components/DeckView'
 import NewDeckView from './src/components/NewDeckView'
+import NewQuestionView from './src/components/NewQuestionView'
 import QuizView from './src/components/QuizView'
 
 
@@ -51,10 +52,10 @@ const MainNavigator = StackNavigator({
       }
     }
   },
-  NewDeckView: {
-    screen: NewDeckView,
+  NewQuestionView: {
+    screen: NewQuestionView,
     navigationOptions: {
-      title: 'New Deck',
+      title: 'Add Question',
       headerTintColor: white,
       headerStyle: {
           backgroundColor: blue

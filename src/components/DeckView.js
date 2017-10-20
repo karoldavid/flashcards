@@ -9,7 +9,7 @@ class DeckView extends Component {
 	onCardButtonPress = () => {
         const { navigation } = this.props
 
-        navigation.navigate('NewDeckView', { title: "Add a Card" })
+        navigation.navigate('NewQuestionView', { title: "Add a Card" })
        // this.props.selectDeck(id)
     }
 
