@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addDeck } from '../actions'
 import { Text, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native'
 import { lightPurp, lightBrilliantBlueMagenta, white } from '../utils/colors'
 import Button from './Button'
@@ -14,7 +16,9 @@ class NewDeckView extends Component {
 	}
 
 	onSubmitButtonPress = () => {
-		console.log(this.state.title)
+		const { title } = this.state
+		//console.log(title)
+		this.props.addDeck(title)
 	}
 
 
@@ -65,4 +69,10 @@ const styles = StyleSheet.create({
    },
 })
 
-export default NewDeckView
+function mapDispatchToProps(dispatch) {
+	return {
+		addDeck: (title) => dispatch(addDeck(title))
+	}
+}
+
+export default connect(null, mapDispatchToProps)(NewDeckView)

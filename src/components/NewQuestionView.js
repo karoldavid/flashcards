@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Text, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native'
 import { lightPurp, lightBrilliantBlueMagenta, white } from '../utils/colors'
 import Button from './Button'
@@ -25,7 +26,6 @@ class NewQuestionView extends Component {
 		console.log(this.state.question)
 		console.log(this.state.answer)
 	}
-
 
 	render() {
 		const  { question, answer } = this.state
