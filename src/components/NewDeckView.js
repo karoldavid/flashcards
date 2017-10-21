@@ -16,9 +16,13 @@ class NewDeckView extends Component {
 	}
 
 	onSubmitButtonPress = () => {
+		console.log(this.props)
 		const { title } = this.state
 		//console.log(title)
 		this.props.addDeck(title)
+		this.setState({
+			title: ''
+		})
 		this.props.navigation.navigate('DeckList')
 	}
 
