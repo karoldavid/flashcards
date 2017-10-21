@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Text, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native'
+import { FormLabel, FormInput } from 'react-native-elements'
 import { lightPurp, lightBrilliantBlueMagenta, white } from '../utils/colors'
 import Button from './Button'
 
@@ -37,21 +38,23 @@ class NewQuestionView extends Component {
 				<Text style={titleStyles}>
 					What is the question you want to ask?
 				</Text>
-				<TextInput
-			        style={inputStyles}
-			        placeholder="type question here"
-			        value={question}
-			        onChangeText={this.handleQuestionTextChange}
-			    />
-			    <Text style={titleStyles}>
+			    <FormLabel>Question</FormLabel>
+				<FormInput
+					style={inputStyles}
+					placeholder="type question here"
+					value={answer}
+					onChangeText={this.handleQuestionTextChange}
+				/>
+				<Text style={titleStyles}>
 					What is the answer?
 				</Text>
-				<TextInput
-			        style={inputStyles}
-			        placeholder="type answer here"
-			        value={answer}
-			        onChangeText={this.handleAnswerTextChange}
-			    />
+				<FormLabel>Answer</FormLabel>
+				<FormInput
+					style={inputStyles}
+					placeholder="type answer here"
+					value={answer}
+					onChangeText={this.handleAnswerTextChange}
+				/>
 			    <Button
 					onPress={this.onSubmitButtonPress}
 					title={'Submit'}
