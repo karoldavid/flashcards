@@ -19,6 +19,7 @@ class NewDeckView extends Component {
 		const { title } = this.state
 		//console.log(title)
 		this.props.addDeck(title)
+		this.props.navigation.navigate('DeckList')
 	}
 
 
