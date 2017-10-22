@@ -1,4 +1,4 @@
-import { ADD_DECK } from '../actions' 
+import { ADD_DECK, ADD_CARD } from '../actions'
 
 const initialFlashCards = [{
         title: 'React',
@@ -66,7 +66,6 @@ const initialFlashCards = [{
 
 export default function flashCards( state = initialFlashCards, action ) {
 
-    console.log(state)
         switch(action.type) {
             case ADD_DECK:
                 const deck = {
@@ -76,6 +75,10 @@ export default function flashCards( state = initialFlashCards, action ) {
                 }
 
                 return state.concat(deck)
+            case ADD_CARD:
+                const card = state.filter((card) => card.id === action.index)[0]
+                card.questions.push(action.question)
+                return state.map((c) => c.id === action.index ? card : c)
             default:
                 return state
         }

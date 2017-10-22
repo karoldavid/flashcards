@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { addCard } from '../actions'
 import { Text, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native'
 import { FormLabel, FormInput } from 'react-native-elements'
 import { lightPurp, lightBrilliantBlueMagenta, white } from '../utils/colors'
@@ -24,8 +25,14 @@ class NewQuestionView extends Component {
 	}
 
 	onSubmitButtonPress = () => {
-		console.log(this.state.question)
-		console.log(this.state.answer)
+		const { question, answer } = this.state
+		const { selectDeck } = this.props
+		const newQuestion = {
+			question: answer 
+		}
+
+		this.props.addCard(newQuestion, selectDeck)
+		this.props.navigation.goBack();
 	}
 
 	render() {
@@ -42,7 +49,7 @@ class NewQuestionView extends Component {
 				<FormInput
 					style={inputStyles}
 					placeholder="type question here"
-					value={answer}
+					value={question}
 					onChangeText={this.handleQuestionTextChange}
 				/>
 				<Text style={titleStyles}>
@@ -86,4 +93,16 @@ const styles = StyleSheet.create({
    },
 })
 
-export default NewQuestionView
+function mapStateToProps(state) {
+	return {
+		selectDeck: state.selectDeck
+	}
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		addCard: (newQuestion, index) => dispatch(addCard(newQuestion, index))
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewQuestionView)
