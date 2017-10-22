@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => {
-	console.log(state)
 	const { flashCards, selectDeck } = state
     return {
         currentDeck: flashCards[selectDeck]

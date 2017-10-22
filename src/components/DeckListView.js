@@ -4,8 +4,13 @@ import { StyleSheet, Text, FlatList, View, TouchableOpacity } from 'react-native
 import { List, ListItem } from 'react-native-elements'
 import DeckView from './DeckView'
 import DeckListItem from './DeckListItem'
+import { selectDeck } from '../actions'
 
 class DeckListView extends Component {
+
+	componentDidMount() {
+		//this.props.deselectDeck(null)
+	}
 
 	renderItem = ({ item }) => {
 		const { title, questions, id } = item
@@ -34,10 +39,17 @@ class DeckListView extends Component {
 }
 
 const mapStateToProps = (state) => {
+	console.log(state)
 	const flashCards = state.flashCards
 	return {
 		flashCards
 	}
 }
 
-export default connect(mapStateToProps)(DeckListView)
+function mapDispatchToProps(dispatch) {
+	return {
+		deselectDeck: () => dispatch(selectDeck(null))
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeckListView)
