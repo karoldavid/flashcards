@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import Button from './Button'
 import { connect } from 'react-redux'
-import { lightPurp, white } from '../utils/colors'
+import { lightPurp, red, white } from '../utils/colors'
 
 class QuizView extends Component {
 
@@ -11,12 +11,14 @@ class QuizView extends Component {
     }
 
 	render() {
-		
 
+		const { questions } = this.props.currentDeck
+
+		console.log(questions)
 		return (
 			<View style={styles.container}>
-				<Text style={styles.questionStyles}>Question Text?</Text>
-				<Text style={styles.answerStyles}>Answer Text</Text>
+				<Text style={styles.questionStyles}>{questions[0].question}</Text>
+				<Text style={styles.answerStyles}>Answer</Text>
 				<Button
 					onPress={() => this.ButtonPress()}
 					title={'Correct'}
@@ -39,13 +41,23 @@ const styles = StyleSheet.create({
   },
   questionStyles: {
     paddingTop: 150,
-    fontSize: 20,
+    paddingBottom: 20,
+    fontSize: 24,
     color: white
   },
   answerStyles: {
   	fontSize: 16,
-  	color: white
+  	fontWeight: 'bold',
+  	color: red
   }
 })
 
-export default connect()(QuizView)
+const mapStateToProps = (state) => {
+	const { flashCards, selectDeck } = state
+    return {
+        currentDeck: flashCards[selectDeck]
+        
+    }
+}
+
+export default connect(mapStateToProps)(QuizView)
