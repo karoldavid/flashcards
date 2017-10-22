@@ -57,12 +57,14 @@ const styles = StyleSheet.create({
   	fontSize: 16,
   	color: white
   }
-});
+})
 
 const mapStateToProps = (state) => {
+	console.log(state)
 	const { flashCards, selectDeck } = state
     return {
         currentDeck: flashCards[selectDeck]
+        
     }
 }
 

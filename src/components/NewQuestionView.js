@@ -28,11 +28,13 @@ class NewQuestionView extends Component {
 		const { question, answer } = this.state
 		const { selectDeck } = this.props
 		const newQuestion = {
-			question: answer 
+			question: question,
+			answer: answer
 		}
 
 		this.props.addCard(newQuestion, selectDeck)
-		this.props.navigation.goBack();
+		//this.props.navigation.goBack();
+		this.props.navigation.navigate('DeckList')
 	}
 
 	render() {
