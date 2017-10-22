@@ -10,7 +10,6 @@ export default function flashCards( state = initialFlashCards, action ) {
                     id: state.length,
                     questions: []
                 }
-
                 return state.concat(deck)
             case ADD_CARD:
                 const card = state.filter((card) => card.id === action.index)[0]

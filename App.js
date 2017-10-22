@@ -47,8 +47,9 @@ const Tabs = TabNavigator({
 
 const MainNavigator = StackNavigator({
   Home: {
-   screen: Tabs
+   //screen: Tabs
    // screen: NewQuestionView
+   screen: QuizView
   },
   DeckView: {
     screen: DeckView,
