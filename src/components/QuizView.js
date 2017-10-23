@@ -12,7 +12,7 @@ class QuizView extends Component {
     }
 
     onAnswerTextPress = () => {
-    	const { show } = this.props
+    	const { show } = this.props.quiz
     	this.props.showAnswer(!show)
     }
 
