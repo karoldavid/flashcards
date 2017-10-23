@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import Button from './Button'
 import { connect } from 'react-redux'
 import { lightPurp, red, white } from '../utils/colors'
@@ -10,6 +10,10 @@ class QuizView extends Component {
       console.log('Button Pressed')
     }
 
+    onAnswerTextPress = () => {
+    	console.log('answer text pressed')
+    }
+
 	render() {
 
 		const { questions } = this.props.currentDeck
@@ -18,9 +22,13 @@ class QuizView extends Component {
 		return (
 			<View style={styles.container}>
 				<Text style={styles.questionStyles}>{questions[0].question}</Text>
-				<Text style={styles.answerStyles}>Answer</Text>
+				<TouchableOpacity onPress={this.onAnswerTextPress}>
+					<Text style={styles.answerStyles}>
+						Answer
+					</Text>
+				</TouchableOpacity>
 				<Button
-					onPress={() => this.ButtonPress()}
+					onPress={() => this.onButtonPress()}
 					title={'Correct'}
 				/>
 				<Button
