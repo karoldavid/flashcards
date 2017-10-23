@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import Button from './Button'
 import { connect } from 'react-redux'
 import { lightPurp, red, white } from '../utils/colors'
+import { showAnswer } from '../actions'
 
 class QuizView extends Component {
 
@@ -11,22 +12,30 @@ class QuizView extends Component {
     }
 
     onAnswerTextPress = () => {
-    	console.log('answer text pressed')
+    	const { show } = this.props
+    	this.props.showAnswer(!show)
     }
 
 	render() {
 
 		const { questions } = this.props.currentDeck
+		const { show } = this.props
 
-		console.log(questions)
 		return (
 			<View style={styles.container}>
 				<Text style={styles.questionStyles}>{questions[0].question}</Text>
 				<TouchableOpacity onPress={this.onAnswerTextPress}>
-					<Text style={styles.answerStyles}>
+					<Text style={styles.answerTouchableStyles}>
 						Answer
 					</Text>
 				</TouchableOpacity>
+
+				{ show === true && (
+					<Text style={styles.answerStyles}>
+						{questions[0].answer}
+					</Text>
+				)}
+				
 				<Button
 					onPress={() => this.onButtonPress()}
 					title={'Correct'}
@@ -53,19 +62,33 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: white
   },
-  answerStyles: {
+  answerTouchableStyles: {
   	fontSize: 16,
   	fontWeight: 'bold',
   	color: red
+  },
+  answerStyles: {
+  	fontSize: 16,
+  	fontWeight: 'bold',
+  	color: white,
+  	paddingTop: 20,
+  	paddingLeft: 40
   }
 })
 
 const mapStateToProps = (state) => {
-	const { flashCards, selectDeck } = state
+	const { flashCards, selectDeck, quiz } = state
+
     return {
-        currentDeck: flashCards[selectDeck]
-        
+        currentDeck: flashCards[selectDeck],
+        show: quiz.show
     }
 }
 
-export default connect(mapStateToProps)(QuizView)
+const mapDispatchToProps = (dispatch => {
+	return {
+		showAnswer: (show) => dispatch(showAnswer(show))
+	}
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuizView)

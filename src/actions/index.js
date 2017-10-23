@@ -1,6 +1,7 @@
 export const SELECT_DECK = 'SELECT_DECK'
 export const ADD_DECK = 'ADD_DECK'
 export const ADD_CARD = 'ADD_CARD'
+export const SHOW_ANSWER = 'SHOW_ANSWER'
 
 export const selectDeck = (deckId) => {
 	return {
@@ -21,5 +22,12 @@ export const addCard = (question, index) => {
 		type: ADD_CARD,
 		question,
 		index
+	}
+}
+
+export const showAnswer = (show) => {
+	return {
+		type: SHOW_ANSWER,
+		payload: show
 	}
 }
