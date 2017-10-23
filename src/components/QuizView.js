@@ -19,11 +19,14 @@ class QuizView extends Component {
 	render() {
 
 		const { questions } = this.props.currentDeck
-		const { show } = this.props
+		const { show, index } = this.props.quiz
+
+		console.log(index)
 
 		return (
 			<View style={styles.container}>
-				<Text style={styles.questionStyles}>{questions[0].question}</Text>
+				<Text style={styles.cardsLeftStyles}>{index + 1}/{questions.length}</Text>
+				<Text style={styles.questionStyles}>{questions[index].question}</Text>
 				<TouchableOpacity onPress={this.onAnswerTextPress}>
 					<Text style={styles.answerTouchableStyles}>
 						Answer
@@ -32,7 +35,7 @@ class QuizView extends Component {
 
 				{ show === true && (
 					<Text style={styles.answerStyles}>
-						{questions[0].answer}
+						{questions[index].answer}
 					</Text>
 				)}
 				
@@ -73,15 +76,20 @@ const styles = StyleSheet.create({
   	color: white,
   	paddingTop: 20,
   	paddingLeft: 40
+  },
+  cardsLeftStyles: {
+  	fontSize: 16,
+  	fontWeight: 'bold',
+  	color: white,
   }
 })
 
 const mapStateToProps = (state) => {
 	const { flashCards, selectDeck, quiz } = state
-
+	console.log(quiz)
     return {
         currentDeck: flashCards[selectDeck],
-        show: quiz.show
+        quiz
     }
 }
 

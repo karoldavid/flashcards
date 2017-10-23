@@ -3,15 +3,14 @@ import { showAnswer } from '../reducers/QuizReducer'
 
 const quizLogic = {
 	show: false,
+	index: 0
 }
 
 export default function quiz(state = quizLogic, action) {
-	console.log(action)
-
-	//console.log("state:", state)
+	console.log(state)
 	switch(action.type) {
 		case SHOW_ANSWER:
-			return { show: action.payload }
+			return { ...state, show: action.payload }
 		default:
 			return state
 	}
