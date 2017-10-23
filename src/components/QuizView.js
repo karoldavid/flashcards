@@ -3,12 +3,12 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import Button from './Button'
 import { connect } from 'react-redux'
 import { lightPurp, red, white } from '../utils/colors'
-import { showAnswer } from '../actions'
+import { showAnswer, increaseScore } from '../actions'
 
 class QuizView extends Component {
 
-	onButtonPress = () => {
-      console.log('Button Pressed')
+	onAnswerButtonPress = (correct) => {
+		this.props.increaseScore(correct)
     }
 
     onAnswerTextPress = () => {
@@ -20,8 +20,6 @@ class QuizView extends Component {
 
 		const { questions } = this.props.currentDeck
 		const { show, index } = this.props.quiz
-
-		console.log(index)
 
 		return (
 			<View style={styles.container}>
@@ -42,13 +40,15 @@ class QuizView extends Component {
 						{ !show ? 'Answer' : 'Question' }
 					</Text>
 				</TouchableOpacity>
+
+				<Text style={{fontSize: 18}}>{this.props.quiz.score}</Text>
 				
 				<Button
-					onPress={() => this.onButtonPress()}
+					onPress={() => this.onAnswerButtonPress(true)}
 					title={'Correct'}
 				/>
 				<Button
-					onPress={() => this.onButtonPress()}
+					onPress={() => this.onAnswerButtonPress(false)}
 					title={'Incorrect'}
 				/>
 			</View>
@@ -91,7 +91,6 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
 	const { flashCards, selectDeck, quiz } = state
-	console.log(quiz)
     return {
         currentDeck: flashCards[selectDeck],
         quiz
@@ -100,7 +99,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch => {
 	return {
-		showAnswer: (show) => dispatch(showAnswer(show))
+		showAnswer: (show) => dispatch(showAnswer(show)),
+		increaseScore: (correct) => dispatch(increaseScore(correct))
 	}
 })
 
