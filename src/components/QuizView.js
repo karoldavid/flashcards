@@ -26,18 +26,22 @@ class QuizView extends Component {
 		return (
 			<View style={styles.container}>
 				<Text style={styles.cardsLeftStyles}>{index + 1}/{questions.length}</Text>
-				<Text style={styles.questionStyles}>{questions[index].question}</Text>
-				<TouchableOpacity onPress={this.onAnswerTextPress}>
-					<Text style={styles.answerTouchableStyles}>
-						Answer
-					</Text>
-				</TouchableOpacity>
+				
+				{ !show && (
+					<Text style={styles.questionStyles}>{questions[index].question}</Text>
+				)}
 
-				{ show === true && (
+				{ show && (
 					<Text style={styles.answerStyles}>
 						{questions[index].answer}
 					</Text>
 				)}
+				
+				<TouchableOpacity onPress={this.onAnswerTextPress}>
+					<Text style={styles.answerTouchableStyles}>
+						{ !show ? 'Answer' : 'Question' }
+					</Text>
+				</TouchableOpacity>
 				
 				<Button
 					onPress={() => this.onButtonPress()}
@@ -60,7 +64,7 @@ const styles = StyleSheet.create({
     margin: 5
   },
   questionStyles: {
-    paddingTop: 150,
+    paddingTop: 50,
     paddingBottom: 20,
     fontSize: 24,
     color: white
@@ -71,11 +75,12 @@ const styles = StyleSheet.create({
   	color: red
   },
   answerStyles: {
+  	paddingTop: 50,
+  	paddingBottom: 20,
+  	paddingLeft: 40,
   	fontSize: 16,
   	fontWeight: 'bold',
-  	color: white,
-  	paddingTop: 20,
-  	paddingLeft: 40
+  	color: white
   },
   cardsLeftStyles: {
   	fontSize: 16,
