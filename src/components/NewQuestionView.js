@@ -33,7 +33,7 @@ class NewQuestionView extends Component {
 		}
 
 		this.props.addCard(newQuestion, selectDeck)
-		//this.props.navigation.goBack();
+		//this.props.navigation.goBack()
 		this.props.navigation.navigate('DeckList')
 	}
 

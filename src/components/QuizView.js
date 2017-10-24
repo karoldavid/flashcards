@@ -37,6 +37,11 @@ class QuizView extends Component {
     	this.props.resetQuiz()
     }
 
+    onBackToDeckButtonPress = () => {
+    	this.props.navigation.goBack()
+    	this.props.resetQuiz()
+	}
+
     showPercentCorrect = () => {
     	const { score } = this.props.quiz
     	const { questions } = this.props.currentDeck
@@ -102,6 +107,10 @@ class QuizView extends Component {
 								<Button
 									onPress={() => this.onRestartQuizButtonPress()}
 									title={'Restart Quiz'}
+								/>
+								<Button
+									onPress={() => this.onBackToDeckButtonPress()}
+									title={'Back to Deck'}
 								/>
 							</View>
 						)}
