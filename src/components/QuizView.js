@@ -67,10 +67,18 @@ class QuizView extends Component {
 				{correct !== null && (
 					<View style={styles.container}>
 						<Text>{correct ? 'YES!' : 'NO!'}</Text>
-						<Button
-							onPress={() => this.onNextQuestionButtonPress()}
-							title={'Next Question'}
-						/>
+						{index !== questions.length - 1 && (
+							<Button
+								onPress={() => this.onNextQuestionButtonPress()}
+								title={'Next Question'}
+							/>
+						)}
+						{index === questions.length - 1 && (
+							<Button
+								onPress={() => this.onNextQuestionButtonPress()}
+								title={'Final Result'}
+							/>
+						)}
 					</View>
 				)}
 
