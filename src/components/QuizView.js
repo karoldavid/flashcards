@@ -3,15 +3,13 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import Button from './Button'
 import { connect } from 'react-redux'
 import { lightPurp, red, white } from '../utils/colors'
-import { showAnswer, increaseScore } from '../actions'
+import { showAnswer, increaseScore, questionAnswered } from '../actions'
 
 class QuizView extends Component {
 
-	state = { answered: false }
-
 	onAnswerButtonPress = (correct) => {
 		this.props.increaseScore(correct)
-		this.setState({ answered: true })
+		this.props.questionAnswered(correct)
     }
 
     onAnswerTextPress = () => {
@@ -26,14 +24,13 @@ class QuizView extends Component {
 	render() {
 
 		const { questions } = this.props.currentDeck
-		const { show, index } = this.props.quiz
-		const { answered } = this.state
+		const { show, index, correct } = this.props.quiz
 
 		return (
 			<View style={styles.container}>
 				<Text style={styles.cardsLeftStyles}>{index + 1}/{questions.length}</Text>
 
-				{!answered && (
+				{correct === null && (
 					<View>
 						<View>
 							{!show && (
@@ -67,9 +64,9 @@ class QuizView extends Component {
 					</View>
 				)}
 
-				{answered && (
+				{correct !== null && (
 					<View style={styles.container}>
-						<Text>Yes!</Text>
+						<Text>{correct ? 'YES!' : 'NO!'}</Text>
 						<Button
 							onPress={() => this.onNextQuestionButtonPress()}
 							title={'Next Question'}
@@ -127,7 +124,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch => {
 	return {
 		showAnswer: (show) => dispatch(showAnswer(show)),
-		increaseScore: (correct) => dispatch(increaseScore(correct))
+		increaseScore: (correct) => dispatch(increaseScore(correct)),
+		questionAnswered: (answer) => dispatch(questionAnswered(answer))
 	}
 })
 
