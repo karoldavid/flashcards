@@ -36,10 +36,17 @@ class QuizView extends Component {
     	console.log('onShowResultButtonPress')
     }
 
+    showPercentCorrect = () => {
+    	const { score } = this.props.quiz
+    	const { questions } = this.props.currentDeck
+    	const result = score / questions.length * 100
+    	return result
+    }
+
 	render() {
 
 		const { questions } = this.props.currentDeck
-		const { show, index, correct } = this.props.quiz
+		const { show, index, correct, score } = this.props.quiz
 
 		return (
 			<View style={styles.container}>
@@ -63,7 +70,7 @@ class QuizView extends Component {
 						
 							<TouchableOpacity onPress={this.onAnswerTextPress}>
 								<Text style={styles.answerTouchableStyles}>
-									{ !show ? 'Answer' : 'Question' }
+									{ !show ? 'Answber' : 'Question' }
 								</Text>
 							</TouchableOpacity>
 							
@@ -81,7 +88,7 @@ class QuizView extends Component {
 
 				{correct !== null && (
 					<View style={styles.container}>
-						<Text>{correct ? 'YES!' : 'NO!'}</Text>
+						<Text style={styles.answerCorrectStyles}>{correct ? 'YES!' : 'NO!'}</Text>
 						{index !== questions.length - 1 && (
 							<Button
 								onPress={() => this.onNextQuestionButtonPress()}
@@ -89,10 +96,13 @@ class QuizView extends Component {
 							/>
 						)}
 						{index === questions.length - 1 && (
-							<Button
-								onPress={() => this.onShowResultButtonPress()}
-								title={'Final Result'}
-							/>
+							<View style={styles.container}>
+								<Text style={styles.finalScoreStyles}>{this.showPercentCorrect()}% Correct</Text>
+								<Button
+									onPress={() => this.onShowResultButtonPress()}
+									title={'Final Result'}
+								/>
+							</View>
 						)}
 					</View>
 				)}
@@ -126,6 +136,20 @@ const styles = StyleSheet.create({
   	paddingBottom: 20,
   	paddingLeft: 40,
   	fontSize: 16,
+  	fontWeight: 'bold',
+  	color: white
+  }, 
+  answerCorrectStyles: {
+  	paddingTop: 50,
+  	paddingBottom: 20,
+  	fontSize: 24,
+  	fontWeight: 'bold',
+  	color: white
+  },
+  finalScoreStyles: {
+  	paddingTop: 50,
+  	paddingBottom: 20,
+  	fontSize: 24,
   	fontWeight: 'bold',
   	color: white
   },

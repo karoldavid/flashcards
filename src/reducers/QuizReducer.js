@@ -17,8 +17,9 @@ export default function quiz(state = quizLogic, action) {
 		case SHOW_ANSWER:
 			return { ...state, show: action.payload }
 		case INCREASE_SCORE: 
-			const score = state.score
-			return { ...state, score: action.payload ? score++ : score }
+			const newScore = state.score
+			newScore++
+			return { ...state, score: action.payload ? newScore : state.score }
 		case QUESTION_ANSWERED:
 			return { ...state, correct: action.payload }
 		case NEXT_QUESTION:
