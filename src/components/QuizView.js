@@ -7,8 +7,11 @@ import { showAnswer, increaseScore } from '../actions'
 
 class QuizView extends Component {
 
+	state = { answered: false }
+
 	onAnswerButtonPress = (correct) => {
 		this.props.increaseScore(correct)
+		this.setState({ answered: true })
     }
 
     onAnswerTextPress = () => {
@@ -16,41 +19,65 @@ class QuizView extends Component {
     	this.props.showAnswer(!show)
     }
 
+    onNextQuestionButtonPress = () => {
+    	console.log('next question')
+    }
+
 	render() {
 
 		const { questions } = this.props.currentDeck
 		const { show, index } = this.props.quiz
+		const { answered } = this.state
 
 		return (
 			<View style={styles.container}>
 				<Text style={styles.cardsLeftStyles}>{index + 1}/{questions.length}</Text>
-				
-				{ !show && (
-					<Text style={styles.questionStyles}>{questions[index].question}</Text>
+
+				{!answered && (
+					<View>
+						<View>
+							{!show && (
+								<Text style={styles.questionStyles}>{questions[index].question}</Text>
+							)}
+
+							{show && (
+								<Text style={styles.answerStyles}>
+									{questions[index].answer}
+								</Text>
+							)}
+						</View>
+
+						<View style={styles.container}>
+						
+							<TouchableOpacity onPress={this.onAnswerTextPress}>
+								<Text style={styles.answerTouchableStyles}>
+									{ !show ? 'Answer' : 'Question' }
+								</Text>
+							</TouchableOpacity>
+							
+							<Button
+								onPress={() => this.onAnswerButtonPress(true)}
+								title={'Correct'}
+							/>
+							<Button
+								onPress={() => this.onAnswerButtonPress(false)}
+								title={'Incorrect'}
+							/>
+						</View>
+					</View>
 				)}
 
-				{ show && (
-					<Text style={styles.answerStyles}>
-						{questions[index].answer}
-					</Text>
+				{answered && (
+					<View style={styles.container}>
+						<Text>Yes!</Text>
+						<Button
+							onPress={() => this.onNextQuestionButtonPress()}
+							title={'Next Question'}
+						/>
+					</View>
 				)}
-				
-				<TouchableOpacity onPress={this.onAnswerTextPress}>
-					<Text style={styles.answerTouchableStyles}>
-						{ !show ? 'Answer' : 'Question' }
-					</Text>
-				</TouchableOpacity>
 
-				<Text style={{fontSize: 18}}>{this.props.quiz.score}</Text>
-				
-				<Button
-					onPress={() => this.onAnswerButtonPress(true)}
-					title={'Correct'}
-				/>
-				<Button
-					onPress={() => this.onAnswerButtonPress(false)}
-					title={'Incorrect'}
-				/>
+
 			</View>
 		)
 	}

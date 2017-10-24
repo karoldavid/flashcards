@@ -4,6 +4,7 @@ const quizLogic = {
 	show: false,
 	index: 0,
 	score: 0,
+	correct: null
 }
 
 export default function quiz(state = quizLogic, action) {
