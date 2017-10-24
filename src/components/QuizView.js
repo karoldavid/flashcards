@@ -12,7 +12,8 @@ import {
 	showAnswer,
 	increaseScore,
 	questionAnswered,
-	nextQuestion 
+	nextQuestion,
+	resetQuiz
 } from '../actions'
 
 class QuizView extends Component {
@@ -32,8 +33,8 @@ class QuizView extends Component {
     	this.props.questionAnswered(null)
     }
 
-    onShowResultButtonPress = () => {
-    	console.log('onShowResultButtonPress')
+    onRestartQuizButtonPress = () => {
+    	this.props.resetQuiz()
     }
 
     showPercentCorrect = () => {
@@ -99,8 +100,8 @@ class QuizView extends Component {
 							<View style={styles.container}>
 								<Text style={styles.finalScoreStyles}>{this.showPercentCorrect()}% Correct</Text>
 								<Button
-									onPress={() => this.onShowResultButtonPress()}
-									title={'Final Result'}
+									onPress={() => this.onRestartQuizButtonPress()}
+									title={'Restart Quiz'}
 								/>
 							</View>
 						)}
@@ -173,7 +174,8 @@ const mapDispatchToProps = (dispatch => {
 		showAnswer: (show) => dispatch(showAnswer(show)),
 		increaseScore: (correct) => dispatch(increaseScore(correct)),
 		questionAnswered: (answer) => dispatch(questionAnswered(answer)),
-		nextQuestion: () => dispatch(nextQuestion(1))
+		nextQuestion: () => dispatch(nextQuestion(1)),
+		resetQuiz: () => dispatch(resetQuiz())
 	}
 })
 

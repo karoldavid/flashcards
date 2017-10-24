@@ -2,7 +2,8 @@ import {
 	SHOW_ANSWER,
 	INCREASE_SCORE,
 	QUESTION_ANSWERED,
-	NEXT_QUESTION
+	NEXT_QUESTION,
+	RESET_QUIZ
 } from '../actions'
 
 const quizLogic = {
@@ -25,6 +26,9 @@ export default function quiz(state = quizLogic, action) {
 		case NEXT_QUESTION:
 			const index = state.index + action.payload
 			return { ...state, index: index }
+		case RESET_QUIZ:
+			console.log("RESET_QUIZ")
+			return { ...state, ...quizLogic }
 		default:
 			return state
 	}

@@ -5,6 +5,7 @@ export const SHOW_ANSWER = 'SHOW_ANSWER'
 export const INCREASE_SCORE = 'INCREASE_SCORE'
 export const QUESTION_ANSWERED = 'QUESTION_ANSWERED'
 export const NEXT_QUESTION = 'NEXT_QUESTION'
+export const RESET_QUIZ = 'RESET_QUIZ'
 
 export const selectDeck = (deckId) => {
 	return {
@@ -53,5 +54,11 @@ export const nextQuestion = (shuffle) => {
 	return {
 		type: NEXT_QUESTION,
 		payload: shuffle
+	}
+}
+
+export const resetQuiz = () => {
+	return {
+		type: RESET_QUIZ
 	}
 }
