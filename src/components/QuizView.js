@@ -1,9 +1,19 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import {
+	View,
+	Text,
+	StyleSheet,
+	TouchableOpacity
+} from 'react-native'
 import Button from './Button'
 import { connect } from 'react-redux'
 import { lightPurp, red, white } from '../utils/colors'
-import { showAnswer, increaseScore, questionAnswered } from '../actions'
+import {
+	showAnswer,
+	increaseScore,
+	questionAnswered,
+	nextQuestion 
+} from '../actions'
 
 class QuizView extends Component {
 
@@ -18,7 +28,12 @@ class QuizView extends Component {
     }
 
     onNextQuestionButtonPress = () => {
-    	console.log('next question')
+    	this.props.nextQuestion()
+    	this.props.questionAnswered(null)
+    }
+
+    onShowResultButtonPress = () => {
+    	console.log('onShowResultButtonPress')
     }
 
 	render() {
@@ -75,7 +90,7 @@ class QuizView extends Component {
 						)}
 						{index === questions.length - 1 && (
 							<Button
-								onPress={() => this.onNextQuestionButtonPress()}
+								onPress={() => this.onShowResultButtonPress()}
 								title={'Final Result'}
 							/>
 						)}
@@ -133,7 +148,8 @@ const mapDispatchToProps = (dispatch => {
 	return {
 		showAnswer: (show) => dispatch(showAnswer(show)),
 		increaseScore: (correct) => dispatch(increaseScore(correct)),
-		questionAnswered: (answer) => dispatch(questionAnswered(answer))
+		questionAnswered: (answer) => dispatch(questionAnswered(answer)),
+		nextQuestion: () => dispatch(nextQuestion(1))
 	}
 })
 
