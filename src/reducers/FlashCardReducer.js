@@ -21,15 +21,9 @@ export default function flashCards( state = cards, action ) {
                 }
                 return { ...state, flashCardsList: state.flashCardsList.concat(deck) }
             case ADD_CARD:
-          //  console.log(state.flashCardsList)
-           // console.log(action.title)
                 const card = state.flashCardsList.filter((card) => card.title === action.title)[0]
-                console.log(card)
                 card.questions.push(action.question)
-                return state.flashCardsList.map((c) => c.title === action.title ? card : c)
-              //  console.log(state)
-             // console.log(action)
-                //return { ...state, selected: state.selected.questions.concat(action.question) }
+                return { ...state, flasCardsList: state.flashCardsList.map((c) => c.title === action.title ? card : c) }
             default:
                 return state
         }
