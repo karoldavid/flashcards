@@ -8,7 +8,11 @@ import {
 	KeyboardAvoidingView
 } from 'react-native'
 import { FormLabel, FormInput } from 'react-native-elements'
-import { lightPurp, lightBrilliantBlueMagenta, white } from '../utils/colors'
+import {
+	lightPurp,
+	lightBrilliantBlueMagenta,
+	white
+} from '../utils/colors'
 import Button from './Button'
 
 class NewQuestionView extends Component {
@@ -36,10 +40,7 @@ class NewQuestionView extends Component {
 			question: question,
 			answer: answer
 		}
-
-		//console.log('props:', this.props)
 		this.props.addCard(newQuestion, selectDeck.title)
-		//this.props.navigation.goBack()
 		this.props.navigation.navigate('DeckList')
 	}
 

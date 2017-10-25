@@ -27,7 +27,6 @@ export default function quiz(state = quizLogic, action) {
 			const index = state.index + action.payload
 			return { ...state, index: index }
 		case RESET_QUIZ:
-			console.log("RESET_QUIZ")
 			return { ...state, ...quizLogic }
 		default:
 			return state

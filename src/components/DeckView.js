@@ -6,18 +6,27 @@ import Button from './Button'
 
 class DeckView extends Component {
 
+	state = { gotToQuiz: false }
+
+	componentDidMount() {
+		const length = this.props.currentDeck.questions.length;
+		this.setState({
+			goToQuiz: length > 0 ? true : false
+		})
+	}
+
 	onCardButtonPress = () => {
         const { navigation } = this.props
 
         navigation.navigate('NewQuestionView', { title: "Add a Card" })
-       // this.props.selectDeck(id)
     }
 
 	onQuizButtonPress = () => {
 		const { navigation } = this.props
 
-        navigation.navigate('QuizView', { title: "Start Quiz" })
-       // this.props.selectDeck(id)
+		if (this.state.goToQuiz) {
+        	navigation.navigate('QuizView', { title: "Start Quiz" })
+        }
 	}
 
 	render() {
