@@ -5,7 +5,6 @@ import quiz from './QuizReducer'
 
 export default combineReducers({
 	flashCards,
-	selectDeck,
 	quiz
 })
 

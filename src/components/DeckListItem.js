@@ -8,9 +8,9 @@ import { gray, lightGray, lightPurp, white } from '../utils/colors'
 class DeckListItem extends Component {
 
     touchableOpacityOnPress = () => {
-        const { title, questions, id, navigation } = this.props
+        const { title, questions, navigation } = this.props
         navigation.navigate('DeckView', { title: title })
-        this.props.selectDeck(id)
+        this.props.selectDeck(title)
     }
 
     render() {
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 
 function matchDispatchToProps(dispatch) {
     return {
-        selectDeck: (deckId) => dispatch(selectDeck(deckId))
+        selectDeck: (title) => dispatch(selectDeck(title))
     }
 } 
 

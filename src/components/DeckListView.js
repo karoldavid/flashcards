@@ -39,8 +39,7 @@ class DeckListView extends Component {
 }
 
 const mapStateToProps = (state) => {
-	console.log(state)
-	const flashCards = state.flashCards
+	const flashCards = state.flashCards.flashCardsList
 	return {
 		flashCards
 	}
