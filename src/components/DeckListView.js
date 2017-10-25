@@ -13,7 +13,7 @@ class DeckListView extends Component {
 	}
 
 	renderItem = ({ item }) => {
-		const { title, questions, id } = item
+		const { title, questions} = item
 		const { navigation } = this.props
 
 		return (
@@ -21,7 +21,7 @@ class DeckListView extends Component {
 				navigation={navigation}
 				title={title}
 				questions={questions}
-				id={id}
+				key={title}
 			/>
 		)
 	}

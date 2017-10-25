@@ -7,7 +7,6 @@ export default function flashCards( state = initialFlashCards, action ) {
             case ADD_DECK:
                 const deck = {
                     title: action.payload,
-                    id: state.length,
                     questions: []
                 }
                 return state.concat(deck)
