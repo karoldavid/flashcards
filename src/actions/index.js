@@ -21,11 +21,11 @@ export const addDeck = (title) => {
 	}
 }
 
-export const addCard = (question, index) => {
+export const addCard = (question, title) => {
 	return {
 		type: ADD_CARD,
 		question,
-		index
+		title
 	}
 }
 

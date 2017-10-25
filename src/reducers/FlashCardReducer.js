@@ -11,7 +11,6 @@ const cards = {
 }
 
 export default function flashCards( state = cards, action ) {
-
         switch(action.type) {
             case SELECT_DECK:
                 return { ...state, selected: state.flashCardsList.filter((card) => card.title === action.payload)[0] }
@@ -20,11 +19,17 @@ export default function flashCards( state = cards, action ) {
                     title: action.payload,
                     questions: []
                 }
-                return state.concat(deck)
+                return { ...state, flashCardsList: state.flashCardsList.concat(deck) }
             case ADD_CARD:
-                const card = state.filter((card) => card.id === action.index)[0]
+          //  console.log(state.flashCardsList)
+           // console.log(action.title)
+                const card = state.flashCardsList.filter((card) => card.title === action.title)[0]
+                console.log(card)
                 card.questions.push(action.question)
-                return state.map((c) => c.id === action.index ? card : c)
+                return state.flashCardsList.map((c) => c.title === action.title ? card : c)
+              //  console.log(state)
+             // console.log(action)
+                //return { ...state, selected: state.selected.questions.concat(action.question) }
             default:
                 return state
         }

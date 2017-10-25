@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addDeck } from '../actions'
-import { Text, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native'
+import {
+	Text,
+	StyleSheet,
+	TextInput,
+	KeyboardAvoidingView
+} from 'react-native'
 import { lightPurp, lightBrilliantBlueMagenta, white } from '../utils/colors'
 import Button from './Button'
 

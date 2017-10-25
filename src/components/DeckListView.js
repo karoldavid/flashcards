@@ -30,7 +30,7 @@ class DeckListView extends Component {
 		return(
 			<List>
 				<FlatList
-					data={this.props.flashCards}
+					data={this.props.flashCardsList}
 					renderItem={this.renderItem}
 				/>
 			</List>
@@ -39,9 +39,8 @@ class DeckListView extends Component {
 }
 
 const mapStateToProps = (state) => {
-	const flashCards = state.flashCards.flashCardsList
 	return {
-		flashCards
+		flashCardsList: state.flashCards.flashCardsList
 	}
 }
 

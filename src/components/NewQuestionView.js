@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addCard } from '../actions'
-import { Text, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native'
+import {
+	Text,
+	StyleSheet,
+	TextInput,
+	KeyboardAvoidingView
+} from 'react-native'
 import { FormLabel, FormInput } from 'react-native-elements'
 import { lightPurp, lightBrilliantBlueMagenta, white } from '../utils/colors'
 import Button from './Button'
@@ -32,7 +37,8 @@ class NewQuestionView extends Component {
 			answer: answer
 		}
 
-		this.props.addCard(newQuestion, selectDeck)
+		//console.log('props:', this.props)
+		this.props.addCard(newQuestion, selectDeck.title)
 		//this.props.navigation.goBack()
 		this.props.navigation.navigate('DeckList')
 	}
@@ -97,13 +103,13 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
 	return {
-		selectDeck: state.selectDeck
+		selectDeck: state.flashCards.selected
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		addCard: (newQuestion, index) => dispatch(addCard(newQuestion, index))
+		addCard: (newQuestion, title) => dispatch(addCard(newQuestion, title))
 	}
 }
 
