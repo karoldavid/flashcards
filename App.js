@@ -1,7 +1,6 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import reducers from './src/reducers'
+import store from './src/utils/store'
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { View, Platform } from 'react-native'
 import { blue, purple, white } from './src/utils/colors'
@@ -86,7 +85,7 @@ const MainNavigator = StackNavigator({
 export default class App extends React.Component {
   render() {
     return (
-    	<Provider store={createStore(reducers)}>
+    	<Provider store={store}>
       		<View style={{flex: 1}}>
           		<MainNavigator />
         	</View>
