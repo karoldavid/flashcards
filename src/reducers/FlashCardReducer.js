@@ -1,17 +1,41 @@
 import {
+    FETCH_DATA,
+    FETCH_DATA_SUCCESS,
+    FETCH_DATA_FAILURE,
     ADD_DECK,
     ADD_CARD,
     SELECT_DECK
 } from '../actions'
-import initialFlashCards from './FlashCardList.json'
 
-const cards = {
-    flashCardsList: initialFlashCards,
-    selected: null
+const initialFlashCards = {
+  flashCardsList: [],
+  dataFetched: false,
+  isFetching: false,
+  error: false,
+  selected: null
 }
 
-export default function flashCards( state = cards, action ) {
+export default function flashCards( state = initialFlashCards, action ) {
         switch(action.type) {
+            case FETCH_DATA:
+              return {
+                ...state,
+                flashCardsList: [],
+                isFetching: true
+              }
+            case FETCH_DATA_SUCCESS:
+            console.log(action)
+              return {
+                ...state,
+                isFetching: false,
+                flashCardsList: action.data
+              }
+            case FETCH_DATA_FAILURE:
+              return {
+                ...state,
+                isFetching: false,
+                error: true
+              }
             case SELECT_DECK:
                 return { ...state, selected: state.flashCardsList.filter((card) => card.title === action.payload)[0] }
             case ADD_DECK:
@@ -28,4 +52,3 @@ export default function flashCards( state = cards, action ) {
                 return state
         }
 }
-

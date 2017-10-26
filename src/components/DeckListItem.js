@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+    View,
+    TouchableOpacity,
+    StyleSheet } from 'react-native';
 import { ListItem } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { selectDeck } from '../actions'
-import { gray, lightGray, lightPurp, white } from '../utils/colors'
+import {
+    gray,
+    lightGray,
+    lightPurp,
+    white
+} from '../utils/colors'
 
 class DeckListItem extends Component {
 

@@ -1,4 +1,5 @@
 import { AsyncStorage } from 'react-native'
+import initialFlashCards from '../data/FlashCardsList.json'
 
 
 // To manage your AsyncStorage database, you'll want to create four different helper methods.
@@ -8,3 +9,8 @@ import { AsyncStorage } from 'react-native'
 // saveDeckTitle: take in a single title argument and add it to the decks. 
 // addCardToDeck: take in two arguments, title and card, and will add the card to the list of questions for the deck with the associated title. 
 
+export default () => {
+  return new Promise((resolve, reject) => {
+    return resolve(initialFlashCards)
+  })
+}

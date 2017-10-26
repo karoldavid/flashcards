@@ -1,15 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { StyleSheet, Text, FlatList, View, TouchableOpacity } from 'react-native'
-import { List, ListItem } from 'react-native-elements'
+import {
+	StyleSheet,
+	Text,
+	FlatList,
+	View,
+	TouchableOpacity
+} from 'react-native'
+import {
+	List,
+	ListItem
+} from 'react-native-elements'
 import DeckView from './DeckView'
 import DeckListItem from './DeckListItem'
-import { selectDeck } from '../actions'
+import {
+	fetchData,
+	selectDeck
+} from '../actions'
 
 class DeckListView extends Component {
 
 	componentDidMount() {
-		//this.props.deselectDeck(null)
+		this.props.fetchData()
 	}
 
 	renderItem = ({ item }) => {
@@ -40,12 +52,14 @@ class DeckListView extends Component {
 
 const mapStateToProps = (state) => {
 	return {
+		appData: state.appData,
 		flashCardsList: state.flashCards.flashCardsList
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
+		fetchData: () => dispatch(fetchData()),
 		deselectDeck: () => dispatch(selectDeck(null))
 	}
 }
