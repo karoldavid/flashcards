@@ -5,7 +5,7 @@ import {
     StyleSheet } from 'react-native';
 import { ListItem } from 'react-native-elements'
 import { connect } from 'react-redux'
-import { selectDeck } from '../actions'
+import { selectDeck } from '../actions/FlashCardActions'
 import {
     gray,
     lightGray,

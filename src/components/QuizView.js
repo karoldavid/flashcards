@@ -14,7 +14,7 @@ import {
 	questionAnswered,
 	nextQuestion,
 	resetQuiz
-} from '../actions'
+} from '../actions/QuizActions'
 
 class QuizView extends Component {
 

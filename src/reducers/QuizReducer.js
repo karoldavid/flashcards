@@ -4,7 +4,7 @@ import {
 	QUESTION_ANSWERED,
 	NEXT_QUESTION,
 	RESET_QUIZ
-} from '../actions'
+} from '../actions/QuizActions'
 
 const quizLogic = {
 	show: false,

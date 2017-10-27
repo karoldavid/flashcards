@@ -5,7 +5,7 @@ import {
     ADD_DECK,
     ADD_CARD,
     SELECT_DECK
-} from '../actions'
+} from '../actions/FlashCardActions'
 
 const initialFlashCards = {
   flashCardsList: [],

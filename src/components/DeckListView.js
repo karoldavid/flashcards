@@ -16,7 +16,7 @@ import DeckListItem from './DeckListItem'
 import {
 	fetchData,
 	selectDeck
-} from '../actions'
+} from '../actions/FlashCardActions'
 
 class DeckListView extends Component {
 

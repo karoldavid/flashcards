@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addCard } from '../actions'
+import { addCard } from '../actions/FlashCardActions'
 import {
 	Text,
 	StyleSheet,
