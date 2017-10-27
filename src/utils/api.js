@@ -1,6 +1,8 @@
 import { AsyncStorage } from 'react-native'
 import initialFlashCards from '../data/FlashCardsList.json'
 
+const FLASHCARDS_QUIZ_STORAGE_KEY = 'FLASHCARDS:cards'
+
 
 // To manage your AsyncStorage database, you'll want to create four different helper methods.
 
@@ -13,6 +15,17 @@ export function getFlashCards() {
   return new Promise((resolve, reject) => {
     return resolve(initialFlashCards)
   })
+}
+
+export function getAll() {
+
+	return AsyncStorage.getItem(FLASHCARDS_QUIZ_STORAGE_KEY)
+      .then((results) => {
+      	console.log('results:', results)
+       
+     }).catch(() => {
+      	console.log('no data')
+     })
 }
 
 // export function submitEntry ({ entry, key }) {
