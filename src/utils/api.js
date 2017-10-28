@@ -5,45 +5,32 @@ const FLASHCARDS_QUIZ_STORAGE_KEY = 'FLASHCARDS:decks'
 
 // getDecks: return all of the decks along with their titles, questions, and answers. 
 export function getDecks() {
-
-	AsyncStorage.removeItem(FLASHCARDS_QUIZ_STORAGE_KEY)
+    
+   	//AsyncStorage.removeItem(FLASHCARDS_QUIZ_STORAGE_KEY)
 
 	return AsyncStorage.getItem(FLASHCARDS_QUIZ_STORAGE_KEY)
       .then((results) => {
 
       	if (results === null) {
-   	 		AsyncStorage.setItem(FLASHCARDS_QUIZ_STORAGE_KEY, JSON.stringify(initialFlashCards))
-   	 		return initialFlashCards
-      	}
-
-      	return JSON.parse(results)
-       
-     }).catch(() => {
-      	console.log('no data')
-     })
-}
-
-const TEST_KEY = 'TEST:test'
-
-export function getAll() {
-    
-    //AsyncStorage.removeItem(TEST_KEY)
-
-	return AsyncStorage.getItem(TEST_KEY)
-      .then((results) => {
-      	if (results === null) {
-
-      		//AsyncStorage.setItem(TEST_KEY)
 
 	      	initialFlashCards.map((card) => {
-	      		//console.log(card)
-
-	      		AsyncStorage.mergeItem(TEST_KEY, JSON.stringify({
+	      		AsyncStorage.mergeItem(FLASHCARDS_QUIZ_STORAGE_KEY, JSON.stringify({
 	      		[card.title]: card }))
 	      	})
+
+	      	return initialFlashCards
 	    }
 
-      	return JSON.parse(results)
+	    const data = JSON.parse(results)
+
+	    let deckArray = []
+	    const keys = Object.keys(data)
+
+	    keys.map((key) => {
+	    	deckArray.push(data[key])
+	    })
+
+      	return deckArray
        
      }).catch(() => {
       	console.log('no data')
@@ -52,11 +39,11 @@ export function getAll() {
 }
 
 // getDeck: take in a single id argument and return the deck associated with that id
-export function getDeck(id) {
-	return AsyncStorage.getItem(TEST_KEY)
+export function getDeck(title) {
+	return AsyncStorage.getItem(FLASHCARDS_QUIZ_STORAGE_KEY)
 	.then((results) => {
 		const data = JSON.parse(results)
-		return data[id]
+		return data[title]
 	}).catch(() => {
 		console.log('no data')
 	})
@@ -64,8 +51,7 @@ export function getDeck(id) {
 
 // saveDeckTitle: take in a single title argument and add it to the decks. 
 export function saveDeckTitle(title) {
-	console.log('saveDeckTitle')
-	return AsyncStorage.mergeItem(TEST_KEY, JSON.stringify({
+	return AsyncStorage.mergeItem(FLASHCARDS_QUIZ_STORAGE_KEY, JSON.stringify({
 		[title]: {
 			title: title,
 			questions: []
@@ -78,19 +64,3 @@ export function saveDeckTitle(title) {
 export function addCardToDeck(title, card) {
 
 }
-
-// export function submitEntry ({ entry, key }) {
-//   return AsyncStorage.mergeItem(CALENDAR_STORAGE_KEY, JSON.stringify({
-//     [key]: entry
-//   }))
-// }
-
-// export function removeEntry (key) {
-//   return AsyncStorage.getItem(CALENDAR_STORAGE_KEY)
-//     .then((results) => {
-//       const data = JSON.parse(results)
-//       data[key] = undefined
-//       delete data[key]
-//       AsyncStorage.setItem(CALENDAR_STORAGE_KEY, JSON.stringify(data))
-//     })
-// }

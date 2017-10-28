@@ -23,7 +23,7 @@ import { getAll, getDeck, saveDeckTitle } from '../utils/api'
 class DeckListView extends Component {
 
 	componentDidMount() {
-		getAll()
+		//getAll()
 		//saveDeckTitle('test')
 		//getDeck('test')
 		this.props.fetchData()
