@@ -1,4 +1,4 @@
-import { getFlashCards } from '../utils/api'
+import { getDecks } from '../utils/api'
 
 export const FETCH_DATA = 'FETCH_DATA'
 export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS'
@@ -31,7 +31,7 @@ export function getDataFailure() {
 export function fetchData() {
   return (dispatch) => {
     dispatch(getData())
-    getFlashCards()
+    getDecks()
       .then((data) => {
         dispatch(getDataSuccess(data))
       })

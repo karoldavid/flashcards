@@ -3,15 +3,8 @@ import initialFlashCards from '../data/FlashCardsList.json'
 
 const FLASHCARDS_QUIZ_STORAGE_KEY = 'FLASHCARDS:cards'
 
-
-// To manage your AsyncStorage database, you'll want to create four different helper methods.
-
 // getDecks: return all of the decks along with their titles, questions, and answers. 
-// getDeck: take in a single id argument and return the deck associated with that id. 
-// saveDeckTitle: take in a single title argument and add it to the decks. 
-// addCardToDeck: take in two arguments, title and card, and will add the card to the list of questions for the deck with the associated title. 
-
-export function getFlashCards() {
+export function getDecks() {
 
 	//AsyncStorage.removeItem(FLASHCARDS_QUIZ_STORAGE_KEY)
 
@@ -29,18 +22,17 @@ export function getFlashCards() {
      })
 }
 
-// export function submitEntry ({ entry, key }) {
-//   return AsyncStorage.mergeItem(CALENDAR_STORAGE_KEY, JSON.stringify({
-//     [key]: entry
-//   }))
-// }
+// getDeck: take in a single id argument and return the deck associated with that id
+export function getDeck(id) {
 
-// export function removeEntry (key) {
-//   return AsyncStorage.getItem(CALENDAR_STORAGE_KEY)
-//     .then((results) => {
-//       const data = JSON.parse(results)
-//       data[key] = undefined
-//       delete data[key]
-//       AsyncStorage.setItem(CALENDAR_STORAGE_KEY, JSON.stringify(data))
-//     })
-// }
+}
+
+// saveDeckTitle: take in a single title argument and add it to the decks. 
+export function saveDeckTitle(title) {
+
+}
+
+// addCardToDeck: take in two arguments, title and card, and will add the card to the list of questions for the deck with the associated title. 
+export function addCardToDeck(title, card) {
+
+}
