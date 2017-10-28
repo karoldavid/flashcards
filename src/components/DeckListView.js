@@ -18,9 +18,13 @@ import {
 	selectDeck
 } from '../actions/FlashCardActions'
 
+import { getAll, getDeck } from '../utils/api'
+
 class DeckListView extends Component {
 
 	componentDidMount() {
+		//getAll()
+		getDeck('React')
 		this.props.fetchData()
 	}
 
