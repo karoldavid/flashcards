@@ -43,8 +43,6 @@ export function getAll() {
 	      	})
 	    }
 
-		console.log(JSON.parse(results))
-
       	return JSON.parse(results)
        
      }).catch(() => {
@@ -66,6 +64,13 @@ export function getDeck(id) {
 
 // saveDeckTitle: take in a single title argument and add it to the decks. 
 export function saveDeckTitle(title) {
+	console.log('saveDeckTitle')
+	return AsyncStorage.mergeItem(TEST_KEY, JSON.stringify({
+		[title]: {
+			title: title,
+			questions: []
+		}
+	}))
 
 }
 

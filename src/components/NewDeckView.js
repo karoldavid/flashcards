@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addDeck } from '../actions/FlashCardActions'
+import { addDeck, saveDeck } from '../actions/FlashCardActions'
 import {
 	Text,
 	StyleSheet,
@@ -23,6 +23,7 @@ class NewDeckView extends Component {
 	onSubmitButtonPress = () => {
 		const { title } = this.state
 		
+		this.props.saveDeck(title)
 		this.props.addDeck(title)
 		this.setState({
 			title: ''
@@ -80,7 +81,8 @@ const styles = StyleSheet.create({
 
 function mapDispatchToProps(dispatch) {
 	return {
-		addDeck: (title) => dispatch(addDeck(title))
+		addDeck: (title) => dispatch(addDeck(title)),
+		saveDeck: (title) => dispatch(saveDeck(title))
 	}
 }
 

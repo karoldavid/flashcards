@@ -18,13 +18,14 @@ import {
 	selectDeck
 } from '../actions/FlashCardActions'
 
-import { getAll, getDeck } from '../utils/api'
+import { getAll, getDeck, saveDeckTitle } from '../utils/api'
 
 class DeckListView extends Component {
 
 	componentDidMount() {
-		//getAll()
-		getDeck('React')
+		getAll()
+		//saveDeckTitle('test')
+		//getDeck('test')
 		this.props.fetchData()
 	}
 
@@ -56,7 +57,6 @@ class DeckListView extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		appData: state.appData,
 		flashCardsList: state.flashCards.flashCardsList
 	}
 }
