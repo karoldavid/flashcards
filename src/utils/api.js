@@ -12,16 +12,17 @@ const FLASHCARDS_QUIZ_STORAGE_KEY = 'FLASHCARDS:cards'
 // addCardToDeck: take in two arguments, title and card, and will add the card to the list of questions for the deck with the associated title. 
 
 export function getFlashCards() {
-  return new Promise((resolve, reject) => {
-    return resolve(initialFlashCards)
-  })
-}
 
-export function getAll() {
+	//AsyncStorage.removeItem(FLASHCARDS_QUIZ_STORAGE_KEY)
 
 	return AsyncStorage.getItem(FLASHCARDS_QUIZ_STORAGE_KEY)
       .then((results) => {
-      	console.log('results:', results)
+
+      	if (results === null) {
+   	 		AsyncStorage.setItem(FLASHCARDS_QUIZ_STORAGE_KEY, JSON.stringify(initialFlashCards));
+      	}
+
+      	return JSON.parse(results)
        
      }).catch(() => {
       	console.log('no data')

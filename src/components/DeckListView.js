@@ -17,12 +17,10 @@ import {
 	fetchData,
 	selectDeck
 } from '../actions/FlashCardActions'
-import { getAll } from '../utils/api'
 
 class DeckListView extends Component {
 
 	componentDidMount() {
-		getAll()
 		this.props.fetchData()
 	}
 
