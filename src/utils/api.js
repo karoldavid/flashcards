@@ -6,7 +6,7 @@ const FLASHCARDS_QUIZ_STORAGE_KEY = 'FLASHCARDS:decks'
 // getDecks: return all of the decks along with their titles, questions, and answers. 
 export function getDecks() {
     
-   	//AsyncStorage.removeItem(FLASHCARDS_QUIZ_STORAGE_KEY)
+  	AsyncStorage.removeItem(FLASHCARDS_QUIZ_STORAGE_KEY)
 
 	return AsyncStorage.getItem(FLASHCARDS_QUIZ_STORAGE_KEY)
       .then((results) => {
@@ -57,7 +57,6 @@ export function saveDeckTitle(title) {
 			questions: []
 		}
 	}))
-
 }
 
 // addCardToDeck: take in two arguments, title and card, and will add the card to the list of questions for the deck with the associated title. 

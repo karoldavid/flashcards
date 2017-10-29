@@ -24,7 +24,6 @@ export default function flashCards( state = initialFlashCards, action ) {
                 isFetching: true
               }
             case FETCH_DATA_SUCCESS:
-           // console.log(action)
               return {
                 ...state,
                 isFetching: false,

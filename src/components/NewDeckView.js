@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addDeck, saveDeck } from '../actions/FlashCardActions'
+import { saveDeck } from '../actions/FlashCardActions'
 import {
 	Text,
 	StyleSheet,
@@ -24,7 +24,7 @@ class NewDeckView extends Component {
 		const { title } = this.state
 		
 		this.props.saveDeck(title)
-		this.props.addDeck(title)
+
 		this.setState({
 			title: ''
 		})
@@ -81,7 +81,6 @@ const styles = StyleSheet.create({
 
 function mapDispatchToProps(dispatch) {
 	return {
-		addDeck: (title) => dispatch(addDeck(title)),
 		saveDeck: (title) => dispatch(saveDeck(title))
 	}
 }

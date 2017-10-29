@@ -47,16 +47,17 @@ export const selectDeck = (deckId) => {
 }
 
 export const addDeck = (title) => {
+  console.log("title:", title)
 	return {
 		type: ADD_DECK,
 		payload: title
 	}
 }
 
-export const saveDeck = (title) => dispatch => (
+export const saveDeck = (title) => dispatch => {
   saveDeckTitle(title)
-  .then(title => dispatch(addDeck(title)))
-)
+  .then(() => dispatch(addDeck(title)))
+}
 
 export const addCard = (question, title) => {
 	return {
