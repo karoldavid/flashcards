@@ -40,8 +40,9 @@ class NewQuestionView extends Component {
 			question: question,
 			answer: answer
 		}
-		this.props.saveCard(selectDeck.title, newQuestion)
-		this.props.navigation.navigate('DeckList')
+		this.props.saveCard(selectDeck.title, newQuestion, () => {
+			this.props.navigation.navigate('DeckList')
+		})
 	}
 
 	render() {
@@ -110,7 +111,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		saveCard: (title, newQuestion) => dispatch(saveCard(title, newQuestion))
+		saveCard: (title, newQuestion, callback) => dispatch(saveCard(title, newQuestion, callback))
 	}
 }
 

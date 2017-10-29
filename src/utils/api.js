@@ -56,7 +56,9 @@ export function saveDeckTitle(title) {
 			title: title,
 			questions: []
 		}
-	}))
+	})).catch(() => {
+		console.log('error')
+	})
 }
 
 // addCardToDeck: take in two arguments, title and card, and will add the card to the list of questions for the deck with the associated title. 
@@ -70,6 +72,6 @@ export function addCardToDeck(title, card) {
 			[title]: deck
 		 }))
 	}).catch(() => {
-		console.log('no data')
+		console.log('error')
 	})
 }

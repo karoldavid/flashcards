@@ -62,7 +62,7 @@ export const saveDeck = (title) => dispatch => {
   .then(() => dispatch(addDeck(title)))
 }
 
-export const addCard = (question, title) => {
+export const addCard = (title, question) => {
 	return {
 		type: ADD_CARD,
 		question,
@@ -70,7 +70,8 @@ export const addCard = (question, title) => {
 	}
 }
 
-export const saveCard = (title, card) => dispatch => {
+export const saveCard = (title, card, callback) => dispatch => {
   addCardToDeck(title, card)
   .then(() => dispatch(addCard(title, card)))
+  .then(() => callback())
 }
