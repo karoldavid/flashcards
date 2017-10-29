@@ -6,7 +6,7 @@ const FLASHCARDS_QUIZ_STORAGE_KEY = 'FLASHCARDS:decks'
 // getDecks: return all of the decks along with their titles, questions, and answers. 
 export function getDecks() {
     
-  	AsyncStorage.removeItem(FLASHCARDS_QUIZ_STORAGE_KEY)
+   // AsyncStorage.removeItem(FLASHCARDS_QUIZ_STORAGE_KEY)
 
 	return AsyncStorage.getItem(FLASHCARDS_QUIZ_STORAGE_KEY)
       .then((results) => {
@@ -61,5 +61,15 @@ export function saveDeckTitle(title) {
 
 // addCardToDeck: take in two arguments, title and card, and will add the card to the list of questions for the deck with the associated title. 
 export function addCardToDeck(title, card) {
-
+	return AsyncStorage.getItem(FLASHCARDS_QUIZ_STORAGE_KEY)
+	.then((results) => {
+		const data = JSON.parse(results)
+		let deck = data[title]
+		deck.questions.push(card)
+		return AsyncStorage.mergeItem(FLASHCARDS_QUIZ_STORAGE_KEY, JSON.stringify({
+			[title]: deck
+		 }))
+	}).catch(() => {
+		console.log('no data')
+	})
 }

@@ -1,4 +1,8 @@
-import { getDecks, saveDeckTitle } from '../utils/api'
+import {
+  getDecks,
+  saveDeckTitle,
+  addCardToDeck
+} from '../utils/api'
 
 export const FETCH_DATA = 'FETCH_DATA'
 export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS'
@@ -47,7 +51,6 @@ export const selectDeck = (deckId) => {
 }
 
 export const addDeck = (title) => {
-  console.log("title:", title)
 	return {
 		type: ADD_DECK,
 		payload: title
@@ -65,4 +68,9 @@ export const addCard = (question, title) => {
 		question,
 		title
 	}
+}
+
+export const saveCard = (title, card) => dispatch => {
+  addCardToDeck(title, card)
+  .then(() => dispatch(addCard(title, card)))
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addCard } from '../actions/FlashCardActions'
+import { saveCard } from '../actions/FlashCardActions'
 import {
 	Text,
 	StyleSheet,
@@ -40,7 +40,7 @@ class NewQuestionView extends Component {
 			question: question,
 			answer: answer
 		}
-		this.props.addCard(newQuestion, selectDeck.title)
+		this.props.saveCard(selectDeck.title, newQuestion)
 		this.props.navigation.navigate('DeckList')
 	}
 
@@ -110,7 +110,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		addCard: (newQuestion, title) => dispatch(addCard(newQuestion, title))
+		saveCard: (title, newQuestion) => dispatch(saveCard(title, newQuestion))
 	}
 }
 
