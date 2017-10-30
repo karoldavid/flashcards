@@ -28,7 +28,7 @@ class NewDeckView extends Component {
 		this.setState({
 			title: ''
 		})
-		this.props.navigation.navigate('DeckList')
+		this.props.navigation.navigate('DeckListView')
 	}
 
 

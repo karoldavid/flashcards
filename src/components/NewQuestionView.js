@@ -35,13 +35,13 @@ class NewQuestionView extends Component {
 
 	onSubmitButtonPress = () => {
 		const { question, answer } = this.state
-		const { selectDeck } = this.props
+		const { selectDeck, saveCard, navigation } = this.props
 		const newQuestion = {
 			question: question,
 			answer: answer
 		}
-		this.props.saveCard(selectDeck.title, newQuestion, () => {
-			this.props.navigation.navigate('DeckList')
+		saveCard(selectDeck.title, newQuestion, () => {
+			navigation.navigate('DeckListView')
 		})
 	}
 

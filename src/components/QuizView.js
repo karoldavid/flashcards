@@ -19,8 +19,10 @@ import {
 class QuizView extends Component {
 
 	onAnswerButtonPress = (correct) => {
-		this.props.increaseScore(correct)
-		this.props.questionAnswered(correct)
+		const { increaseScore, questionAnswered } = this.props
+
+		increaseScore(correct)
+		questionAnswered(correct)
     }
 
     onAnswerTextPress = () => {
@@ -29,8 +31,10 @@ class QuizView extends Component {
     }
 
     onNextQuestionButtonPress = () => {
-    	this.props.nextQuestion()
-    	this.props.questionAnswered(null)
+    	const { nextQuestion, questionAnswered } = this.props
+    	
+    	nextQuestion()
+    	questionAnswered(null)
     }
 
     onRestartQuizButtonPress = () => {
@@ -38,8 +42,9 @@ class QuizView extends Component {
     }
 
     onBackToDeckButtonPress = () => {
-    	this.props.navigation.goBack()
-    	this.props.resetQuiz()
+    	const { navigation, resetQuiz } = this.props
+    	resetQuiz()
+    	navigation.goBack()
 	}
 
     showPercentCorrect = () => {
@@ -116,8 +121,6 @@ class QuizView extends Component {
 						)}
 					</View>
 				)}
-
-
 			</View>
 		)
 	}

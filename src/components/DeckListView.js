@@ -17,15 +17,26 @@ import {
 	fetchData,
 	selectDeck
 } from '../actions/FlashCardActions'
-
-import { getAll, getDeck, saveDeckTitle } from '../utils/api'
+import {
+	getAll,
+	getDeck,
+	saveDeckTitle
+} from '../utils/api'
+import {
+	getNotificationPermission,
+	setNotification,
+    listenForNotifications
+} from '../utils/notifications'
 
 class DeckListView extends Component {
 
+	componentWillMount() {
+    	getNotificationPermission()
+    	listenForNotifications()
+  	}
+
 	componentDidMount() {
-		//getAll()
-		//saveDeckTitle('test')
-		//getDeck('test')
+		setNotification()
 		this.props.fetchData()
 	}
 
