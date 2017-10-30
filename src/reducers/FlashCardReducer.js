@@ -36,7 +36,7 @@ export default function flashCards( state = initialFlashCards, action ) {
                 error: true
               }
             case SELECT_DECK:
-                return { ...state, selected: state.flashCardsList.filter((card) => card.title === action.payload)[0] }
+                return { ...state, selected: state.flashCardsList.filter((card) => card.title === action.payload.title)[0] }
             case ADD_DECK:
                 const deck = {
                     title: action.payload,

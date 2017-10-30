@@ -5,7 +5,7 @@ import {
     StyleSheet } from 'react-native';
 import { ListItem } from 'react-native-elements'
 import { connect } from 'react-redux'
-import { selectDeck } from '../actions/FlashCardActions'
+import { selectDeck, setDeck } from '../actions/FlashCardActions'
 import {
     gray,
     lightGray,
@@ -17,8 +17,9 @@ class DeckListItem extends Component {
 
     touchableOpacityOnPress = () => {
         const { title, questions, navigation } = this.props
-        navigation.navigate('DeckView', { title: title })
-        this.props.selectDeck(title)
+        this.props.setDeck(title, function() {
+            navigation.navigate('DeckView', { title: title })
+        })
     }
 
     render() {
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
 
 function matchDispatchToProps(dispatch) {
     return {
-        selectDeck: (title) => dispatch(selectDeck(title))
+        setDeck: (title, callback) => dispatch(setDeck(title, callback))
     }
 } 
 

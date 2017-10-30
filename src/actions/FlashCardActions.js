@@ -1,5 +1,6 @@
 import {
   getDecks,
+  getDeck,
   saveDeckTitle,
   addCardToDeck
 } from '../utils/api'
@@ -43,11 +44,21 @@ export function fetchData() {
   }
 }
 
-export const selectDeck = (deckId) => {
+export const selectDeck = (deck) => {
+  //console.log(deck)
 	return {
 		type: SELECT_DECK,
-		payload: deckId
+		payload: deck
 	}
+}
+
+export const setDeck = (title, callback) => {
+  return (dispatch) => {
+    getDeck(title)
+      .then((deck) => dispatch(selectDeck(deck)))
+      .then(() => callback())
+      .catch((err) => console.log('err:', err))
+  }
 }
 
 export const addDeck = (title) => {
@@ -74,4 +85,5 @@ export const saveCard = (title, card, callback) => dispatch => {
   addCardToDeck(title, card)
   .then(() => dispatch(addCard(title, card)))
   .then(() => callback())
+  .catch((err) => console.log('err:', err))
 }
