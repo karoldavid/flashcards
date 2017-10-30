@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { lightPurp, white } from '../utils/colors'
+import { lightPurp, red, white } from '../utils/colors'
 import Button from './Button'
 
 class DeckView extends Component {
@@ -24,27 +24,35 @@ class DeckView extends Component {
 	onQuizButtonPress = () => {
 		const { navigation } = this.props
 
-		if (this.state.goToQuiz) {
-        	navigation.navigate('QuizView', { title: "Start Quiz" })
-        }
+	    navigation.navigate('QuizView', { title: "Start Quiz" })
 	}
 
 	render() {
 		const { params } = this.props.navigation.state;
 		const { questions } = this.props.currentDeck
+		const { goToQuiz } = this.state
 
 		return (
 			<View style={styles.container}>
 				<Text style={styles.deckTitle}>{params.title}</Text>
 				<Text style={styles.deckContent}>{`${questions.length} card${questions.length > 1 ? 's' : ''}`}</Text>
+
+				{ !goToQuiz && (
+					<Text style={styles.infoStyles}>
+						To start a quiz add a card to the deck.
+					</Text>
+				)}
 				<Button
 					onPress={() => this.onCardButtonPress()}
 					title={'Add Card'}
 				/>
-				<Button
-					onPress={() => this.onQuizButtonPress()}
-					title={'Start Quiz'}
-				/>
+				{ goToQuiz && (
+					<Button
+						onPress={() => this.onQuizButtonPress()}
+						title={'Start Quiz'}
+					/>
+				)}
+
 			</View>
 		)
 	}
@@ -65,6 +73,11 @@ const styles = StyleSheet.create({
   deckContent: {
   	fontSize: 16,
   	color: white
+  },
+  infoStyles: {
+  	paddingTop: 50,
+  	fontSize: 16,
+  	color: red
   }
 })
 

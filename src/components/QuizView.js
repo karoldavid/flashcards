@@ -76,7 +76,7 @@ class QuizView extends Component {
 						
 							<TouchableOpacity onPress={this.onAnswerTextPress}>
 								<Text style={styles.answerTouchableStyles}>
-									{ !show ? 'Answber' : 'Question' }
+									{ !show ? 'Answer' : 'Question' }
 								</Text>
 							</TouchableOpacity>
 							
