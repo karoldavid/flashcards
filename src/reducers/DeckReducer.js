@@ -46,7 +46,7 @@ export default function decks( state = initialDecks, action ) {
             case ADD_CARD:
                 const currentDeck = state.deckList.filter((deck) => deck.title === action.title)[0]
                 currentDeck.questions.push(action.question)
-                return { ...state, deckList: state.deckList.map((d) => d.title === action.title ? currentDeck : d) }
+                return { ...state, deckList: state.deckList.map((deck) => deck.title === action.title ? currentDeck : deck) }
             default:
                 return state
         }
