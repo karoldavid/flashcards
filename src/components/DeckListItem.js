@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import {
     View,
     TouchableOpacity,
-    StyleSheet } from 'react-native';
+    StyleSheet
+} from 'react-native';
 import { ListItem } from 'react-native-elements'
 import { connect } from 'react-redux'
-import { selectDeck, setDeck } from '../actions/FlashCardActions'
+import {
+    selectDeck,
+    setDeck
+} from '../actions/FlashCardActions'
 import {
     gray,
     lightGray,

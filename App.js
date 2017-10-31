@@ -1,10 +1,22 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import store from './src/utils/store'
-import { StackNavigator, TabNavigator } from 'react-navigation'
-import { View, Platform } from 'react-native'
-import { blue, purple, white } from './src/utils/colors'
-import { FontAwesome, Ionicons } from '@expo/vector-icons'
+import {
+  StackNavigator,
+  TabNavigator
+} from 'react-navigation'
+import {
+  View,
+  Platform
+} from 'react-native'
+import {
+  blue,
+  purple,
+  white
+} from './src/utils/colors'
+import {
+  FontAwesome, Ionicons
+} from '@expo/vector-icons'
 import DeckListView from './src/components/DeckListView'
 import DeckView from './src/components/DeckView'
 import NewDeckView from './src/components/NewDeckView'

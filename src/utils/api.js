@@ -3,33 +3,40 @@ import initialFlashCards from '../data/FlashCardsList.json'
 
 const FLASHCARDS_QUIZ_STORAGE_KEY = 'FLASHCARDS:decks'
 
+function convertObjectToArray(results) {
+	const data = JSON.parse(results)
+	const keys = Object.keys(data)
+	let deckArray = []
+
+	keys.map((key) => {
+		deckArray.push(data[key])
+	})
+
+	return deckArray
+}
+
+function writeInitialDataToAsyncStorage(flashCards) {
+	flashCards.map((card) => {
+		AsyncStorage.mergeItem(FLASHCARDS_QUIZ_STORAGE_KEY, JSON.stringify({
+			[card.title]: card }))
+	})
+}
+
 export function getDecks() {
     
-   AsyncStorage.removeItem(FLASHCARDS_QUIZ_STORAGE_KEY)
+  	AsyncStorage.removeItem(FLASHCARDS_QUIZ_STORAGE_KEY)
 
 	return AsyncStorage.getItem(FLASHCARDS_QUIZ_STORAGE_KEY)
       .then((results) => {
 
       	if (results === null) {
 
-	      	initialFlashCards.map((card) => {
-	      		AsyncStorage.mergeItem(FLASHCARDS_QUIZ_STORAGE_KEY, JSON.stringify({
-	      		[card.title]: card }))
-	      	})
+      		writeInitialDataToAsyncStorage(initialFlashCards)
 
 	      	return initialFlashCards
 	    }
 
-	    const data = JSON.parse(results)
-
-	    let deckArray = []
-	    const keys = Object.keys(data)
-
-	    keys.map((key) => {
-	    	deckArray.push(data[key])
-	    })
-
-      	return deckArray
+      	return convertObjectToArray(results)
        
      }).catch(() => {
       	console.log('no data')

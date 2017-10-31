@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-import { AsyncStorage, Alert, Platform } from 'react-native';
-import { Constants, Notifications, Permissions } from 'expo';
+import {
+  AsyncStorage,
+  Alert,
+  Platform
+} from 'react-native';
+import {
+  Notifications,
+  Permissions
+} from 'expo';
 
 const NOTIFICATION_KEY = 'FLASHCARDS_QUIZ:notification'
 
