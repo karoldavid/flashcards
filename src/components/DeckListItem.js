@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 import {
     selectDeck,
     setDeck
-} from '../actions/FlashCardActions'
+} from '../actions/DeckActions'
 import {
     gray,
     lightGray,

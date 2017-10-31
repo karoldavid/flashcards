@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { saveDeck } from '../actions/FlashCardActions'
+import { saveDeck } from '../actions/DeckActions'
 import {
 	Text,
 	StyleSheet,

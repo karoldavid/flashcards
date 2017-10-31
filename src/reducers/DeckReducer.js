@@ -5,29 +5,29 @@ import {
     ADD_DECK,
     ADD_CARD,
     SELECT_DECK
-} from '../actions/FlashCardActions'
+} from '../actions/DeckActions'
 
-const initialFlashCards = {
-  flashCardsList: [],
+const initialDecks = {
+  deckList: [],
   dataFetched: false,
   isFetching: false,
   error: false,
   selected: null
 }
 
-export default function flashCards( state = initialFlashCards, action ) {
+export default function decks( state = initialDecks, action ) {
         switch(action.type) {
             case FETCH_DATA:
               return {
                 ...state,
-                flashCardsList: [],
+                deckList: [],
                 isFetching: true
               }
             case FETCH_DATA_SUCCESS:
               return {
                 ...state,
                 isFetching: false,
-                flashCardsList: action.data
+                deckList: action.data
               }
             case FETCH_DATA_FAILURE:
               return {
@@ -36,17 +36,17 @@ export default function flashCards( state = initialFlashCards, action ) {
                 error: true
               }
             case SELECT_DECK:
-                return { ...state, selected: state.flashCardsList.filter((card) => card.title === action.payload.title)[0] }
+                return { ...state, selected: state.deckList.filter((deck) => deck.title === action.payload.title)[0] }
             case ADD_DECK:
                 const deck = {
                     title: action.payload,
                     questions: []
                 }
-                return { ...state, flashCardsList: state.flashCardsList.concat(deck) }
+                return { ...state, deckList: state.deckList.concat(deck) }
             case ADD_CARD:
-                const card = state.flashCardsList.filter((card) => card.title === action.title)[0]
-                card.questions.push(action.question)
-                return { ...state, flasCardsList: state.flashCardsList.map((c) => c.title === action.title ? card : c) }
+                const currentDeck = state.deckList.filter((deck) => deck.title === action.title)[0]
+                currentDeck.questions.push(action.question)
+                return { ...state, deckList: state.deckList.map((d) => d.title === action.title ? currentDeck : d) }
             default:
                 return state
         }

@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native'
-import initialFlashCards from '../data/FlashCardsList.json'
+import initialDecks from '../data/DeckList.json'
 
 const FLASHCARDS_QUIZ_STORAGE_KEY = 'FLASHCARDS:decks'
 
@@ -15,25 +15,23 @@ function convertObjectToArray(results) {
 	return deckArray
 }
 
-function writeInitialDataToAsyncStorage(flashCards) {
-	flashCards.map((card) => {
+function writeInitialDecksToAsyncStorage(decks) {
+	decks.map((deck) => {
 		AsyncStorage.mergeItem(FLASHCARDS_QUIZ_STORAGE_KEY, JSON.stringify({
-			[card.title]: card }))
+			[deck.title]: deck }))
 	})
 }
 
 export function getDecks() {
     
-  	AsyncStorage.removeItem(FLASHCARDS_QUIZ_STORAGE_KEY)
+   	//AsyncStorage.removeItem(FLASHCARDS_QUIZ_STORAGE_KEY)
 
 	return AsyncStorage.getItem(FLASHCARDS_QUIZ_STORAGE_KEY)
       .then((results) => {
 
       	if (results === null) {
-
-      		writeInitialDataToAsyncStorage(initialFlashCards)
-
-	      	return initialFlashCards
+      		writeInitialDecksToAsyncStorage(initialDecks)
+	      	return initialDecks
 	    }
 
       	return convertObjectToArray(results)

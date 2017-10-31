@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { saveCard } from '../actions/FlashCardActions'
+import { saveCard } from '../actions/DeckActions'
 import {
 	Text,
 	StyleSheet,
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
 	return {
-		selectDeck: state.flashCards.selected
+		selectDeck: state.decks.selected
 	}
 }
 

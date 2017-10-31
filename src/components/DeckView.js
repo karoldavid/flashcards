@@ -1,7 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { lightPurp, red, white } from '../utils/colors'
+import {
+	View,
+	Text,
+	StyleSheet,
+	TouchableOpacity
+} from 'react-native'
+import {
+	lightPurp,
+	red,
+	white
+} from '../utils/colors'
 import Button from './Button'
 
 class DeckView extends Component {
@@ -83,7 +92,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-        currentDeck: state.flashCards.selected
+        currentDeck: state.decks.selected
         
     }
 }

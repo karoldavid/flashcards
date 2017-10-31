@@ -187,9 +187,9 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => {
-	const { flashCards, quiz } = state
+	const { decks, quiz } = state
     return {
-        currentDeck: flashCards.selected,
+        currentDeck: decks.selected,
         quiz
     }
 }

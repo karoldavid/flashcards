@@ -16,7 +16,7 @@ import DeckListItem from './DeckListItem'
 import {
 	fetchData,
 	selectDeck
-} from '../actions/FlashCardActions'
+} from '../actions/DeckActions'
 import {
 	getAll,
 	getDeck,
@@ -62,7 +62,7 @@ class DeckListView extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		flashCardsList: state.flashCards.flashCardsList
+		flashCardsList: state.decks.deckList
 	}
 }
 

@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
-import flashCards from './FlashCardReducer'
+import decks from './DeckReducer'
 import quiz from './QuizReducer'
 
 export default combineReducers({
-	flashCards,
+	decks,
 	quiz
 })
 
