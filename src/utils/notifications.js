@@ -1,39 +1,64 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Button, Alert, Platform } from 'react-native';
+import { AsyncStorage, Alert, Platform } from 'react-native';
 import { Constants, Notifications, Permissions } from 'expo';
 
-export function getNotificationPermission() {
-  const { status } = Permissions.getAsync(
-    Permissions.NOTIFICATIONS
-  )
-  if (status !== 'granted') {
-    Permissions.askAsync(Permissions.NOTIFICATIONS)
-  }
-}
+const NOTIFICATION_KEY = 'FLASHCARDS_QUIZ:notification'
 
-export function setNotification() {
-  const localnotification = {
-    title: 'Example Title!',
-    body: 'This is the body text of the local notification',
+function createNotification() {
+  return {
+    title: 'Flash Cards Quiz Reminder',
+    body: 'Do not forget to study today!',
     android: {
-      sound: true,
+      sound: false,
+      priority: 'high',
+      sticky: false,
+      vibrate: true
     }
   }
-  let sendAfterFiveSeconds = Date.now()
-  sendAfterFiveSeconds += 5000
-
-   const schedulingOptions = { time: sendAfterFiveSeconds }
-   Notifications.scheduleLocalNotificationAsync(
-      localnotification,
-      schedulingOptions
-    )
 }
 
-export function listenForNotifications () {
-  Notifications.addListener(notification => {
-  if (notification.origin === 'received') {
-    Alert.alert(notification.title, notification.body)
-   }
- })
+export function clearLocalNotification() {
+  return AsyncStorage.removeItem(NOTIFICATION_KEY)
+    .then(Notifications.cancelAllScheduledNotificationsAsync)
 }
 
+export function setLocalNotification() {
+  clearLocalNotification()
+  AsyncStorage.getItem(NOTIFICATION_KEY)
+    .then(JSON.parse)
+    .then((data) => {
+      console.log(data)
+      if (data === null) {
+        Permissions.askAsync(Permissions.NOTIFICATIONS)
+          .then(({ status }) => {
+            if (status === 'granted') {
+              Notifications.cancelAllScheduledNotificationsAsync()
+              // let tomorrow = new Date()
+              // tomorrow.setDate(tomorrow.getDate() + 1)
+              // tomorrow.setHours(20)
+              // tomorrow.setMinutes(0)
+
+              let sendAfterFiveSeconds = Date.now()
+              sendAfterFiveSeconds += 5000
+
+              const schedulingOptions = { time: sendAfterFiveSeconds }
+
+              // Notifications.scheduleLocalNotificationAsync(
+              //   createNotification(),
+              //   {
+              //     time: tomorrow,
+              //     repeat: 'day',
+              //   }
+              // )
+
+              Notifications.scheduleLocalNotificationAsync(
+                createNotification(),
+                schedulingOptions
+              )
+
+              AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
+            }
+          })
+      }
+    })
+}

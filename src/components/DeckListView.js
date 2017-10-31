@@ -23,20 +23,13 @@ import {
 	saveDeckTitle
 } from '../utils/api'
 import {
-	getNotificationPermission,
-	setNotification,
-    listenForNotifications
+	setLocalNotification
 } from '../utils/notifications'
 
 class DeckListView extends Component {
 
-	componentWillMount() {
-    	getNotificationPermission()
-    	listenForNotifications()
-  	}
-
 	componentDidMount() {
-		setNotification()
+		setLocalNotification()
 		this.props.fetchData()
 	}
 
