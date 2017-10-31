@@ -5,7 +5,7 @@ const FLASHCARDS_QUIZ_STORAGE_KEY = 'FLASHCARDS:decks'
 
 export function getDecks() {
     
-  // AsyncStorage.removeItem(FLASHCARDS_QUIZ_STORAGE_KEY)
+   AsyncStorage.removeItem(FLASHCARDS_QUIZ_STORAGE_KEY)
 
 	return AsyncStorage.getItem(FLASHCARDS_QUIZ_STORAGE_KEY)
       .then((results) => {

@@ -15,6 +15,11 @@ import {
 	nextQuestion,
 	resetQuiz
 } from '../actions/QuizActions'
+import {
+	setLocalNotification,
+	clearLocalNotification,
+	timing
+} from '../utils/notifications'
 
 class QuizView extends Component {
 
@@ -54,10 +59,17 @@ class QuizView extends Component {
     	return result
     }
 
+    setNotification = () => {
+    	clearLocalNotification()
+    		.then(setLocalNotification(timing))
+    }
+
 	render() {
 
 		const { questions } = this.props.currentDeck
 		const { show, index, correct, score } = this.props.quiz
+
+		if (index === questions.length - 1 && correct) this.setNotification()
 
 		return (
 			<View style={styles.container}>
@@ -108,6 +120,7 @@ class QuizView extends Component {
 						)}
 						{index === questions.length - 1 && (
 							<View style={styles.container}>
+								
 								<Text style={styles.finalScoreStyles}>{this.showPercentCorrect()}% Correct</Text>
 								<Button
 									onPress={() => this.onRestartQuizButtonPress()}

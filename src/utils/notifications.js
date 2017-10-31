@@ -17,43 +17,41 @@ function createNotification() {
   }
 }
 
+function setTiming(time, repeat) {
+  return { 
+    time,
+    repeat
+  }
+}
+
+export const timing = {
+  offset: 1,
+  hour: 17
+}
+
 export function clearLocalNotification() {
   return AsyncStorage.removeItem(NOTIFICATION_KEY)
     .then(Notifications.cancelAllScheduledNotificationsAsync)
 }
 
-export function setLocalNotification() {
-  clearLocalNotification()
+export function setLocalNotification({ offset, hour }) {
   AsyncStorage.getItem(NOTIFICATION_KEY)
     .then(JSON.parse)
     .then((data) => {
-      console.log(data)
       if (data === null) {
         Permissions.askAsync(Permissions.NOTIFICATIONS)
           .then(({ status }) => {
             if (status === 'granted') {
               Notifications.cancelAllScheduledNotificationsAsync()
-              // let tomorrow = new Date()
-              // tomorrow.setDate(tomorrow.getDate() + 1)
-              // tomorrow.setHours(20)
-              // tomorrow.setMinutes(0)
+              let notificationDay = new Date()
 
-              let sendAfterFiveSeconds = Date.now()
-              sendAfterFiveSeconds += 5000
-
-              const schedulingOptions = { time: sendAfterFiveSeconds }
-
-              // Notifications.scheduleLocalNotificationAsync(
-              //   createNotification(),
-              //   {
-              //     time: tomorrow,
-              //     repeat: 'day',
-              //   }
-              // )
+              notificationDay.setDate(notificationDay.getDate() + offset)
+              notificationDay.setHours(hour)
+              notificationDay.setMinutes(0,0)
 
               Notifications.scheduleLocalNotificationAsync(
                 createNotification(),
-                schedulingOptions
+                setTiming(notificationDay, 'day')
               )
 
               AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
