@@ -51,17 +51,17 @@ class DeckView extends Component {
 					</Text>
 				)}
 
-				<Button
-					onPress={() => this.onCardButtonPress()}
-					title={'Add Card'}
-				/>
-
 				{ goToQuiz && (
 					<Button
 						onPress={() => this.onQuizButtonPress()}
 						title={'Start Quiz'}
 					/>
 				)}
+
+				<Button
+					onPress={() => this.onCardButtonPress()}
+					title={'Add Card'}
+				/>
 
 			</View>
 		)
