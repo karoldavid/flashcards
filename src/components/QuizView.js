@@ -69,31 +69,32 @@ class QuizView extends Component {
 
 		const { questions } = this.props.currentDeck
 		const { show, index, correct, score } = this.props.quiz
+		const { containerStyles, cardsLeftStyles, questionStyles, answerStyles, answerTouchableStyles, answerCorrectStyles } = styles
 
 		if (index === questions.length - 1 && correct) this.setNotification()
 
 		return (
-			<View style={styles.container}>
-				<Text style={styles.cardsLeftStyles}>{index + 1}/{questions.length}</Text>
+			<View style={containerStyles}>
+				<Text style={cardsLeftStyles}>{index + 1}/{questions.length}</Text>
 
 				{correct === null && (
 					<View>
 						<View>
 							{!show && (
-								<Text style={styles.questionStyles}>{questions[index].question}</Text>
+								<Text style={questionStyles}>{questions[index].question}</Text>
 							)}
 
 							{show && (
-								<Text style={styles.answerStyles}>
+								<Text style={answerStyles}>
 									{questions[index].answer}
 								</Text>
 							)}
 						</View>
 
-						<View style={styles.container}>
+						<View style={containerStyles}>
 						
 							<TouchableOpacity onPress={this.onAnswerTextPress}>
-								<Text style={styles.answerTouchableStyles}>
+								<Text style={answerTouchableStyles}>
 									{ !show ? 'Answer' : 'Question' }
 								</Text>
 							</TouchableOpacity>
@@ -111,8 +112,8 @@ class QuizView extends Component {
 				)}
 
 				{correct !== null && (
-					<View style={styles.container}>
-						<Text style={styles.answerCorrectStyles}>{correct ? 'YES!' : 'NO!'}</Text>
+					<View style={containerStyles}>
+						<Text style={answerCorrectStyles}>{correct ? 'YES!' : 'NO!'}</Text>
 						{index !== questions.length - 1 && (
 							<Button
 								onPress={() => this.onNextQuestionButtonPress()}
@@ -136,7 +137,7 @@ class QuizView extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  containerStyles: {
     flex: 1,
     alignItems: 'center',
     backgroundColor: lightPurp,

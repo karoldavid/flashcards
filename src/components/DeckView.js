@@ -26,13 +26,11 @@ class DeckView extends Component {
 
 	onCardButtonPress = () => {
         const { navigation } = this.props
-
-        navigation.navigate('NewQuestionView', { title: "Add a Card" })
+	    navigation.navigate('NewQuestionView', { title: "Add a Card" })
     }
 
 	onQuizButtonPress = () => {
 		const { navigation } = this.props
-
 	    navigation.navigate('QuizView', { title: "Start Quiz" })
 	}
 
@@ -40,21 +38,24 @@ class DeckView extends Component {
 		const { params } = this.props.navigation.state;
 		const { questions } = this.props.currentDeck
 		const { goToQuiz } = this.state
+		const { containerStyles, deckContentStyles, deckTitleStyles, infoStyles } = styles
 
 		return (
-			<View style={styles.container}>
-				<Text style={styles.deckTitle}>{params.title}</Text>
-				<Text style={styles.deckContent}>{`${questions.length} card${questions.length > 1 ? 's' : ''}`}</Text>
+			<View style={containerStyles}>
+				<Text style={deckTitleStyles}>{params.title}</Text>
+				<Text style={deckContentStyles}>{`${questions.length} card${questions.length > 1 ? 's' : ''}`}</Text>
 
 				{ !goToQuiz && (
-					<Text style={styles.infoStyles}>
+					<Text style={infoStyles}>
 						To start a quiz add a card to the deck.
 					</Text>
 				)}
+
 				<Button
 					onPress={() => this.onCardButtonPress()}
 					title={'Add Card'}
 				/>
+
 				{ goToQuiz && (
 					<Button
 						onPress={() => this.onQuizButtonPress()}
@@ -68,18 +69,18 @@ class DeckView extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  containerStyles: {
     flex: 1,
     alignItems: 'center',
     backgroundColor: lightPurp,
     margin: 5
   },
-  deckTitle: {
+  deckTitleStyles: {
     paddingTop: 150,
     fontSize: 20,
     color: white
   },
-  deckContent: {
+  deckContentStyles: {
   	fontSize: 16,
   	color: white
   },
