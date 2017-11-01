@@ -5,6 +5,7 @@ import {
 	StyleSheet,
 	TouchableOpacity
 } from 'react-native'
+import QuizComplete from './QuizComplete'
 import Button from './Button'
 import { connect } from 'react-redux'
 import { lightPurp, red, white } from '../utils/colors'
@@ -118,17 +119,12 @@ class QuizView extends Component {
 								title={'Next Question'}
 							/>
 						)}
-						{index === questions.length - 1 && (
-							<View style={styles.container}>
-								
-								<Text style={styles.finalScoreStyles}>{this.showPercentCorrect()}% Correct</Text>
-								<Button
-									onPress={() => this.onRestartQuizButtonPress()}
-									title={'Restart Quiz'}
-								/>
-								<Button
-									onPress={() => this.onBackToDeckButtonPress()}
-									title={'Back to Deck'}
+						{index === 0 && (
+							<View>
+								<QuizComplete
+									finalScore={this.showPercentCorrect()}
+									restartQuiz={this.onRestartQuizButtonPress}
+									backToDeck={this.onBackToDeckButtonPress}
 								/>
 							</View>
 						)}

@@ -4,9 +4,9 @@ import { blue, white } from '../utils/colors'
 
 const Button = ({ onPress, title }) => {
    return (
-      <View style={styles.container}>
+      <View>
          <TouchableOpacity onPress={onPress}>
-            <Text style={styles.button}>
+            <Text style={styles.buttonStyles}>
                {title}
             </Text>
          </TouchableOpacity>
@@ -15,13 +15,9 @@ const Button = ({ onPress, title }) => {
 }
 
 const styles = StyleSheet.create ({
-   container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-   },
-   button: {
+   buttonStyles: {
       borderWidth: 1,
+      margin: 10,
       padding: 25,
       paddingRight: 50,
       paddingLeft: 50,
