@@ -55,6 +55,7 @@ class DeckListView extends Component {
 				<FlatList
 					data={this.props.flashCardsList}
 					renderItem={this.renderItem}
+					keyExtractor={(item, index) => index}
 				/>
 			</List>
 		)
