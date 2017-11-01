@@ -7,10 +7,12 @@ import {
 } from 'react-navigation'
 import {
   View,
-  Platform
+  StyleSheet,
+  Platform,
 } from 'react-native'
 import {
   blue,
+  lightPurp,
   purple,
   white
 } from './src/utils/colors'
@@ -96,10 +98,16 @@ export default class App extends React.Component {
   render() {
     return (
     	<Provider store={store}>
-      		<View style={{flex: 1}}>
+      		<View style={styles.containerStyles}>
           		<MainNavigator />
         	</View>
       	</Provider>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  containerStyles: {
+    flex: 1
+  }
+})

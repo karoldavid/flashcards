@@ -11,6 +11,7 @@ import {
 	List,
 	ListItem
 } from 'react-native-elements'
+import { lightPurp } from '../utils/colors'
 import DeckView from './DeckView'
 import DeckListItem from './DeckListItem'
 import {
@@ -50,7 +51,7 @@ class DeckListView extends Component {
 
 	render() {
 		return(
-			<List>
+			<List style={styles.containerStyles}>
 				<FlatList
 					data={this.props.flashCardsList}
 					renderItem={this.renderItem}
@@ -74,3 +75,9 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeckListView)
+
+const styles = StyleSheet.create({
+  containerStyles: {
+    backgroundColor: lightPurp
+  }
+})
