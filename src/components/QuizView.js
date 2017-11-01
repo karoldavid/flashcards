@@ -120,7 +120,7 @@ class QuizView extends Component {
 								title={'Next Question'}
 							/>
 						)}
-						{index === 0 && (
+						{index === questions.length -1 && (
 							<View>
 								<QuizComplete
 									finalScore={this.showPercentCorrect()}
