@@ -7,6 +7,7 @@ import {
 	TouchableOpacity
 } from 'react-native'
 import {
+	lightGray,
 	lightPurp,
 	red,
 	white
@@ -38,12 +39,15 @@ class DeckView extends Component {
 		const { params } = this.props.navigation.state;
 		const { questions } = this.props.currentDeck
 		const { goToQuiz } = this.state
-		const { containerStyles, deckContentStyles, deckTitleStyles, infoStyles } = styles
+		const { containerStyles, deckStyles, deckContentStyles, deckTitleStyles, infoStyles } = styles
 
 		return (
 			<View style={containerStyles}>
-				<Text style={deckTitleStyles}>{params.title}</Text>
-				<Text style={deckContentStyles}>{`${questions.length} card${questions.length > 1 ? 's' : ''}`}</Text>
+
+				<View style={deckStyles}>
+					<Text style={deckTitleStyles}>{params.title}</Text>
+					<Text style={deckContentStyles}>{`${questions.length} card${questions.length > 1 ? 's' : ''}`}</Text>
+				</View>
 
 				{ !goToQuiz && (
 					<Text style={infoStyles}>
@@ -75,14 +79,18 @@ const styles = StyleSheet.create({
     backgroundColor: lightPurp,
     margin: 5
   },
+  deckStyles: {
+  	flex: 1,
+  	alignItems: 'center'
+  },
   deckTitleStyles: {
     paddingTop: 150,
-    fontSize: 20,
+    fontSize: 28,
     color: white
   },
   deckContentStyles: {
   	fontSize: 16,
-  	color: white
+  	color: lightGray
   },
   infoStyles: {
   	paddingTop: 50,
