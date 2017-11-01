@@ -20,25 +20,25 @@ import {
 class DeckListItem extends Component {
 
     touchableOpacityOnPress = () => {
-        const { title, questions, navigation } = this.props
+        const { title, navigation } = this.props
         this.props.setDeck(title, function() {
             navigation.navigate('DeckView', { title: title })
         })
     }
 
     render() {
-
         const { title, questions} = this.props
+        const { containerStyles, titleStyles, titleContainerStyles, subtitleStyles, subtitleContainerStyles } = styles
 
         return (
     		<TouchableOpacity
                 onPress={this.touchableOpacityOnPress}>
        			<ListItem
-                    containerStyle={styles.containerStyle}
-                    titleStyle={styles.titleStyle}
-                    titleContainerStyle={styles.titleContainerStyle}
-                    subtitleStyle={styles.subtitleStyle}
-                    subtitleContainerStyle={styles.subtitleContainerStyle}
+                    containerStyle={containerStyles}
+                    titleStyle={titleStyles}
+                    titleContainerStyle={titleContainerStyles}
+                    subtitleStyle={subtitleStyles}
+                    subtitleContainerStyle={subtitleContainerStyles}
     				key={title}
     				title={title}
     				subtitle={`${questions.length} card${questions.length > 1 ? 's' : ''}`}
@@ -49,7 +49,7 @@ class DeckListItem extends Component {
 }
 
 const styles = StyleSheet.create({
-    containerStyle: {
+    containerStyles: {
         backgroundColor: lightPurp,
         borderWidth: 1,
         borderRadius: 2,
@@ -64,20 +64,20 @@ const styles = StyleSheet.create({
         marginRight: 5,
         marginTop: 10
     },
-    titleStyle: {
+    titleStyles: {
         fontSize: 28,
         color: white
     },
-    titleContainerStyle: {
+    titleContainerStyles: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
     },
-    subtitleStyle: {
+    subtitleStyles: {
         fontSize: 16,
         color: lightGray
     },
-    subtitleContainerStyle: {
+    subtitleContainerStyles: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'

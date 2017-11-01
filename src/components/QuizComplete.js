@@ -14,9 +14,10 @@ import {
 import Button from './Button'
 
 const QuizComplete = ({ finalScore, restartQuiz, backToDeck }) => {
+	const { containerStyles, finalScoreStyles } = styles
 	return(
-		<View style={styles.container}>
-			<Text style={styles.finalScoreStyles}>{finalScore}% Correct</Text>
+		<View style={containerStyles}>
+			<Text style={finalScoreStyles}>{finalScore}% Correct</Text>
 			<Button
 				onPress={() => restartQuiz()}
 				title={'Restart Quiz'}
@@ -30,7 +31,7 @@ const QuizComplete = ({ finalScore, restartQuiz, backToDeck }) => {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  containerStyles: {
     flex: 1,
     alignItems: 'center',
     backgroundColor: lightPurp,

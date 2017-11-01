@@ -7,7 +7,11 @@ import {
 	TextInput,
 	KeyboardAvoidingView
 } from 'react-native'
-import { lightPurp, lightBrilliantBlueMagenta, white } from '../utils/colors'
+import {
+	lightPurp,
+	lightBrilliantBlueMagenta,
+	white
+} from '../utils/colors'
 import Button from './Button'
 
 class NewDeckView extends Component {
