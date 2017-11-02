@@ -78,6 +78,7 @@ class NewQuestionView extends Component {
 					placeholder="type question here"
 					value={question}
 					onChangeText={this.handleQuestionTextChange}
+					shake={error.question}
 				/>
 
 				<FormValidationMessage>

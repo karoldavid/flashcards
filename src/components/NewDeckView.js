@@ -22,37 +22,40 @@ class NewDeckView extends Component {
 
 	state = {
 		title: '',
-		error: false
+		error: false,
+		errorMsg: ''
 	}
 
 	handleTextChange = (title) => {
+		const { error } = this.state
 		this.setState(() => ({
-			title
+			title,
+			errorMsg: title.length < 5 && error ? 'Enter at least 5 letters' : ''
 		}))
 	}
 
 	onSubmitButtonPress = () => {
-		const { title } = this.state
+		const { title, error } = this.state
+
+		this.setState(() => ({
+			error: title.length > 4 ? false : true,
+			errorMsg: title.length < 5 ? 'Enter at least 5 letters' : ''
+		}))
 
 		if (title.length > 4) {
 		
 			this.props.saveDeck(title)
 
 			this.setState({
-				title: '',
-				error: false
+				title: ''
 			})
 			this.props.navigation.navigate('DeckListView')
-		} else {
-			this.setState({
-				error: true
-			})
 		}
 	}
 
 
 	render() {
-		const  { error, title } = this.state
+		const  { error, errorMsg, title } = this.state
 		const { params } = this.props.navigation.state
 		const { containerStyles, titleStyles, inputStyles } = styles
 
@@ -70,7 +73,7 @@ class NewDeckView extends Component {
 			        shake={error}
 			    />
 	
-			    <FormValidationMessage>{error && title.length < 5 ? 'Enter at least 5 letters' : ''  }</FormValidationMessage>
+			    <FormValidationMessage>{errorMsg}</FormValidationMessage>
 
 			    <Button
 					onPress={this.onSubmitButtonPress}
