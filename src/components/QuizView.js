@@ -69,7 +69,7 @@ class QuizView extends Component {
 
 		const { questions } = this.props.currentDeck
 		const { show, index, correct, score } = this.props.quiz
-		const { containerStyles, cardsLeftStyles, questionStyles, answerStyles, answerTouchableStyles, answerCorrectStyles } = styles
+		const { containerStyles, cardsLeftStyles, questionStyles, answerStyles, answerContainerStyles, answerTouchableStyles, answerCorrectStyles } = styles
 
 		if (index === questions.length - 1 && correct) this.setNotification()
 
@@ -78,8 +78,8 @@ class QuizView extends Component {
 				<Text style={cardsLeftStyles}>{index + 1}/{questions.length}</Text>
 
 				{correct === null && (
-					<View>
-						<View>
+					<View style={containerStyles}>
+						<View style={answerContainerStyles}>
 							{!show && (
 								<Text style={questionStyles}>{questions[index].question}</Text>
 							)}
@@ -91,13 +91,15 @@ class QuizView extends Component {
 							)}
 						</View>
 
-						<View style={containerStyles}>
+						<View style={answerContainerStyles}>
 						
 							<TouchableOpacity onPress={this.onAnswerTextPress}>
 								<Text style={answerTouchableStyles}>
 									{ !show ? 'Answer' : 'Question' }
 								</Text>
 							</TouchableOpacity>
+						</View>
+						<View>
 							
 							<Button
 								onPress={() => this.onAnswerButtonPress(true)}
@@ -153,6 +155,12 @@ const styles = StyleSheet.create({
   	fontSize: 16,
   	fontWeight: 'bold',
   	color: red
+  },
+  answerContainerStyles: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: lightPurp,
+    margin: 5
   },
   answerStyles: {
   	paddingTop: 50,

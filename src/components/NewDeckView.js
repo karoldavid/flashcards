@@ -79,7 +79,8 @@ const styles = StyleSheet.create({
       width: 200,
       borderColor: lightBrilliantBlueMagenta,
       borderWidth: 1,
-      color: white
+      color: white,
+      textAlign: 'center',
    },
 })
 

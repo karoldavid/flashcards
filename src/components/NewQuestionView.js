@@ -55,7 +55,6 @@ class NewQuestionView extends Component {
 				<Text style={titleStyles}>
 					What is the question you want to ask?
 				</Text>
-			    <FormLabel>Question</FormLabel>
 				<FormInput
 					style={inputStyles}
 					placeholder="type question here"
@@ -65,7 +64,6 @@ class NewQuestionView extends Component {
 				<Text style={titleStyles}>
 					What is the answer?
 				</Text>
-				<FormLabel>Answer</FormLabel>
 				<FormInput
 					style={inputStyles}
 					placeholder="type answer here"
@@ -99,7 +97,8 @@ const styles = StyleSheet.create({
       width: 200,
       borderColor: lightBrilliantBlueMagenta,
       borderWidth: 1,
-      color: white
+      color: white,
+      textAlign: 'center',
    },
 })
 

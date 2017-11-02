@@ -76,12 +76,13 @@ const styles = StyleSheet.create({
   containerStyles: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: lightPurp,
     margin: 5
   },
   deckStyles: {
   	flex: 1,
-  	alignItems: 'center'
+  	alignItems: 'center',
   },
   deckTitleStyles: {
     paddingTop: 150,
@@ -94,6 +95,7 @@ const styles = StyleSheet.create({
   },
   infoStyles: {
   	paddingTop: 50,
+  	paddingBottom: 50,
   	fontSize: 16,
   	color: red
   }
