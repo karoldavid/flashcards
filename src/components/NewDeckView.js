@@ -8,6 +8,10 @@ import {
 	KeyboardAvoidingView
 } from 'react-native'
 import {
+	FormInput,
+	FormValidationMessage
+} from 'react-native-elements'
+import {
 	lightPurp,
 	lightBrilliantBlueMagenta,
 	white
@@ -16,7 +20,10 @@ import Button from './Button'
 
 class NewDeckView extends Component {
 
-	state = {title: ''}
+	state = {
+		title: '',
+		error: false
+	}
 
 	handleTextChange = (title) => {
 		this.setState(() => ({
@@ -26,18 +33,26 @@ class NewDeckView extends Component {
 
 	onSubmitButtonPress = () => {
 		const { title } = this.state
-		
-		this.props.saveDeck(title)
 
-		this.setState({
-			title: ''
-		})
-		this.props.navigation.navigate('DeckListView')
+		if (title.length > 4) {
+		
+			this.props.saveDeck(title)
+
+			this.setState({
+				title: '',
+				error: false
+			})
+			this.props.navigation.navigate('DeckListView')
+		} else {
+			this.setState({
+				error: true
+			})
+		}
 	}
 
 
 	render() {
-		const  title = this.state.title
+		const  { error, title } = this.state
 		const { params } = this.props.navigation.state
 		const { containerStyles, titleStyles, inputStyles } = styles
 
@@ -46,12 +61,17 @@ class NewDeckView extends Component {
 				<Text style={titleStyles}>
 					What is the title of your new deck?
 				</Text>
-				<TextInput
+	
+				<FormInput
 			        style={inputStyles}
 			        placeholder="type deck title here"
 			        value={title}
 			        onChangeText={this.handleTextChange}
+			        shake={error}
 			    />
+	
+			    <FormValidationMessage>{error && title.length < 5 ? 'Enter at least 5 letters' : ''  }</FormValidationMessage>
+
 			    <Button
 					onPress={this.onSubmitButtonPress}
 					title={'Submit'}

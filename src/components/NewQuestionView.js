@@ -7,7 +7,11 @@ import {
 	TextInput,
 	KeyboardAvoidingView
 } from 'react-native'
-import { FormLabel, FormInput } from 'react-native-elements'
+import {
+	FormLabel,
+	FormInput,
+	FormValidationMessage
+} from 'react-native-elements'
 import {
 	lightPurp,
 	lightBrilliantBlueMagenta,
@@ -19,7 +23,11 @@ class NewQuestionView extends Component {
 
 	state = {
 		question: '',
-		answer: ''
+		answer: '',
+		error: {
+			question: false,
+			answer: false
+		}
 	}
 
 	handleQuestionTextChange = (question) => {
@@ -40,13 +48,23 @@ class NewQuestionView extends Component {
 			question: question,
 			answer: answer
 		}
-		saveCard(selectDeck.title, newQuestion, () => {
-			navigation.navigate('DeckListView')
-		})
+
+		if (question.length > 4 && answer.length > 4) {
+			saveCard(selectDeck.title, newQuestion, () => {
+				navigation.navigate('DeckListView')
+			})
+		} else {
+			this.setState({
+				error: {
+					question: true,
+					answer: true
+				}
+			})
+		}
 	}
 
 	render() {
-		const  { question, answer } = this.state
+		const  { question, answer, error } = this.state
 		const { params } = this.props.navigation.state
 		const { containerStyles, titleStyles, inputStyles } = styles
 
@@ -61,6 +79,11 @@ class NewQuestionView extends Component {
 					value={question}
 					onChangeText={this.handleQuestionTextChange}
 				/>
+
+				<FormValidationMessage>
+					{error.question && question.length < 5 ? 'Enter at least 5 letters' : ''}
+				</FormValidationMessage>
+
 				<Text style={titleStyles}>
 					What is the answer?
 				</Text>
@@ -69,7 +92,13 @@ class NewQuestionView extends Component {
 					placeholder="type answer here"
 					value={answer}
 					onChangeText={this.handleAnswerTextChange}
+					shake={error.answer}
 				/>
+
+				<FormValidationMessage>
+					{error.answer && answer.length < 5 ? 'Enter at least 5 letters' : ''}
+				</FormValidationMessage>
+				
 			    <Button
 					onPress={this.onSubmitButtonPress}
 					title={'Submit'}
