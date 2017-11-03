@@ -39,33 +39,37 @@ class DeckView extends Component {
 		const { params } = this.props.navigation.state;
 		const { questions } = this.props.currentDeck
 		const { goToQuiz } = this.state
-		const { containerStyles, deckStyles, deckContentStyles, deckTitleStyles, infoStyles } = styles
+		const { containerStyles, deckContentStyles, deckTitleStyles, infoStyles } = styles
 
 		return (
 			<View style={containerStyles}>
 
-				<View style={deckStyles}>
+				<View>
 					<Text style={deckTitleStyles}>{params.title}</Text>
-					<Text style={deckContentStyles}>{`${questions.length} card${questions.length > 1 ? 's' : ''}`}</Text>
+					<Text style={deckContentStyles}>{`${questions.length} card${questions.length !== 1 ? 's' : ''}`}</Text>
 				</View>
 
+				<View>
 				{ !goToQuiz && (
 					<Text style={infoStyles}>
 						To start a quiz add a card to the deck.
 					</Text>
 				)}
+				</View>
 
+				<View>
 				{ goToQuiz && (
 					<Button
 						onPress={() => this.onQuizButtonPress()}
 						title={'Start Quiz'}
 					/>
 				)}
-
+				
 				<Button
 					onPress={() => this.onCardButtonPress()}
 					title={'Add Card'}
 				/>
+				</View>
 
 			</View>
 		)
@@ -76,26 +80,20 @@ const styles = StyleSheet.create({
   containerStyles: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     backgroundColor: lightPurp,
-    margin: 5
-  },
-  deckStyles: {
-  	flex: 1,
-  	alignItems: 'center',
+    margin: 5,
   },
   deckTitleStyles: {
-    paddingTop: 150,
     fontSize: 28,
     color: white
   },
   deckContentStyles: {
   	fontSize: 16,
+  	textAlign: 'center',
   	color: lightGray
   },
   infoStyles: {
-  	paddingTop: 50,
-  	paddingBottom: 50,
   	fontSize: 16,
   	color: red
   }
