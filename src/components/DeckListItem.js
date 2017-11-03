@@ -41,7 +41,7 @@ class DeckListItem extends Component {
                     subtitleContainerStyle={subtitleContainerStyles}
     				key={title}
     				title={title}
-    				subtitle={`${questions.length} card${questions.length > 1 ? 's' : ''}`}
+    				subtitle={`${questions.length} card${questions.length !== 1 ? 's' : ''}`}
     			/>
             </TouchableOpacity>
         )
