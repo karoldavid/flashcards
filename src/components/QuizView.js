@@ -142,6 +142,7 @@ const styles = StyleSheet.create({
   containerStyles: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'space-around',
     backgroundColor: lightPurp,
     margin: 5
   },
@@ -149,7 +150,9 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingBottom: 20,
     fontSize: 24,
-    color: white
+    fontWeight: 'bold',
+    color: white,
+    textAlign: 'center'
   },
   answerTouchableStyles: {
   	fontSize: 16,
@@ -159,16 +162,17 @@ const styles = StyleSheet.create({
   answerContainerStyles: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: lightPurp,
     margin: 5
   },
   answerStyles: {
   	paddingTop: 50,
   	paddingBottom: 20,
-  	paddingLeft: 40,
-  	fontSize: 16,
+  	fontSize: 24,
   	fontWeight: 'bold',
-  	color: white
+  	color: white,
+  	textAlign: 'center'
   }, 
   answerCorrectStyles: {
   	paddingTop: 50,
@@ -187,7 +191,7 @@ const styles = StyleSheet.create({
   cardsLeftStyles: {
   	fontSize: 16,
   	fontWeight: 'bold',
-  	color: white,
+  	color: white
   }
 })
 
