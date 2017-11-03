@@ -79,6 +79,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(DeckListView)
 
 const styles = StyleSheet.create({
   containerStyles: {
+    flex: 1,
+    alignItems: 'stretch',
     backgroundColor: lightPurp
   }
 })
