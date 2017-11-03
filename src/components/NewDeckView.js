@@ -48,9 +48,8 @@ class NewDeckView extends Component {
 
 
 	render() {
-		const  { error, errorMsg, title } = this.state
-		const { params } = this.props.navigation.state
-		const { containerStyles, titleStyles, inputStyles } = styles
+		const  { error, title } = this.state
+		const { containerStyles } = styles
 
 		return(
 			<KeyboardAvoidingView behavior='padding' style={containerStyles}>

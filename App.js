@@ -7,8 +7,7 @@ import {
 } from 'react-navigation'
 import {
   View,
-  StyleSheet,
-  Platform,
+  StyleSheet
 } from 'react-native'
 import {
   blue,
@@ -30,23 +29,23 @@ const Tabs = TabNavigator({
   DeckListView: {
     screen: DeckListView,
     navigationOptions: {
-      tabBarLabel: 'Deck List View',
+      tabBarLabel: 'Decks',
       tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
     }
   },
   NewDeckView: {
     screen: NewDeckView,
     navigationOptions: {
-      tabBarLabel: 'New Deck View',
+      tabBarLabel: 'New Deck',
       tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
     }
   }
 },{
   tabBarOptions: {
-    activeTintColor: Platform.OS === 'ios' ? blue : white,
+    activeTintColor: white,
     style: {
       height: 56,
-      backgroundColor: Platform.OS === 'ios' ? white : blue,
+      backgroundColor: blue,
       shadowColor: 'rgba(0,0,0,0.24)',
       shadowOffset: {
         width: 0,
@@ -65,7 +64,7 @@ const MainNavigator = StackNavigator({
   DeckView: {
     screen: DeckView,
     navigationOptions: {
-      title: 'Deck View',
+      title: 'Deck',
       headerTintColor: white,
       headerStyle: {
           backgroundColor: blue

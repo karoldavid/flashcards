@@ -5,10 +5,12 @@ import {
 	StyleSheet,
 	TouchableOpacity
 } from 'react-native'
-import QuizComplete from './QuizComplete'
-import Button from './Button'
 import { connect } from 'react-redux'
-import { lightPurp, red, white } from '../utils/colors'
+import {
+	lightPurp,
+	red,
+	white
+} from '../utils/colors'
 import {
 	showAnswer,
 	increaseScore,
@@ -16,6 +18,9 @@ import {
 	nextQuestion,
 	resetQuiz
 } from '../actions/QuizActions'
+import QuizComplete from './QuizComplete'
+import Button from './Button'
+import DeckTitle from './DeckTitle'
 import {
 	setLocalNotification,
 	clearLocalNotification,
@@ -67,7 +72,7 @@ class QuizView extends Component {
 
 	render() {
 
-		const { questions } = this.props.currentDeck
+		const { questions, title } = this.props.currentDeck
 		const { show, index, correct, score } = this.props.quiz
 		const { containerStyles, cardsLeftStyles, questionStyles, answerStyles, answerContainerStyles, answerTouchableStyles, answerCorrectStyles } = styles
 
@@ -75,10 +80,16 @@ class QuizView extends Component {
 
 		return (
 			<View style={containerStyles}>
+
+				<DeckTitle
+					deckTitle={title}
+				/>
+
 				<Text style={cardsLeftStyles}>{index + 1}/{questions.length}</Text>
 
 				{correct === null && (
 					<View style={containerStyles}>
+
 						<View style={answerContainerStyles}>
 							{!show && (
 								<Text style={questionStyles}>{questions[index].question}</Text>
@@ -147,7 +158,7 @@ const styles = StyleSheet.create({
     margin: 5
   },
   questionStyles: {
-    paddingTop: 50,
+    paddingTop: 20,
     paddingBottom: 20,
     fontSize: 24,
     fontWeight: 'bold',
@@ -167,7 +178,7 @@ const styles = StyleSheet.create({
     margin: 5
   },
   answerStyles: {
-  	paddingTop: 50,
+  	paddingTop: 20,
   	paddingBottom: 20,
   	fontSize: 24,
   	fontWeight: 'bold',
