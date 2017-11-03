@@ -28,7 +28,7 @@ const DeckFormInput = ({ label, placeholder, value, handleInputTextChange, error
 				style={inputStyles}
 				placeholder={placeholder}
 				value={value}
-				onChangeText={() => handleInputTextChange(value)}
+				onChangeText={(value) => handleInputTextChange(value)}
 				shake={error}
 			/>
 
