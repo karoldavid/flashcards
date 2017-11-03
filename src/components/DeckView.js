@@ -13,6 +13,7 @@ import {
 	white
 } from '../utils/colors'
 import Button from './Button'
+import DeckTitle from './DeckTitle'
 
 class DeckView extends Component {
 
@@ -44,31 +45,31 @@ class DeckView extends Component {
 		return (
 			<View style={containerStyles}>
 
-				<View>
-					<Text style={deckTitleStyles}>{params.title}</Text>
-					<Text style={deckContentStyles}>{`${questions.length} card${questions.length !== 1 ? 's' : ''}`}</Text>
-				</View>
-
-				<View>
-				{ !goToQuiz && (
-					<Text style={infoStyles}>
-						To start a quiz add a card to the deck.
-					</Text>
-				)}
-				</View>
-
-				<View>
-				{ goToQuiz && (
-					<Button
-						onPress={() => this.onQuizButtonPress()}
-						title={'Start Quiz'}
-					/>
-				)}
-				
-				<Button
-					onPress={() => this.onCardButtonPress()}
-					title={'Add Card'}
+				<DeckTitle
+					deckTitle={params.title}
+					questionsLength={questions.length}
 				/>
+
+				<View>
+					{ !goToQuiz && (
+						<Text style={infoStyles}>
+							To start a quiz add a card to the deck.
+						</Text>
+					)}
+				</View>
+
+				<View>
+					{ goToQuiz && (
+						<Button
+							onPress={() => this.onQuizButtonPress()}
+							title={'Start Quiz'}
+						/>
+					)}
+					
+					<Button
+						onPress={() => this.onCardButtonPress()}
+						title={'Add Card'}
+					/>
 				</View>
 
 			</View>
