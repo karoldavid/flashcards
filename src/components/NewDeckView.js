@@ -2,45 +2,32 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { saveDeck } from '../actions/DeckActions'
 import {
-	Text,
 	StyleSheet,
-	TextInput,
 	KeyboardAvoidingView
 } from 'react-native'
 import {
-	FormInput,
-	FormValidationMessage
-} from 'react-native-elements'
-import {
-	lightPurp,
-	lightBrilliantBlueMagenta,
-	white
+	lightPurp
 } from '../utils/colors'
 import Button from './Button'
+import DeckFormInput from './DeckFormInput'
 
 class NewDeckView extends Component {
 
 	state = {
 		title: '',
-		error: false,
-		errorMsg: ''
+		error: {
+			title: false
+		}
 	}
 
 	handleTextChange = (title) => {
-		const { error } = this.state
 		this.setState(() => ({
 			title,
-			errorMsg: title.length < 5 && error ? 'Enter at least 5 letters' : ''
 		}))
 	}
 
 	onSubmitButtonPress = () => {
-		const { title, error } = this.state
-
-		this.setState(() => ({
-			error: title.length > 4 ? false : true,
-			errorMsg: title.length < 5 ? 'Enter at least 5 letters' : ''
-		}))
+		const { title } = this.state
 
 		if (title.length > 4) {
 		
@@ -50,6 +37,12 @@ class NewDeckView extends Component {
 				title: ''
 			})
 			this.props.navigation.navigate('DeckListView')
+		} else {
+			this.setState({
+				error: {
+					title: true,
+				}
+			})
 		}
 	}
 
@@ -61,24 +54,20 @@ class NewDeckView extends Component {
 
 		return(
 			<KeyboardAvoidingView behavior='padding' style={containerStyles}>
-				<Text style={titleStyles}>
-					What is the title of your new deck?
-				</Text>
-	
-				<FormInput
-			        style={inputStyles}
-			        placeholder="type deck title here"
-			        value={title}
-			        onChangeText={this.handleTextChange}
-			        shake={error}
-			    />
-	
-			    <FormValidationMessage>{errorMsg}</FormValidationMessage>
+				
+			    <DeckFormInput
+					label={"What is the title of your new deck?"}
+					placeholder={"type deck title here"}
+					value={title}
+					handleInputTextChange={this.handleTextChange}
+					error={error.title}
+				/>
 
 			    <Button
 					onPress={this.onSubmitButtonPress}
 					title={'Submit'}
 				/>
+
 			</KeyboardAvoidingView>
 		)
 	}
@@ -88,23 +77,10 @@ const styles = StyleSheet.create({
 	containerStyles: {
     	flex: 1,
     	alignItems: 'center',
-    	justifyContent: 'center',
+    	justifyContent: 'space-around',
     	backgroundColor: lightPurp,
     	margin: 5
-    },
-    titleStyles: {
-    	fontSize: 18,
-    	color: white
-    },
-    inputStyles: {
-      margin: 15,
-      height: 40,
-      width: 200,
-      borderColor: lightBrilliantBlueMagenta,
-      borderWidth: 1,
-      color: white,
-      textAlign: 'center',
-   },
+    }
 })
 
 function mapDispatchToProps(dispatch) {

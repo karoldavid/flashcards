@@ -2,23 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { saveCard } from '../actions/DeckActions'
 import {
-	Text,
-	View,
 	StyleSheet,
 	KeyboardAvoidingView
 } from 'react-native'
 import {
-	FormLabel,
-	FormInput,
-	FormValidationMessage
-} from 'react-native-elements'
-import {
-	lightPurp,
-	lightBrilliantBlueMagenta,
-	white
+	lightPurp
 } from '../utils/colors'
 import Button from './Button'
 import DeckTitle from './DeckTitle'
+import DeckFormInput from './DeckFormInput'
 
 class NewQuestionView extends Component {
 
@@ -76,38 +68,22 @@ class NewQuestionView extends Component {
 					<DeckTitle
 						deckTitle={title}
 					/>
-				
-					<FormLabel labelStyle={titleStyles}>
-						What is the question you want to ask?
-					</FormLabel>
 
-					<FormInput
-						style={inputStyles}
-						placeholder="type question here"
+					<DeckFormInput
+						label={"What is the question you want to ask?"}
+						placeholder={"type question here"}
 						value={question}
-						onChangeText={this.handleQuestionTextChange}
-						shake={error.question}
+						handleInputTextChange={this.handleQuestionTextChange}
+						error={error.question}
 					/>
 
-					<FormValidationMessage>
-						{error.question && question.length < 5 ? 'Enter at least 5 letters' : ''}
-					</FormValidationMessage>
-
-					<FormLabel labelStyle={titleStyles}>
-						What is the answer?
-					</FormLabel>
-
-					<FormInput
-						style={inputStyles}
-						placeholder="type answer here"
+					<DeckFormInput
+						label={"What is the answer?"}
+						placeholder={"type answer here"}
 						value={answer}
-						onChangeText={this.handleAnswerTextChange}
-						shake={error.answer}
+						handleInputTextChange={this.handleAnswerTextChange}
+						error={error.answer}
 					/>
-
-					<FormValidationMessage>
-						{error.answer && answer.length < 5 ? 'Enter at least 5 letters' : ''}
-					</FormValidationMessage>
 				
 				    <Button
 						onPress={this.onSubmitButtonPress}
@@ -126,26 +102,7 @@ const styles = StyleSheet.create({
     	justifyContent: 'space-around',
     	backgroundColor: lightPurp,
     	margin: 5
-    },
-    formContainerStyles: {
-        flex: 1,
-    	alignItems: 'center',
-    	justifyContent: 'center',  	
-    },
-    titleStyles: {
-    	fontSize: 18,
-    	color: white,
-    	textAlign: 'center'
-    },
-    inputStyles: {
-      margin: 15,
-      height: 40,
-      width: 200,
-      borderColor: lightBrilliantBlueMagenta,
-      borderWidth: 1,
-      color: white,
-      textAlign: 'center'
-   }
+    }
 })
 
 function mapStateToProps(state) {
