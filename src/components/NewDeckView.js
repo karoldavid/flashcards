@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { saveDeck } from '../actions/DeckActions'
+import {
+	saveDeck,
+	setDeck
+} from '../actions/DeckActions'
 import {
 	StyleSheet,
 	KeyboardAvoidingView
@@ -28,16 +31,21 @@ class NewDeckView extends Component {
 
 	onSubmitButtonPress = () => {
 		const { title } = this.state
+		const { navigation, saveDeck, setDeck } = this.props
 
 		if (title.length > 4) {
 		
-			this.props.saveDeck(title)
+			saveDeck(title, function() {
+				setDeck(title, function() {
+					navigation.navigate('DeckView', { title: title })
+				})
+			})
 
 			this.setState({
 				title: ''
 			})
-			this.props.navigation.navigate('DeckListView')
-		} else {
+
+  		} else {
 			this.setState({
 				error: {
 					title: true,
@@ -45,7 +53,6 @@ class NewDeckView extends Component {
 			})
 		}
 	}
-
 
 	render() {
 		const  { error, title } = this.state
@@ -84,7 +91,8 @@ const styles = StyleSheet.create({
 
 function mapDispatchToProps(dispatch) {
 	return {
-		saveDeck: (title) => dispatch(saveDeck(title))
+		saveDeck: (title, callback) => dispatch(saveDeck(title, callback)),
+		setDeck: (title, callback) => dispatch(setDeck(title, callback))
 	}
 }
 

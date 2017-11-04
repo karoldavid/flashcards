@@ -68,9 +68,10 @@ export const addDeck = (title) => {
 	}
 }
 
-export const saveDeck = (title) => dispatch => {
+export const saveDeck = (title, callback) => dispatch => {
   saveDeckTitle(title)
   .then(() => dispatch(addDeck(title)))
+  .then(() => callback())
 }
 
 export const addCard = (title, question) => {
