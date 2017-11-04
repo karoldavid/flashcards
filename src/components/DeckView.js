@@ -21,6 +21,7 @@ class DeckView extends Component {
 
 	static navigationOptions = ({ navigation }) => ({
 	  	title: `Deck ${navigation.state.params.title}`,
+	  	 headerLeft: <Text onPress={() => navigation.navigate('DeckListView')}>back</Text>
   	});
 
 	componentDidMount() {
