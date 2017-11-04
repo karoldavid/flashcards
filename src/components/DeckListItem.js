@@ -22,7 +22,7 @@ class DeckListItem extends Component {
     touchableOpacityOnPress = () => {
         const { title, navigation } = this.props
         this.props.setDeck(title, function() {
-            navigation.navigate('DeckView', { title: title })
+            navigation.navigate('DeckView', { title })
         })
     }
 

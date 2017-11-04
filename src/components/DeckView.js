@@ -19,6 +19,10 @@ class DeckView extends Component {
 
 	state = { gotToQuiz: false }
 
+	static navigationOptions = ({ navigation }) => ({
+	  	title: `Deck ${navigation.state.params.title}`,
+  	});
+
 	componentDidMount() {
 		const length = this.props.currentDeck.questions.length;
 		this.setState({
@@ -32,8 +36,8 @@ class DeckView extends Component {
     }
 
 	onQuizButtonPress = () => {
-		const { navigation } = this.props
-	    navigation.navigate('QuizView', { title: "Start Quiz" })
+		const { navigation, currentDeck } = this.props
+	    navigation.navigate('QuizView', { title: "Start Quiz", deck: currentDeck.title })
 	}
 
 	render() {

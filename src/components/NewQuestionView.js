@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { saveCard } from '../actions/DeckActions'
+import {
+	saveCard,
+	setDeck
+} from '../actions/DeckActions'
 import {
 	StyleSheet,
 	KeyboardAvoidingView
@@ -44,7 +47,7 @@ class NewQuestionView extends Component {
 
 		if (question.length > 4 && answer.length > 4) {
 			saveCard(selectDeck.title, newQuestion, () => {
-				navigation.navigate('DeckListView')
+				//navigation.navigate.back()
 			})
 		} else {
 			this.setState({

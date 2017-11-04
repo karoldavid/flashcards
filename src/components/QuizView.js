@@ -29,6 +29,10 @@ import {
 
 class QuizView extends Component {
 
+	static navigationOptions = ({ navigation }) => ({
+	  	title: `Quiz ${navigation.state.params.deck}`
+  	});
+
 	onAnswerButtonPress = (correct) => {
 		const { increaseScore, questionAnswered } = this.props
 
@@ -77,6 +81,8 @@ class QuizView extends Component {
 		const { containerStyles, cardsLeftStyles, questionStyles, answerStyles, answerContainerStyles, answerTouchableStyles, answerCorrectStyles } = styles
 
 		if (index === questions.length - 1 && correct) this.setNotification()
+
+			console.log(this.props.navigation)
 
 		return (
 			<View style={containerStyles}>

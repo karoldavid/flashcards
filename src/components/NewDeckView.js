@@ -36,7 +36,7 @@ class NewDeckView extends Component {
 		if (title.length > 4) {
 		
 			saveDeck(title, function() {
-				setDeck(title, function() {
+				setDeck(title, () => {
 					navigation.navigate('DeckView', { title: title })
 				})
 			})
