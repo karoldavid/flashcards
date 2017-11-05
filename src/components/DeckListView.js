@@ -33,7 +33,7 @@ class DeckListView extends Component {
 
 	static navigationOptions = ({ navigation }) => ({
 	  	 headerLeft: <ArrowBack onPress={() => navigation.goBack()} />
-  	});
+  	})
 
 	componentDidMount() {
 		setLocalNotification(timing)
@@ -67,11 +67,7 @@ class DeckListView extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		flashCardsList: state.decks.deckList
-	}
-}
+const mapStateToProps = ({ decks: { deckList } }) => ({ flashCardsList: deckList });
 
 function mapDispatchToProps(dispatch) {
 	return {
