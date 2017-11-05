@@ -83,9 +83,7 @@ class QuizView extends Component {
 		const { containerStyles, cardsLeftStyles, questionStyles, answerStyles, answerContainerStyles, answerTouchableStyles, answerCorrectStyles } = styles
 
 		if (index === questions.length - 1 && correct) this.setNotification()
-
-			console.log(this.props.navigation)
-
+			
 		return (
 			<View style={containerStyles}>
 
