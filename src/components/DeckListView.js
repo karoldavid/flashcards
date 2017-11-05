@@ -27,8 +27,13 @@ import {
 	setLocalNotification,
 	timing
 } from '../utils/notifications'
+import ArrowBack from './ArrowBack'
 
 class DeckListView extends Component {
+
+	static navigationOptions = ({ navigation }) => ({
+	  	 headerLeft: <ArrowBack onPress={() => navigation.goBack()} />
+  	});
 
 	componentDidMount() {
 		setLocalNotification(timing)

@@ -13,6 +13,7 @@ import {
 } from '../utils/colors'
 import Button from './Button'
 import DeckFormInput from './DeckFormInput'
+import ArrowBack from './ArrowBack'
 
 class NewDeckView extends Component {
 
@@ -22,6 +23,10 @@ class NewDeckView extends Component {
 			title: false
 		}
 	}
+
+	static navigationOptions = ({ navigation }) => ({
+	  	 headerLeft: <ArrowBack onPress={() => navigation.goBack()} />
+  	})
 
 	handleTextChange = (title) => {
 		this.setState(() => ({

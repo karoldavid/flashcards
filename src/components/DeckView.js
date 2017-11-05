@@ -14,6 +14,7 @@ import {
 } from '../utils/colors'
 import Button from './Button'
 import DeckTitle from './DeckTitle'
+import ArrowBack from './ArrowBack'
 
 class DeckView extends Component {
 
@@ -21,8 +22,8 @@ class DeckView extends Component {
 
 	static navigationOptions = ({ navigation }) => ({
 	  	title: `Deck ${navigation.state.params.title}`,
-	  	 headerLeft: <Text onPress={() => navigation.navigate('DeckListView')}>back</Text>
-  	});
+	  	 headerLeft: <ArrowBack onPress={() => navigation.navigate('DeckListView')} />
+  	})
 
 	componentDidMount() {
 		const length = this.props.currentDeck.questions.length;

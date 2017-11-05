@@ -14,6 +14,7 @@ import {
 import Button from './Button'
 import DeckTitle from './DeckTitle'
 import DeckFormInput from './DeckFormInput'
+import ArrowBack from './ArrowBack'
 
 class NewQuestionView extends Component {
 
@@ -25,6 +26,10 @@ class NewQuestionView extends Component {
 			answer: false
 		}
 	}
+
+	static navigationOptions = ({ navigation }) => ({
+	  	 headerLeft: <ArrowBack onPress={() => navigation.goBack()} />
+  	})
 
 	handleQuestionTextChange = (question) => {
 		this.setState(() => ({
@@ -48,7 +53,7 @@ class NewQuestionView extends Component {
 		if (question.length > 4 && answer.length > 4) {
 			console.log('save')
 			saveCard(selectDeck.title, newQuestion, () => {
-				navigation.navigate.back()
+				navigation.goBack()
 			})
 		} else {
 			this.setState({

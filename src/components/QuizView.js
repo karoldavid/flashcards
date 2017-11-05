@@ -26,12 +26,14 @@ import {
 	clearLocalNotification,
 	timing
 } from '../utils/notifications'
+import ArrowBack from './ArrowBack'
 
 class QuizView extends Component {
 
 	static navigationOptions = ({ navigation }) => ({
-	  	title: `Quiz ${navigation.state.params.deck}`
-  	});
+	  	title: `Quiz ${navigation.state.params.deck}`,
+	  	headerLeft: <ArrowBack onPress={() => navigation.goBack()} />
+  	})
 
 	onAnswerButtonPress = (correct) => {
 		const { increaseScore, questionAnswered } = this.props
