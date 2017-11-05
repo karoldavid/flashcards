@@ -51,9 +51,10 @@ class NewQuestionView extends Component {
 		}
 
 		if (question.length > 4 && answer.length > 4) {
-			console.log('save')
 			saveCard(selectDeck.title, newQuestion, () => {
-				navigation.goBack()
+			
+				navigation.navigate('DeckView', { title: selectDeck.title })
+			
 			})
 		} else {
 			this.setState({
