@@ -11,25 +11,21 @@ import {
 
 const NOTIFICATION_KEY = 'FLASHCARDS_QUIZ:notification'
 
-function createNotification() {
-  return {
-    title: 'Flash Cards Quiz Reminder',
-    body: 'Do not forget to study today!',
-    android: {
-      sound: false,
-      priority: 'high',
-      sticky: false,
-      vibrate: true
-    }
+const createNotification = () => ({
+  title: 'Flash Cards Quiz Reminder',
+  body: 'Do not forget to study today!',
+  android: {
+    sound: false,
+    priority: 'high',
+    sticky: false,
+    vibrate: true
   }
-}
+})
 
-function setTiming(time, repeat) {
-  return { 
-    time,
-    repeat
-  }
-}
+const setTiming = (time, repeat) => ({
+  time,
+  repeat
+})
 
 export const timing = {
   offset: 1,
@@ -63,7 +59,7 @@ export function setLocalNotification({ offset, hour }) {
 
               AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
             }
-          })
+        })
       }
     })
 }
