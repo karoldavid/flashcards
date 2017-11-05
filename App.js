@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import store from './src/utils/store'
 import {
@@ -10,7 +10,7 @@ import {
   MainNavigator
 } from './src/utils/navigation'
 
-export default class App extends React.Component {
+export default class App extends Component {
   render() {
     return (
     	<Provider store={store}>
