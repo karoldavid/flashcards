@@ -33,6 +33,7 @@ The mobile app has been tested on a Googel Pixel 1 phone and with Android Studio
 ## Author
 
 * **Karol Zyskowski**
+
 Questions? Send an email to: k.zysk@zoho.com
 
 ## License
