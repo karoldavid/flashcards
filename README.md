@@ -40,7 +40,7 @@ Questions? Send an email to: k.zysk@zoho.com
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-## Acknowledgments
+## Acknowledgements
 
 * https://www.udacity.com/course/react-nanodegree--nd019
 * https://medium.com/react-native-training/redux-4-ways-95a130da0cdc
