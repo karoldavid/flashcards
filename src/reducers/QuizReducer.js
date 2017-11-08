@@ -4,31 +4,31 @@ import {
 	QUESTION_ANSWERED,
 	NEXT_QUESTION,
 	RESET_QUIZ
-} from '../actions/QuizActions'
+} from "../actions/QuizActions";
 
 const quizLogic = {
 	show: false,
 	index: 0,
 	score: 0,
 	correct: null
-}
+};
 
 export default function quiz(state = quizLogic, action) {
-	switch(action.type) {
+	switch (action.type) {
 		case SHOW_ANSWER:
-			return { ...state, show: action.payload }
-		case INCREASE_SCORE: 
-			const newScore = state.score
-			newScore++
-			return { ...state, score: action.payload ? newScore : state.score }
+			return { ...state, show: action.payload };
+		case INCREASE_SCORE:
+			const newScore = state.score;
+			newScore++;
+			return { ...state, score: action.payload ? newScore : state.score };
 		case QUESTION_ANSWERED:
-			return { ...state, correct: action.payload }
+			return { ...state, correct: action.payload };
 		case NEXT_QUESTION:
-			const index = state.index + action.payload
-			return { ...state, index: index }
+			const index = state.index + action.payload;
+			return { ...state, index: index };
 		case RESET_QUIZ:
-			return { ...state, ...quizLogic }
+			return { ...state, ...quizLogic };
 		default:
-			return state
+			return state;
 	}
-} 
+}

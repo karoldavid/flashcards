@@ -1,43 +1,35 @@
-import React from 'react'
-import {
-	View,
-	Text,
-	StyleSheet
-} from 'react-native'
-import {
-	lightGray,
-	white,
-	lightPurp
-} from '../utils/colors'
-import Button from './Button'
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
+import { lightGray, white, lightPurp } from "../utils/colors";
+import Button from "./Button";
 
 const DeckTitle = ({ deckTitle, questionsLength = null }) => {
-	const { deckTitleStyles, deckContentStyles } = styles
-	return(
+	const { deckTitleStyles, deckContentStyles } = styles;
+	return (
 		<View>
-			<Text style={deckTitleStyles}>
-				{deckTitle}
-			</Text>
+			<Text style={deckTitleStyles}>{deckTitle}</Text>
 			{questionsLength !== null && (
 				<Text style={deckContentStyles}>
-					{`${questionsLength} card${questionsLength !== 1 ? 's' : ''}`}
+					{`${questionsLength} card${
+						questionsLength !== 1 ? "s" : ""
+					}`}
 				</Text>
 			)}
 		</View>
-	)
-}
+	);
+};
 
 const styles = StyleSheet.create({
-  deckTitleStyles: {
-    fontSize: 28,
-    textAlign: 'center',
-    color: white
-  },
-  deckContentStyles: {
-  	fontSize: 16,
-  	textAlign: 'center',
-  	color: lightGray
-  }
-})
+	deckTitleStyles: {
+		fontSize: 28,
+		textAlign: "center",
+		color: white
+	},
+	deckContentStyles: {
+		fontSize: 16,
+		textAlign: "center",
+		color: lightGray
+	}
+});
 
-export default DeckTitle
+export default DeckTitle;

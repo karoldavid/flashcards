@@ -1,50 +1,44 @@
-import React, { Component } from 'react';
-import {
-    View,
-    TouchableOpacity,
-    StyleSheet
-} from 'react-native';
-import { ListItem } from 'react-native-elements'
-import { connect } from 'react-redux'
-import {
-    selectDeck,
-    setDeck
-} from '../actions/DeckActions'
-import {
-    gray,
-    lightGray,
-    lightPurp,
-    white
-} from '../utils/colors'
+import React, { Component } from "react";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
+import { ListItem } from "react-native-elements";
+import { connect } from "react-redux";
+import { selectDeck, setDeck } from "../actions/DeckActions";
+import { gray, lightGray, lightPurp, white } from "../utils/colors";
 
 class DeckListItem extends Component {
-
     touchableOpacityOnPress = () => {
-        const { title, navigation } = this.props
+        const { title, navigation } = this.props;
         this.props.setDeck(title, function() {
-            navigation.navigate('DeckView', { title })
-        })
-    }
+            navigation.navigate("DeckView", { title });
+        });
+    };
 
     render() {
-        const { title, questions} = this.props
-        const { containerStyles, titleStyles, titleContainerStyles, subtitleStyles, subtitleContainerStyles } = styles
+        const { title, questions } = this.props;
+        const {
+            containerStyles,
+            titleStyles,
+            titleContainerStyles,
+            subtitleStyles,
+            subtitleContainerStyles
+        } = styles;
 
         return (
-    		<TouchableOpacity
-                onPress={this.touchableOpacityOnPress}>
-       			<ListItem
+            <TouchableOpacity onPress={this.touchableOpacityOnPress}>
+                <ListItem
                     containerStyle={containerStyles}
                     titleStyle={titleStyles}
                     titleContainerStyle={titleContainerStyles}
                     subtitleStyle={subtitleStyles}
                     subtitleContainerStyle={subtitleContainerStyles}
-    				key={title}
-    				title={title}
-    				subtitle={`${questions.length} card${questions.length !== 1 ? 's' : ''}`}
-    			/>
+                    key={title}
+                    title={title}
+                    subtitle={`${questions.length} card${
+                        questions.length !== 1 ? "s" : ""
+                    }`}
+                />
             </TouchableOpacity>
-        )
+        );
     }
 }
 
@@ -53,9 +47,9 @@ const styles = StyleSheet.create({
         backgroundColor: lightPurp,
         borderWidth: 1,
         borderRadius: 2,
-        borderColor: '#ddd',
+        borderColor: "#ddd",
         borderBottomWidth: 0,
-        shadowColor: '#000',
+        shadowColor: "#000",
         shadowOffset: { widht: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 2,
@@ -70,8 +64,8 @@ const styles = StyleSheet.create({
     },
     titleContainerStyles: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        alignItems: "center",
+        justifyContent: "center"
     },
     subtitleStyles: {
         fontSize: 16,
@@ -79,15 +73,15 @@ const styles = StyleSheet.create({
     },
     subtitleContainerStyles: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-})
+        alignItems: "center",
+        justifyContent: "center"
+    }
+});
 
 function matchDispatchToProps(dispatch) {
     return {
         setDeck: (title, callback) => dispatch(setDeck(title, callback))
-    }
-} 
+    };
+}
 
-export default connect(null, matchDispatchToProps)(DeckListItem)
+export default connect(null, matchDispatchToProps)(DeckListItem);

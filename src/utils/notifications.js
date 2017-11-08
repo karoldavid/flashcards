@@ -1,65 +1,58 @@
-import React, { Component } from 'react';
-import {
-  AsyncStorage,
-  Alert,
-  Platform
-} from 'react-native';
-import {
-  Notifications,
-  Permissions
-} from 'expo';
+import React, { Component } from "react";
+import { AsyncStorage, Alert, Platform } from "react-native";
+import { Notifications, Permissions } from "expo";
 
-const NOTIFICATION_KEY = 'FLASHCARDS_QUIZ:notification'
+const NOTIFICATION_KEY = "FLASHCARDS_QUIZ:notification";
 
 const createNotification = () => ({
-  title: 'Flash Cards Quiz Reminder',
-  body: 'Do not forget to study today!',
+  title: "Flash Cards Quiz Reminder",
+  body: "Do not forget to study today!",
   android: {
     sound: false,
-    priority: 'high',
+    priority: "high",
     sticky: false,
     vibrate: true
   }
-})
+});
 
 const setTiming = (time, repeat) => ({
   time,
   repeat
-})
+});
 
 export const timing = {
   offset: 1,
   hour: 17
-}
+};
 
 export function clearLocalNotification() {
-  return AsyncStorage.removeItem(NOTIFICATION_KEY)
-    .then(Notifications.cancelAllScheduledNotificationsAsync)
+  return AsyncStorage.removeItem(NOTIFICATION_KEY).then(
+    Notifications.cancelAllScheduledNotificationsAsync
+  );
 }
 
 export function setLocalNotification({ offset, hour }) {
   AsyncStorage.getItem(NOTIFICATION_KEY)
     .then(JSON.parse)
-    .then((data) => {
+    .then(data => {
       if (data === null) {
-        Permissions.askAsync(Permissions.NOTIFICATIONS)
-          .then(({ status }) => {
-            if (status === 'granted') {
-              Notifications.cancelAllScheduledNotificationsAsync()
-              let notificationDay = new Date()
+        Permissions.askAsync(Permissions.NOTIFICATIONS).then(({ status }) => {
+          if (status === "granted") {
+            Notifications.cancelAllScheduledNotificationsAsync();
+            let notificationDay = new Date();
 
-              notificationDay.setDate(notificationDay.getDate() + offset)
-              notificationDay.setHours(hour)
-              notificationDay.setMinutes(0,0)
+            notificationDay.setDate(notificationDay.getDate() + offset);
+            notificationDay.setHours(hour);
+            notificationDay.setMinutes(0, 0);
 
-              Notifications.scheduleLocalNotificationAsync(
-                createNotification(),
-                setTiming(notificationDay, 'day')
-              )
+            Notifications.scheduleLocalNotificationAsync(
+              createNotification(),
+              setTiming(notificationDay, "day")
+            );
 
-              AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
-            }
-        })
+            AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
+          }
+        });
       }
-    })
+    });
 }
