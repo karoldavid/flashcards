@@ -4,7 +4,8 @@ import {
     FETCH_DATA_FAILURE,
     ADD_DECK,
     ADD_CARD,
-    SELECT_DECK
+    SELECT_DECK,
+    DELETE_DECK
 } from '../actions/DeckActions'
 
 const initialDecks = {
@@ -47,6 +48,8 @@ export default function decks( state = initialDecks, action ) {
                 const currentDeck = state.deckList.filter((deck) => deck.title === action.title)[0]
                 currentDeck.questions.push(action.question)
                 return { ...state, deckList: state.deckList.map((deck) => deck.title === action.title ? currentDeck : deck) }
+            case DELETE_DECK:
+                  return state
             default:
                 return state
         }

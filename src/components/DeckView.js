@@ -5,6 +5,7 @@ import { lightGray, lightPurp, red, white } from "../utils/colors";
 import Button from "./Button";
 import DeckTitle from "./DeckTitle";
 import ArrowBack from "./ArrowBack";
+import { removeSelectedDeck } from '../actions/DeckActions';
 
 class DeckView extends Component {
 	state = { gotToQuiz: false };
@@ -35,6 +36,14 @@ class DeckView extends Component {
 			deck: currentDeck.title
 		});
 	};
+
+	onRemoveDeckButtonPress = () => {
+		const { navigation, currentDeck } = this.props;
+
+		this.props.removeSelectedDeck(currentDeck.title, () => {
+			navigation.navigate("DeckListView")
+		})
+	}
 
 	render() {
 		const { params } = this.props.navigation.state;
@@ -74,6 +83,10 @@ class DeckView extends Component {
 						onPress={() => this.onCardButtonPress()}
 						title={"Add Card"}
 					/>
+					<Button
+						onPress={() => this.onRemoveDeckButtonPress()}
+						title={"Delete Deck"}
+					/>
 				</View>
 			</View>
 		);
@@ -103,10 +116,16 @@ const styles = StyleSheet.create({
 	}
 });
 
+const mapDispatchToProps = dispatch => {
+	return {
+		removeSelectedDeck: (title, callback) => dispatch(removeSelectedDeck(title, callback))
+	}
+}
+
 const mapStateToProps = state => {
 	return {
 		currentDeck: state.decks.selected
 	};
 };
 
-export default connect(mapStateToProps)(DeckView);
+export default connect(mapStateToProps, mapDispatchToProps)(DeckView);

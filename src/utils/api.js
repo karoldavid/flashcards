@@ -85,3 +85,13 @@ export function addCardToDeck(title, card) {
 			console.log("error");
 		});
 }
+
+export function removeDeck(title) {
+  return AsyncStorage.getItem(FLASHCARDS_QUIZ_STORAGE_KEY)
+    .then((results) => {
+      const data = JSON.parse(results)
+      data[title] = undefined
+      delete data[title]
+      AsyncStorage.setItem(FLASHCARDS_QUIZ_STORAGE_KEY, JSON.stringify(data))
+    })
+}
