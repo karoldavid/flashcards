@@ -45,8 +45,6 @@ class DeckListView extends Component {
 		const { flashCardsList, isFetchingDecks } = this.props;
 		const { containerStyles, infoTextStyles } = styles;
 
-		console.log(isFetchingDecks)
-
 		return (
 			<List style={containerStyles}>
 				<FlatList

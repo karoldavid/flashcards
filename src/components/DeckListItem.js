@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { View, TouchableOpacity, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { ListItem } from "react-native-elements";
 import { connect } from "react-redux";
 import { selectDeck, setDeck } from "../actions/DeckActions";
 import { gray, lightGray, lightPurp, white } from "../utils/colors";
 
 class DeckListItem extends Component {
-    touchableOpacityOnPress = () => {
+    onListItemPress = () => {
+        console.log("touchableOpacityOnPress")
         const { title, navigation } = this.props;
         this.props.setDeck(title, function() {
             navigation.navigate("DeckView", { title });
@@ -18,8 +19,9 @@ class DeckListItem extends Component {
         const { titleStyles, subtitleStyles, subtitleContainerStyles } = styles;
 
         return (
-            <TouchableOpacity onPress={this.touchableOpacityOnPress}>
+
                 <ListItem
+                    onPress={this.onListItemPress}
                     titleStyle={titleStyles}
                     subtitleStyle={subtitleStyles}
                     subtitleContainerStyle={subtitleContainerStyles}
@@ -29,7 +31,7 @@ class DeckListItem extends Component {
                         questions.length !== 1 ? "s" : ""
                     }`}
                 />
-            </TouchableOpacity>
+            
         );
     }
 }
