@@ -15,20 +15,12 @@ class DeckListItem extends Component {
 
     render() {
         const { title, questions } = this.props;
-        const {
-            containerStyles,
-            titleStyles,
-            titleContainerStyles,
-            subtitleStyles,
-            subtitleContainerStyles
-        } = styles;
+        const { titleStyles, subtitleStyles, subtitleContainerStyles } = styles;
 
         return (
             <TouchableOpacity onPress={this.touchableOpacityOnPress}>
                 <ListItem
-                    containerStyle={containerStyles}
                     titleStyle={titleStyles}
-                    titleContainerStyle={titleContainerStyles}
                     subtitleStyle={subtitleStyles}
                     subtitleContainerStyle={subtitleContainerStyles}
                     key={title}
@@ -43,29 +35,9 @@ class DeckListItem extends Component {
 }
 
 const styles = StyleSheet.create({
-    containerStyles: {
-        backgroundColor: lightPurp,
-        borderWidth: 1,
-        borderRadius: 2,
-        borderColor: "#ddd",
-        borderBottomWidth: 0,
-        shadowColor: "#000",
-        shadowOffset: { widht: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 2,
-        elevation: 1,
-        marginLeft: 20,
-        marginRight: 20,
-        marginTop: 5
-    },
     titleStyles: {
         fontSize: 28,
         color: white
-    },
-    titleContainerStyles: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center"
     },
     subtitleStyles: {
         fontSize: 16,
@@ -73,7 +45,7 @@ const styles = StyleSheet.create({
     },
     subtitleContainerStyles: {
         flex: 1,
-        alignItems: "center",
+        alignItems: "flex-start",
         justifyContent: "center"
     }
 });
