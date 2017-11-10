@@ -27,7 +27,7 @@ function writeInitialDecksToAsyncStorage(decks) {
 }
 
 export function getDecks() {
-	//AsyncStorage.removeItem(FLASHCARDS_QUIZ_STORAGE_KEY)
+	// AsyncStorage.removeItem(FLASHCARDS_QUIZ_STORAGE_KEY)
 
 	return AsyncStorage.getItem(FLASHCARDS_QUIZ_STORAGE_KEY)
 		.then(results => {
@@ -87,11 +87,10 @@ export function addCardToDeck(title, card) {
 }
 
 export function removeDeck(title) {
-  return AsyncStorage.getItem(FLASHCARDS_QUIZ_STORAGE_KEY)
-    .then((results) => {
-      const data = JSON.parse(results)
-      data[title] = undefined
-      delete data[title]
-      AsyncStorage.setItem(FLASHCARDS_QUIZ_STORAGE_KEY, JSON.stringify(data))
-    })
+	return AsyncStorage.getItem(FLASHCARDS_QUIZ_STORAGE_KEY).then(results => {
+		const data = JSON.parse(results);
+		data[title] = undefined;
+		delete data[title];
+		AsyncStorage.setItem(FLASHCARDS_QUIZ_STORAGE_KEY, JSON.stringify(data));
+	});
 }

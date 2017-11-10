@@ -8,7 +8,7 @@ import {
 	TouchableOpacity
 } from "react-native";
 import { List, ListItem } from "react-native-elements";
-import { lightPurp } from "../utils/colors";
+import { lightPurp, white } from "../utils/colors";
 import DeckView from "./DeckView";
 import DeckListItem from "./DeckListItem";
 import { fetchData, selectDeck } from "../actions/DeckActions";
@@ -41,13 +41,19 @@ class DeckListView extends Component {
 	};
 
 	render() {
+		const { flashCardsList } = this.props;
+		const { containerStyles, infoTextStyles } = styles;
 		return (
-			<List style={styles.containerStyles}>
+			<List style={containerStyles}>
 				<FlatList
 					data={this.props.flashCardsList}
 					renderItem={this.renderItem}
 					keyExtractor={(item, index) => index}
 				/>
+
+				{flashCardsList.length === 0 && (
+					<Text style={infoTextStyles}>No Decks</Text>
+				)}
 			</List>
 		);
 	}
@@ -69,7 +75,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(DeckListView);
 const styles = StyleSheet.create({
 	containerStyles: {
 		flex: 1,
-		alignItems: "stretch",
 		backgroundColor: lightPurp
+	},
+	infoTextStyles: {
+		flex: 1,
+		color: white,
+		textAlign: "center"
 	}
 });
