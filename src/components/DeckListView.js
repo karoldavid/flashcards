@@ -7,6 +7,7 @@ import {
 	View,
 	TouchableOpacity
 } from "react-native";
+import Spinner from 'react-native-loading-spinner-overlay';
 import { List, ListItem } from "react-native-elements";
 import { lightPurp, white } from "../utils/colors";
 import DeckView from "./DeckView";
@@ -41,8 +42,11 @@ class DeckListView extends Component {
 	};
 
 	render() {
-		const { flashCardsList } = this.props;
+		const { flashCardsList, isFetchingDecks } = this.props;
 		const { containerStyles, infoTextStyles } = styles;
+
+		console.log(isFetchingDecks)
+
 		return (
 			<List style={containerStyles}>
 				<FlatList
@@ -51,7 +55,13 @@ class DeckListView extends Component {
 					keyExtractor={(item, index) => index}
 				/>
 
-				{flashCardsList.length === 0 && (
+				<Spinner
+					visible={isFetchingDecks}
+					textContent={"Loading Decks..."}
+					textStyle={{color: white}}
+				/>
+
+				{(!isFetchingDecks && flashCardsList.length === 0) && (
 					<Text style={infoTextStyles}>No Decks</Text>
 				)}
 			</List>
@@ -59,8 +69,9 @@ class DeckListView extends Component {
 	}
 }
 
-const mapStateToProps = ({ decks: { deckList } }) => ({
-	flashCardsList: deckList
+const mapStateToProps = ({ decks: { deckList, isFetching } }) => ({
+	flashCardsList: deckList,
+	isFetchingDecks: isFetching
 });
 
 function mapDispatchToProps(dispatch) {
