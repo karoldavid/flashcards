@@ -1,13 +1,19 @@
-import { getDecks, getDeck, saveDeckTitle, addCardToDeck, removeDeck } from "../utils/api";
-
-export const FETCH_DATA = "FETCH_DATA";
-export const FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESS";
-export const FETCH_DATA_FAILURE = "FETCH_DATA_FAILURE";
-
-export const SELECT_DECK = "SELECT_DECK";
-export const ADD_DECK = "ADD_DECK";
-export const ADD_CARD = "ADD_CARD";
-export const DELETE_DECK = "DELETE_DECK";
+import {
+  getDecks,
+  getDeck,
+  saveDeckTitle,
+  addCardToDeck,
+  removeDeck
+} from "../utils/api";
+import {
+  FETCH_DATA,
+  FETCH_DATA_SUCCESS,
+  FETCH_DATA_FAILURE,
+  SELECT_DECK,
+  ADD_DECK,
+  ADD_CARD,
+  DELETE_DECK
+} from "./types";
 
 export function getData() {
   return {
@@ -87,12 +93,12 @@ export const deleteDeck = title => {
   return {
     type: DELETE_DECK,
     payload: title
-  }
-}
+  };
+};
 
 export const removeSelectedDeck = (title, callback) => dispatch => {
   removeDeck(title)
     .then(() => dispatch(deleteDeck(title)))
     .then(() => callback())
     .catch(err => console.log("err:", err));
-}
+};

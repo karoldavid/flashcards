@@ -7,7 +7,7 @@ import { gray, lightGray, lightPurp, white } from "../utils/colors";
 
 class DeckListItem extends Component {
     onListItemPress = () => {
-        console.log("touchableOpacityOnPress")
+        console.log("touchableOpacityOnPress");
         const { title, navigation } = this.props;
         this.props.setDeck(title, function() {
             navigation.navigate("DeckView", { title });
@@ -19,19 +19,17 @@ class DeckListItem extends Component {
         const { titleStyles, subtitleStyles, subtitleContainerStyles } = styles;
 
         return (
-
-                <ListItem
-                    onPress={this.onListItemPress}
-                    titleStyle={titleStyles}
-                    subtitleStyle={subtitleStyles}
-                    subtitleContainerStyle={subtitleContainerStyles}
-                    key={title}
-                    title={title}
-                    subtitle={`${questions.length} card${
-                        questions.length !== 1 ? "s" : ""
-                    }`}
-                />
-            
+            <ListItem
+                onPress={this.onListItemPress}
+                titleStyle={titleStyles}
+                subtitleStyle={subtitleStyles}
+                subtitleContainerStyle={subtitleContainerStyles}
+                key={title}
+                title={title}
+                subtitle={`${questions.length} card${
+                    questions.length !== 1 ? "s" : ""
+                }`}
+            />
         );
     }
 }

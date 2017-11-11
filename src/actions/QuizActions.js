@@ -1,8 +1,10 @@
-export const SHOW_ANSWER = "SHOW_ANSWER";
-export const INCREASE_SCORE = "INCREASE_SCORE";
-export const QUESTION_ANSWERED = "QUESTION_ANSWERED";
-export const NEXT_QUESTION = "NEXT_QUESTION";
-export const RESET_QUIZ = "RESET_QUIZ";
+import {
+	SHOW_ANSWER,
+	INCREASE_SCORE,
+	QUESTION_ANSWERED,
+	NEXT_QUESTION,
+	RESET_QUIZ
+} from "./types";
 
 export const showAnswer = show => {
 	return {
