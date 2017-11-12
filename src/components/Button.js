@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
       backgroundColor: blue,
       borderRadius: 10,
       borderWidth: 1,
-      color: white
+      color: white,
+      textAlign: "center"
    }
 });
 

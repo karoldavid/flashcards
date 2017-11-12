@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { lightGray, lightPurp, red, white } from "../utils/colors";
+import { black, lightGray, lightPurp, red, white } from "../utils/colors";
 import Button from "./Button";
 import DeckTitle from "./DeckTitle";
 import ArrowBack from "./ArrowBack";
-import { removeSelectedDeck } from '../actions/DeckActions';
+import { removeSelectedDeck } from "../actions/DeckActions";
 
 class DeckView extends Component {
 	state = { gotToQuiz: false };
@@ -41,43 +41,52 @@ class DeckView extends Component {
 		const { navigation, currentDeck } = this.props;
 
 		this.props.removeSelectedDeck(currentDeck.title, () => {
-			navigation.navigate("DeckListView")
-		})
+			navigation.navigate("DeckListView");
+		});
+	};
+
+	renderQuizButton() {
+		const { infoStyles } = styles;
+
+		if (this.state.goToQuiz) {
+			return (
+				<Button
+					onPress={() => this.onQuizButtonPress()}
+					title={"Start Quiz"}
+				/>
+			);
+		}
+
+		return (
+			<Text style={infoStyles}>
+				To start a quiz add a card to the deck.
+			</Text>
+		);
 	}
 
 	render() {
 		const { params } = this.props.navigation.state;
 		const { questions } = this.props.currentDeck;
-		const { goToQuiz } = this.state;
 		const {
 			containerStyles,
 			deckContentStyles,
 			deckTitleStyles,
-			infoStyles
+			infoStyles,
+			sectionStyles
 		} = styles;
 
 		return (
 			<View style={containerStyles}>
-				<DeckTitle
-					deckTitle={params.title}
-					questionsLength={questions.length}
-				/>
-
-				<View>
-					{!goToQuiz && (
-						<Text style={infoStyles}>
-							To start a quiz add a card to the deck.
-						</Text>
-					)}
+				<View style={sectionStyles}>
+					<DeckTitle
+						style={deckTitleStyles}
+						deckTitle={params.title}
+						questionsLength={questions.length}
+					/>
 				</View>
 
-				<View>
-					{goToQuiz && (
-						<Button
-							onPress={() => this.onQuizButtonPress()}
-							title={"Start Quiz"}
-						/>
-					)}
+				<View style={sectionStyles}>
+					{this.renderQuizButton()}
 
 					<Button
 						onPress={() => this.onCardButtonPress()}
@@ -96,10 +105,26 @@ class DeckView extends Component {
 const styles = StyleSheet.create({
 	containerStyles: {
 		flex: 1,
-		alignItems: "center",
-		justifyContent: "space-around",
+		justifyContent: 'space-around',
+		borderWidth: 1,
+		borderRadius: 2,
+		borderColor: lightGray,
 		backgroundColor: lightPurp,
-		margin: 5
+		borderBottomWidth: 0,
+		shadowColor: black,
+		shadowOffset: { widht: 0, height: 2 },
+		shadowOpacity: 0.1,
+		shadowRadius: 2,
+		elevation: 1,
+		marginLeft: 5,
+		marginRight: 5,
+		marginTop: 10
+	},
+	sectionStyles: {
+		padding: 5,
+		backgroundColor: white,
+		justifyContent: "center",
+		backgroundColor: lightPurp,
 	},
 	deckTitleStyles: {
 		fontSize: 28,
@@ -107,20 +132,22 @@ const styles = StyleSheet.create({
 	},
 	deckContentStyles: {
 		fontSize: 16,
-		textAlign: "center",
 		color: lightGray
 	},
 	infoStyles: {
 		fontSize: 16,
-		color: red
+		textAlign: "center",
+		color: red,
+		margin: 10
 	}
 });
 
 const mapDispatchToProps = dispatch => {
 	return {
-		removeSelectedDeck: (title, callback) => dispatch(removeSelectedDeck(title, callback))
-	}
-}
+		removeSelectedDeck: (title, callback) =>
+			dispatch(removeSelectedDeck(title, callback))
+	};
+};
 
 const mapStateToProps = state => {
 	return {
