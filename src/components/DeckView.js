@@ -5,7 +5,7 @@ import { black, lightGray, lightPurp, red, white } from "../utils/colors";
 import Button from "./Button";
 import DeckTitle from "./DeckTitle";
 import ArrowBack from "./ArrowBack";
-import { removeSelectedDeck } from "../actions/DeckActions";
+import { removeSelectedDeck } from "../actions";
 
 class DeckView extends Component {
 	state = { gotToQuiz: false };

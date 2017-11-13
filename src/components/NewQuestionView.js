@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { saveCard, setDeck } from "../actions/DeckActions";
+import { saveCard, setDeck } from "../actions";
 import { StyleSheet, KeyboardAvoidingView } from "react-native";
 import { lightPurp } from "../utils/colors";
 import Button from "./Button";

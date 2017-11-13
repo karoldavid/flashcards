@@ -12,7 +12,7 @@ import { List, ListItem } from "react-native-elements";
 import { lightPurp, white } from "../utils/colors";
 import DeckView from "./DeckView";
 import DeckListItem from "./DeckListItem";
-import { fetchData, selectDeck } from "../actions/DeckActions";
+import { fetchData, selectDeck } from "../actions";
 import { getAll, getDeck, saveDeckTitle } from "../utils/api";
 import { setLocalNotification, timing } from "../utils/notifications";
 import ArrowBack from "./ArrowBack";

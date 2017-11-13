@@ -17,7 +17,7 @@ import {
 	questionAnswered,
 	nextQuestion,
 	resetQuiz
-} from '../actions/QuizActions'
+} from '../actions'
 import QuizComplete from './QuizComplete'
 import Button from './Button'
 import DeckTitle from './DeckTitle'

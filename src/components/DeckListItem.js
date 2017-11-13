@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import { StyleSheet } from "react-native";
 import { ListItem } from "react-native-elements";
 import { connect } from "react-redux";
-import { selectDeck, setDeck } from "../actions/DeckActions";
+import { selectDeck, setDeck } from "../actions";
 import { gray, lightGray, lightPurp, white } from "../utils/colors";
 
 class DeckListItem extends Component {
     onListItemPress = () => {
-        console.log("touchableOpacityOnPress");
         const { title, navigation } = this.props;
         this.props.setDeck(title, function() {
             navigation.navigate("DeckView", { title });
