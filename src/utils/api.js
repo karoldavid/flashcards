@@ -1,19 +1,8 @@
+import _ from "lodash";
 import { AsyncStorage } from "react-native";
 import initialDecks from "../data/DeckList.json";
 
 const FLASHCARDS_QUIZ_STORAGE_KEY = "FLASHCARDS:decks";
-
-function convertObjectToArray(results) {
-	const data = JSON.parse(results);
-	const keys = Object.keys(data);
-	let deckArray = [];
-
-	keys.map(key => {
-		deckArray.push(data[key]);
-	});
-
-	return deckArray;
-}
 
 function writeInitialDecksToAsyncStorage(decks) {
 	decks.map(deck => {
@@ -36,7 +25,14 @@ export function getDecks() {
 				return initialDecks;
 			}
 
-			return convertObjectToArray(results);
+			const deckList = _.map(JSON.parse(results), (val, title) => {
+				return {
+					...val,
+					title
+				};
+			});
+
+			return deckList;
 		})
 		.catch(() => {
 			console.log("no data");
