@@ -22,10 +22,10 @@ class DeckListView extends Component {
 		headerLeft: <ArrowBack onPress={() => navigation.goBack()} />
 	});
 
-	componentDidMount() {
-		setLocalNotification(timing);
-		this.props.fetchData();
-	}
+	componentWillMount() {
+    	setLocalNotification(timing);
+    	this.props.fetchData();
+  	}
 
 	renderItem = ({ item }) => {
 		const { title, questions } = item;
@@ -67,6 +67,18 @@ class DeckListView extends Component {
 	}
 }
 
+const styles = StyleSheet.create({
+	containerStyles: {
+		flex: 1,
+		backgroundColor: lightPurp
+	},
+	infoTextStyles: {
+		flex: 1,
+		color: white,
+		textAlign: "center"
+	}
+});
+
 const mapStateToProps = ({ decks: { deckList, isFetching } }) => ({
 	flashCardsList: deckList,
 	isFetchingDecks: isFetching
@@ -80,15 +92,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeckListView);
-
-const styles = StyleSheet.create({
-	containerStyles: {
-		flex: 1,
-		backgroundColor: lightPurp
-	},
-	infoTextStyles: {
-		flex: 1,
-		color: white,
-		textAlign: "center"
-	}
-});
