@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { lightGray, white, lightPurp } from "../utils/colors";
+import { lightGray, black, white, lightPurp } from "../utils/colors";
 import Button from "./Button";
 
 const DeckTitle = ({ deckTitle, questionsLength = null }) => {

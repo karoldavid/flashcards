@@ -4,9 +4,9 @@ import { blue, red, white, lightPurp } from "../utils/colors";
 import Button from "./Button";
 
 const QuizComplete = ({ finalScore, restartQuiz, backToDeck }) => {
-	const { containerStyles, finalScoreStyles } = styles;
+	const { finalScoreStyles } = styles;
 	return (
-		<View style={containerStyles}>
+		<View>
 			<View>
 				<Text style={finalScoreStyles}>{finalScore}% Correct</Text>
 			</View>
@@ -19,18 +19,12 @@ const QuizComplete = ({ finalScore, restartQuiz, backToDeck }) => {
 };
 
 const styles = StyleSheet.create({
-	containerStyles: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "space-around",
-		backgroundColor: lightPurp,
-		margin: 5
-	},
 	finalScoreStyles: {
 		paddingTop: 50,
 		paddingBottom: 20,
 		fontSize: 24,
 		fontWeight: "bold",
+		textAlign: "center",
 		color: white
 	}
 });

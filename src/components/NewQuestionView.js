@@ -92,16 +92,6 @@ class NewQuestionView extends Component {
 	}
 }
 
-// const styles = StyleSheet.create({
-// 	containerStyles: {
-// 		flex: 1,
-// 		alignItems: "center",
-// 		justifyContent: "space-around",
-// 		backgroundColor: lightPurp,
-// 		margin: 5
-// 	}
-// });
-
 const styles = StyleSheet.create({
 	containerStyles: {
 		flex: 1,
