@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
-import { black, lightGray, lightPurp, red, white } from "../utils/colors";
+import styles from "../utils/styles";
 import {
 	showAnswer,
 	increaseScore,
@@ -152,75 +152,6 @@ class QuizView extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	containerStyles: {
-		flex: 1,
-		justifyContent: "space-around",
-		borderWidth: 1,
-		borderRadius: 2,
-		borderColor: lightGray,
-		backgroundColor: lightPurp,
-		borderBottomWidth: 0,
-		shadowColor: black,
-		shadowOffset: { widht: 0, height: 2 },
-		shadowOpacity: 0.1,
-		shadowRadius: 2,
-		elevation: 1,
-		marginLeft: 5,
-		marginRight: 5,
-		marginTop: 10
-	},
-	questionStyles: {
-		paddingTop: 20,
-		paddingBottom: 20,
-		fontSize: 24,
-		fontWeight: "bold",
-		color: white,
-		textAlign: "center"
-	},
-	answerTouchableStyles: {
-		fontSize: 16,
-		fontWeight: "bold",
-		color: red
-	},
-	answerContainerStyles: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-		backgroundColor: lightPurp,
-		margin: 5
-	},
-	answerStyles: {
-		paddingTop: 20,
-		paddingBottom: 20,
-		fontSize: 24,
-		fontWeight: "bold",
-		color: white,
-		textAlign: "center"
-	},
-	answerCorrectStyles: {
-		paddingTop: 50,
-		paddingBottom: 20,
-		fontSize: 24,
-		fontWeight: "bold",
-		textAlign: "center",
-		color: white
-	},
-	finalScoreStyles: {
-		paddingTop: 50,
-		paddingBottom: 20,
-		fontSize: 24,
-		fontWeight: "bold",
-		color: white
-	},
-	cardsLeftStyles: {
-		fontSize: 16,
-		fontWeight: "bold",
-		textAlign: "center",
-		color: lightGray
-	}
-});
 
 const mapStateToProps = state => {
 	const { decks, quiz } = state;

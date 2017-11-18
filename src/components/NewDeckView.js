@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { saveDeck, setDeck } from "../actions/DeckActions";
-import { StyleSheet, KeyboardAvoidingView } from "react-native";
-import { black, lightGray, lightPurp } from "../utils/colors";
+import { KeyboardAvoidingView } from "react-native";
+import styles from "../utils/styles";
 import Button from "./Button";
 import DeckFormInput from "./DeckFormInput";
 import ArrowBack from "./ArrowBack";
@@ -67,26 +67,6 @@ class NewDeckView extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	containerStyles: {
-		flex: 1,
-		justifyContent: "space-around",
-		borderWidth: 1,
-		borderRadius: 2,
-		borderColor: lightGray,
-		backgroundColor: lightPurp,
-		borderBottomWidth: 0,
-		shadowColor: black,
-		shadowOffset: { widht: 0, height: 2 },
-		shadowOpacity: 0.1,
-		shadowRadius: 2,
-		elevation: 1,
-		marginLeft: 5,
-		marginRight: 5,
-		marginTop: 10
-	}
-});
 
 function mapDispatchToProps(dispatch) {
 	return {

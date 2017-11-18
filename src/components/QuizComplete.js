@@ -1,6 +1,6 @@
 import React from "react";
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
-import { blue, red, white, lightPurp } from "../utils/colors";
+import { View, Text } from "react-native";
+import styles from "../utils/styles";
 import Button from "./Button";
 
 const QuizComplete = ({ finalScore, restartQuiz, backToDeck }) => {
@@ -17,16 +17,5 @@ const QuizComplete = ({ finalScore, restartQuiz, backToDeck }) => {
 		</View>
 	);
 };
-
-const styles = StyleSheet.create({
-	finalScoreStyles: {
-		paddingTop: 50,
-		paddingBottom: 20,
-		fontSize: 24,
-		fontWeight: "bold",
-		textAlign: "center",
-		color: white
-	}
-});
 
 export default QuizComplete;

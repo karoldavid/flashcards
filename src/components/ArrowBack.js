@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
-import { blue, white } from "../utils/colors";
+import { View, TouchableOpacity } from "react-native";
+import styles from "../utils/styles";
+import { white } from "../utils/colors";
 import { Ionicons } from "@expo/vector-icons";
 
 const ArrowBack = ({ onPress }) => {
@@ -12,12 +13,5 @@ const ArrowBack = ({ onPress }) => {
       </View>
    );
 };
-
-const styles = StyleSheet.create({
-   arrowStyles: {
-      paddingLeft: 20,
-      paddingRight: 20
-   }
-});
 
 export default ArrowBack;

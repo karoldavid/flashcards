@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { StyleSheet } from "react-native";
 import { ListItem } from "react-native-elements";
 import { connect } from "react-redux";
 import { selectDeck, setDeck } from "../actions";
-import { gray, lightGray, lightPurp, white } from "../utils/colors";
+import styles from "../utils/styles";
 
 class DeckListItem extends Component {
     onListItemPress = () => {
@@ -32,22 +31,6 @@ class DeckListItem extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    titleStyles: {
-        fontSize: 28,
-        color: white
-    },
-    subtitleStyles: {
-        fontSize: 16,
-        color: lightGray
-    },
-    subtitleContainerStyles: {
-        flex: 1,
-        alignItems: "flex-start",
-        justifyContent: "center"
-    }
-});
 
 function matchDispatchToProps(dispatch) {
     return {

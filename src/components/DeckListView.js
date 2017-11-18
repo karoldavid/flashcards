@@ -1,15 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-	StyleSheet,
-	Text,
-	FlatList,
-	View,
-	TouchableOpacity
-} from "react-native";
-import Spinner from 'react-native-loading-spinner-overlay';
+import { Text, FlatList, View, TouchableOpacity } from "react-native";
+import Spinner from "react-native-loading-spinner-overlay";
 import { List, ListItem } from "react-native-elements";
-import { lightPurp, white } from "../utils/colors";
+import styles from "../utils/styles";
+import { white } from "../utils/colors";
 import DeckView from "./DeckView";
 import DeckListItem from "./DeckListItem";
 import { fetchData, selectDeck } from "../actions";
@@ -23,9 +18,9 @@ class DeckListView extends Component {
 	});
 
 	componentWillMount() {
-    	setLocalNotification(timing);
-    	this.props.fetchData();
-  	}
+		setLocalNotification(timing);
+		this.props.fetchData();
+	}
 
 	renderItem = ({ item }) => {
 		const { title, questions } = item;
@@ -56,28 +51,17 @@ class DeckListView extends Component {
 				<Spinner
 					visible={isFetchingDecks}
 					textContent={"Loading Decks..."}
-					textStyle={{color: white}}
+					textStyle={{ color: white }}
 				/>
 
-				{(!isFetchingDecks && flashCardsList.length === 0) && (
-					<Text style={infoTextStyles}>No Decks</Text>
-				)}
+				{!isFetchingDecks &&
+					flashCardsList.length === 0 && (
+						<Text style={infoTextStyles}>No Decks</Text>
+					)}
 			</List>
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	containerStyles: {
-		flex: 1,
-		backgroundColor: lightPurp
-	},
-	infoTextStyles: {
-		flex: 1,
-		color: white,
-		textAlign: "center"
-	}
-});
 
 const mapStateToProps = ({ decks: { deckList, isFetching } }) => ({
 	flashCardsList: deckList,
