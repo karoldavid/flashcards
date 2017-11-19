@@ -77,7 +77,7 @@ class DeckView extends Component {
 
 		return (
 			<View style={containerStyles}>
-				<View style={sectionStyles}>
+				<View>
 					<DeckTitle
 						style={deckTitleStyles}
 						deckTitle={params.title}
@@ -85,7 +85,7 @@ class DeckView extends Component {
 					/>
 				</View>
 
-				<View style={sectionStyles}>
+				<View style={[{ flex: 1 }, { justifyContent: "flex-end" }]}>
 					{this.renderQuizButton()}
 
 					<Button

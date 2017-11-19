@@ -130,13 +130,15 @@ class QuizView extends Component {
 							{correct ? "YES!" : "NO!"}
 						</Text>
 						{index !== questions.length - 1 && (
-							<Button
-								onPress={() => this.onNextQuestionButtonPress()}
-								title={"Next Question"}
-							/>
+							<View style={[{ flex: 1 }, { justifyContent: "flex-end" }]}>
+								<Button
+									onPress={() => this.onNextQuestionButtonPress()}
+									title={"Next Question"}
+								/>
+							</View>
 						)}
 						{index === questions.length - 1 && (
-							<View>
+							<View style={[{ flex: 1 }, { justifyContent: "flex-end" }]}>
 								<QuizComplete
 									finalScore={this.showPercentCorrect()}
 									restartQuiz={this.onRestartQuizButtonPress}
