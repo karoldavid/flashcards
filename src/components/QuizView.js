@@ -78,8 +78,6 @@ class QuizView extends Component {
 			answerCorrectStyles
 		} = styles;
 
-		console.log(index, questions.length, correct)
-
 		if (index === questions.length - 1 && correct) this.setNotification();
 
 		return (

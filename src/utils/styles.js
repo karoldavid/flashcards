@@ -144,6 +144,7 @@ const styles = StyleSheet.create({
 	finalScoreStyles,
 	questionStyles,
 	answerStyles,
+	answerTouchableStyles,
 	answerCorrectStyles,
 	answerContainerStyles,
 	cardsLeftStyles
